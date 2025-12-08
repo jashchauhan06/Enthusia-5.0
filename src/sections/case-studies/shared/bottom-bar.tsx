@@ -20,7 +20,7 @@ const rounds = [
   }
 ];
 
-export function BottomBar({ techStack }: BottomBarProps) {
+export function BottomBar({ techStack: _techStack }: BottomBarProps) {
   const contentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
