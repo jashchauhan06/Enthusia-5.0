@@ -133,7 +133,10 @@ export function SignInPage() {
 
             {/* Info Text */}
             <p className="text-center text-sm text-[#b3b3b3] font-body">
-              By signing in, you agree to our Terms of Service and Privacy Policy
+              By signing in, you agree to our{' '}
+              <a href="/privacy-policy" className="text-primary hover:underline">
+                Privacy Policy
+              </a>
             </p>
           </div>
         </div>
