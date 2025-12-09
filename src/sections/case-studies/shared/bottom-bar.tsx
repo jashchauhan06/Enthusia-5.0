@@ -1,10 +1,6 @@
 import { useRef, useEffect } from "react";
 import gsap from "gsap";
 
-interface BottomBarProps {
-  techStack?: any[];
-}
-
 const rounds = [
   {
     title: "Round 1: Initial Screening",
@@ -20,7 +16,7 @@ const rounds = [
   }
 ];
 
-export function BottomBar({ techStack }: BottomBarProps) {
+export function BottomBar() {
   const contentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {

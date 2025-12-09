@@ -52,7 +52,7 @@ export function TransitionLayout() {
               ref={bottomBarRef}
               className="bg-black border border-[#353739] rounded-[2rem] p-4 [@media(min-width:1390px)]:p-8[@media(min-width:1390px)]:h-auto [@media(min-width:1390px)]:min-h-[200px] transition-all duration-300 ease-in-out hover:border-[#555759] hover:-translate-y-0.5 flex-none [@media(min-width:1390px)]:flex-1 [@media(min-width:1390px)]:mb-0 mb-3"
             >
-              <BottomBar techStack={currentData.techStack} />
+              <BottomBar />
             </div>
           </div>
 
