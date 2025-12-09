@@ -90,7 +90,7 @@ export function Countdown() {
             Don't miss out on this incredible opportunity to innovate and collaborate!
           </p>
           <a
-            href="/register"
+            href="/signin"
             className="inline-block px-8 py-3 bg-primary text-primary-foreground font-heading text-lg rounded-full hover:opacity-90 transition-opacity"
           >
             REGISTER NOW

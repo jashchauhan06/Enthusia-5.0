@@ -59,7 +59,7 @@ export function AboutMe() {
 
             {/* Column 4, Rows 1-2 - 24 Hours */}
             <AchievementCard 
-              title={<>24-Hour<br />Coding<br />Marathon</>}
+              title={<>24-Hour<br />Coding<br />Hackathon</>}
               description="Non-Stop Innovation"
               className="row-span-2"
             />
@@ -124,7 +124,7 @@ export function AboutMe() {
               description="7 Industry Experts"
             />
             <AchievementCard 
-              title={<>24-Hour<br />Coding<br />Marathon</>}
+              title={<>24-Hour<br />Coding<br />Hackathon</>}
               description="Non-Stop Innovation"
             />
           </div>

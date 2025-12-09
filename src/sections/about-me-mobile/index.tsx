@@ -32,7 +32,7 @@ export function AboutMeMobile() {
         {/* Bottom row: 1 achievement card */}
         <div className="grid grid-cols-1 mb-4">
           <AchievementCard 
-            title={<>24-Hour Coding Marathon</>}
+            title={<>24-Hour Coding Hackathon</>}
             description="Non-Stop Innovation"
           />
         </div>
