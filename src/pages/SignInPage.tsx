@@ -2,6 +2,8 @@ import { useNavigate } from "react-router";
 import { ArrowLeft } from "lucide-react";
 import { useGoogleLogin } from '@react-oauth/google';
 import { SEO } from "@/components/seo/SEO";
+import { supabase } from "@/lib/supabase";
+import { isAdmin } from "@/lib/admin";
 
 export function SignInPage() {
   const navigate = useNavigate();
@@ -21,11 +23,37 @@ export function SignInPage() {
         const userInfo = await userInfoResponse.json();
         console.log('User Info:', userInfo);
         
-        // Store user info in localStorage or your state management
+        // Store user info in localStorage
         localStorage.setItem('user', JSON.stringify(userInfo));
         
-        // Redirect to dashboard
-        navigate('/dashboard');
+        // Check if user is admin
+        if (isAdmin(userInfo.sub)) {
+          console.log('Admin user detected, redirecting to admin dashboard');
+          navigate('/admin/teams');
+          return;
+        }
+        
+        // Check if user exists in Supabase
+        const { data: existingUser } = await supabase
+          .from('users')
+          .select('*')
+          .eq('google_id', userInfo.sub)
+          .single();
+        
+        if (existingUser) {
+          // User exists, store their data
+          localStorage.setItem('userProfile', JSON.stringify(existingUser));
+          
+          // If user has a team, redirect to teams page, otherwise to dashboard
+          if (existingUser.team_code) {
+            navigate('/dashboard/teams');
+          } else {
+            navigate('/dashboard');
+          }
+        } else {
+          // New user, redirect to complete profile
+          navigate('/dashboard');
+        }
       } catch (error) {
         console.error('Error fetching user info:', error);
       }
