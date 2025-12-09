@@ -14,7 +14,7 @@ export function MobileHomePage() {
       <SEO 
         title="SITNovate 24-Hour Hackathon - Innovation Challenge"
         description="Join the SITNovate 24-Hour Hackathon - an intensive innovation hackathon where creativity meets collaboration. Register your team now!"
-        url="https://www.sitnovate.com"
+        url="https://sitnovate.vercel.app"
       />
       <div className="flex min-h-svh flex-col">
       {/* Global Progressive Blur at top of screen */}

@@ -73,7 +73,7 @@ export function RegistrationPage() {
       <SEO 
         title="Register for SITNovate 24-Hour Hackathon"
         description="Register your team for the SITNovate 24-Hour Hackathon. Join us for an intensive innovation challenge."
-        url="https://www.sitnovate.com/register"
+        url="https://sitnovate.vercel.app/register"
       />
       
       <div className="min-h-screen bg-background flex items-center justify-center px-4 py-12">

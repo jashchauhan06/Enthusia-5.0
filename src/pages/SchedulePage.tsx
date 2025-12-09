@@ -41,7 +41,7 @@ export function SchedulePage() {
       <SEO 
         title="Event Schedule - SITNovate 24-Hour Hackathon"
         description="Complete schedule for the SITNovate 24-Hour Hackathon including all events, workshops, and activities."
-        url="https://www.sitnovate.com/schedule"
+        url="https://sitnovate.vercel.app/schedule"
       />
       
       <div className="min-h-screen bg-background px-4 py-12">

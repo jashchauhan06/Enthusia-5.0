@@ -10,7 +10,7 @@ export function MobileHome() {
     const navigate = useNavigate();
 
     const handleRegisterClick = () => {
-      navigate('/register');
+      navigate('/signin');
     };
 
     return (

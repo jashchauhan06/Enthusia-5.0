@@ -26,7 +26,7 @@ export function HomePage() {
       <SEO 
         title="SITNovate 24-Hour Hackathon - Innovation Challenge"
         description="Join the SITNovate 24-Hour Hackathon - an intensive innovation hackathon where creativity meets collaboration. Register your team now!"
-        url="https://www.sitnovate.com"
+        url="https://sitnovate.vercel.app"
         jsonLd={structuredData}
       />
       <div className="flex min-h-svh flex-col">

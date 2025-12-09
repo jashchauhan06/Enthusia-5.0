@@ -24,7 +24,7 @@ export function HomeInfoGrid() {
   };
 
   const handleRegisterClick = () => {
-    navigate('/register');
+    navigate('/signin');
   };
 
   return (

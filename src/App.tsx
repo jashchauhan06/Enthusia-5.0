@@ -8,6 +8,8 @@ import { CaseStudyDetailPage } from "@/pages/CaseStudyDetailPage";
 import { PrivacyPolicyPage } from "@/pages/PrivacyPolicyPage";
 import { RegistrationPage } from "@/pages/RegistrationPage";
 import { SchedulePage } from "@/pages/SchedulePage";
+import { SignInPage } from "@/pages/SignInPage";
+import { DashboardPage } from "@/pages/DashboardPage";
 import { SmoothScrollProvider } from "@/components/providers/smooth-scroll-provider";
 import { useBreakpoint } from "@/hooks/useBreakpoint";
 import { SpeedInsights } from '@vercel/speed-insights/react';
@@ -17,6 +19,8 @@ function DesktopApp() {
     <SmoothScrollProvider>
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/signin" element={<SignInPage />} />
+        <Route path="/dashboard" element={<DashboardPage />} />
         <Route path="/register" element={<RegistrationPage />} />
         <Route path="/schedule" element={<SchedulePage />} />
         <Route path="/case-studies/:slug" element={<CaseStudyDetailPage />} />
@@ -30,6 +34,8 @@ function MobileApp() {
   return (
     <Routes>
       <Route path="/" element={<MobileHomePage />} />
+      <Route path="/signin" element={<SignInPage />} />
+      <Route path="/dashboard" element={<DashboardPage />} />
       <Route path="/register" element={<RegistrationPage />} />
       <Route path="/schedule" element={<SchedulePage />} />
       <Route path="/case-studies/:slug" element={<CaseStudyDetailPage />} />
