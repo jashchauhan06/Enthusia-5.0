@@ -5,7 +5,7 @@ export function TrustIndicator() {
     <div className="bento-no-min flex flex-col justify-between items-center text-center h-full">
       <AccuracastIcon className="h-8 w-auto" />
       <span className="font-body text-sm text-muted-foreground font-light">
-        Trusted by
+        Sponsored by
       </span>
     </div>
   );

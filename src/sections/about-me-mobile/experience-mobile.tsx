@@ -17,16 +17,16 @@ interface SkillItem {
 
 export function ExperienceMobile() {
   const skills: SkillItem[] = [
-    { text: "ML Pipelines", icon: gitBranchIcon },
-    { text: "Multi-platform Integrations", icon: plugIcon },
-    { text: "RAG Systems", icon: ragDocIcon },
-    { text: "LangChain", icon: langchainIcon },
-    { text: "Multi-tenant SaaS", icon: layersIcon },
-    { text: "Enterprise Data Governance", icon: shieldCheckIcon },
-    { text: "Full-stack Dev", icon: codeIcon },
-    { text: "ML Algorithms", icon: cpuIcon },
-    { text: "Payment Processing", icon: creditCardIcon },
-    { text: "System Architecture", icon: buildingIcon },
+    { text: "Event Planning", icon: gitBranchIcon },
+    { text: "Team Coordination", icon: plugIcon },
+    { text: "Sponsor Management", icon: ragDocIcon },
+    { text: "Technical Support", icon: langchainIcon },
+    { text: "Participant Engagement", icon: layersIcon },
+    { text: "Venue Management", icon: shieldCheckIcon },
+    { text: "Marketing & Outreach", icon: codeIcon },
+    { text: "Judging Coordination", icon: cpuIcon },
+    { text: "Prize Distribution", icon: creditCardIcon },
+    { text: "Post-Event Analysis", icon: buildingIcon },
   ];
 
   // Split skills into two rows: first 5, then last 5
@@ -53,7 +53,7 @@ export function ExperienceMobile() {
               {/* Bottom stripe with horizontal text */}
               <div className="absolute -left-px -right-px -bottom-px h-8 bg-[#353739] rounded-b-[2rem] flex items-center justify-center">
                 <span className="text-white font-heading text-lg whitespace-nowrap">
-                  experience
+                  organizing
                 </span>
               </div>
               
@@ -81,7 +81,7 @@ export function ExperienceMobile() {
               {/* Bottom stripe with horizontal text */}
               <div className="absolute -left-px -right-px -bottom-px h-8 bg-[#353739] rounded-b-[2rem] flex items-center justify-center">
                 <span className="text-white font-heading text-lg whitespace-nowrap">
-                  experience
+                  organizing
                 </span>
               </div>
               
