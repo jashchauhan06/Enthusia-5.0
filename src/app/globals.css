@@ -1,26 +1,509 @@
+/* Google Fonts - must be first */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Orbitron:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+
 @import "tailwindcss";
 
+/* ============================================
+   ENTHUSIA 5.0 - Futuristic Dark Theme
+   ============================================ */
+
+/* Theme Variables */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Core Colors */
+  --bg-primary: #030014;
+  --bg-secondary: #0a0118;
+  --bg-tertiary: #120326;
+
+  /* Accent Colors - Neon */
+  --neon-blue: #00D4FF;
+  --electric-purple: #8B5CF6;
+  --magenta: #EC4899;
+  --cyber-pink: #FF006E;
+  --aurora-green: #00FF88;
+
+  /* Text Colors */
+  --text-primary: #FFFFFF;
+  --text-secondary: rgba(255, 255, 255, 0.7);
+  --text-muted: rgba(255, 255, 255, 0.5);
+
+  /* Glassmorphism */
+  --glass-bg: rgba(255, 255, 255, 0.03);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --glass-border-hover: rgba(255, 255, 255, 0.2);
+
+  /* Gradients */
+  --gradient-primary: linear-gradient(135deg, var(--neon-blue), var(--electric-purple), var(--magenta));
+  --gradient-glow: linear-gradient(135deg, rgba(0, 212, 255, 0.5), rgba(139, 92, 246, 0.5), rgba(236, 72, 153, 0.5));
+  --gradient-dark: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 50%, var(--bg-tertiary) 100%);
+
+  /* Shadows & Glows */
+  --glow-blue: 0 0 20px rgba(0, 212, 255, 0.5), 0 0 40px rgba(0, 212, 255, 0.3);
+  --glow-purple: 0 0 20px rgba(139, 92, 246, 0.5), 0 0 40px rgba(139, 92, 246, 0.3);
+  --glow-magenta: 0 0 20px rgba(236, 72, 153, 0.5), 0 0 40px rgba(236, 72, 153, 0.3);
+  --glow-multi: 0 0 30px rgba(0, 212, 255, 0.4), 0 0 60px rgba(139, 92, 246, 0.3), 0 0 90px rgba(236, 72, 153, 0.2);
 }
 
+/* ============================================
+   Tailwind Theme Extension
+   ============================================ */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-bg-primary: var(--bg-primary);
+  --color-bg-secondary: var(--bg-secondary);
+  --color-bg-tertiary: var(--bg-tertiary);
+
+  --color-neon-blue: var(--neon-blue);
+  --color-electric-purple: var(--electric-purple);
+  --color-magenta: var(--magenta);
+  --color-cyber-pink: var(--cyber-pink);
+  --color-aurora-green: var(--aurora-green);
+
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+
+  --color-glass-bg: var(--glass-bg);
+  --color-glass-border: var(--glass-border);
+
+  --font-heading: 'Orbitron', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --font-accent: 'Space Grotesk', sans-serif;
+
+  /* Animation Timings */
+  --animate-glow-pulse: glow-pulse 2s ease-in-out infinite;
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-shimmer: shimmer 2s linear infinite;
+  --animate-portal-spin: portal-spin 20s linear infinite;
+  --animate-gradient-shift: gradient-shift 8s ease infinite;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* ============================================
+   Keyframe Animations
+   ============================================ */
+@keyframes glow-pulse {
+
+  0%,
+  100% {
+    box-shadow: var(--glow-multi);
+    filter: brightness(1);
+  }
+
+  50% {
+    box-shadow: 0 0 40px rgba(0, 212, 255, 0.6), 0 0 80px rgba(139, 92, 246, 0.5), 0 0 120px rgba(236, 72, 153, 0.4);
+    filter: brightness(1.1);
   }
 }
 
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes portal-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes gradient-shift {
+
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes text-glow {
+
+  0%,
+  100% {
+    text-shadow: 0 0 10px rgba(0, 212, 255, 0.5), 0 0 20px rgba(139, 92, 246, 0.3);
+  }
+
+  50% {
+    text-shadow: 0 0 20px rgba(0, 212, 255, 0.8), 0 0 40px rgba(139, 92, 246, 0.5), 0 0 60px rgba(236, 72, 153, 0.3);
+  }
+}
+
+@keyframes border-glow {
+
+  0%,
+  100% {
+    border-color: rgba(0, 212, 255, 0.3);
+    box-shadow: 0 0 10px rgba(0, 212, 255, 0.2);
+  }
+
+  33% {
+    border-color: rgba(139, 92, 246, 0.3);
+    box-shadow: 0 0 10px rgba(139, 92, 246, 0.2);
+  }
+
+  66% {
+    border-color: rgba(236, 72, 153, 0.3);
+    box-shadow: 0 0 10px rgba(236, 72, 153, 0.2);
+  }
+}
+
+@keyframes particle-float {
+
+  0%,
+  100% {
+    transform: translateY(0) translateX(0) scale(1);
+    opacity: 0.3;
+  }
+
+  25% {
+    transform: translateY(-30px) translateX(10px) scale(1.1);
+    opacity: 0.6;
+  }
+
+  50% {
+    transform: translateY(-50px) translateX(-10px) scale(1);
+    opacity: 0.4;
+  }
+
+  75% {
+    transform: translateY(-30px) translateX(5px) scale(0.9);
+    opacity: 0.5;
+  }
+}
+
+/* ============================================
+   Base Styles
+   ============================================ */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Selection Styling */
+::selection {
+  background: rgba(139, 92, 246, 0.4);
+  color: white;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--neon-blue), var(--electric-purple));
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, var(--electric-purple), var(--magenta));
+}
+
+/* ============================================
+   Typography
+   ============================================ */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.text-gradient {
+  background: var(--gradient-primary);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradient-shift 8s ease infinite;
+}
+
+.text-glow {
+  animation: text-glow 3s ease-in-out infinite;
+}
+
+/* ============================================
+   Glassmorphism Components
+   ============================================ */
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+}
+
+.glass-hover {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-hover:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: var(--glass-border-hover);
+  transform: translateY(-2px);
+}
+
+.glass-card {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.glass-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), transparent, rgba(236, 72, 153, 0.1));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.glass-card:hover::before {
+  opacity: 1;
+}
+
+/* ============================================
+   Glow Effects
+   ============================================ */
+.glow-border {
+  position: relative;
+}
+
+.glow-border::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  background: var(--gradient-primary);
+  border-radius: inherit;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  filter: blur(10px);
+}
+
+.glow-border:hover::before {
+  opacity: 0.7;
+}
+
+.glow-text-blue {
+  text-shadow: 0 0 10px var(--neon-blue), 0 0 20px var(--neon-blue), 0 0 40px var(--neon-blue);
+}
+
+.glow-text-purple {
+  text-shadow: 0 0 10px var(--electric-purple), 0 0 20px var(--electric-purple), 0 0 40px var(--electric-purple);
+}
+
+.glow-text-magenta {
+  text-shadow: 0 0 10px var(--magenta), 0 0 20px var(--magenta), 0 0 40px var(--magenta);
+}
+
+/* ============================================
+   Button Styles
+   ============================================ */
+.btn-primary {
+  background: var(--gradient-primary);
+  background-size: 200% auto;
+  color: white;
+  font-weight: 600;
+  padding: 12px 32px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary:hover {
+  background-position: right center;
+  transform: translateY(-2px);
+  box-shadow: var(--glow-multi);
+}
+
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.5s ease;
+}
+
+.btn-primary:hover::before {
+  left: 100%;
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--neon-blue);
+  font-weight: 600;
+  padding: 12px 32px;
+  border-radius: 12px;
+  border: 2px solid var(--neon-blue);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.btn-outline:hover {
+  background: rgba(0, 212, 255, 0.1);
+  box-shadow: var(--glow-blue);
+  transform: translateY(-2px);
+}
+
+/* ============================================
+   Background Effects
+   ============================================ */
+.bg-grid {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
+.bg-radial-gradient {
+  background: radial-gradient(ellipse at center, rgba(139, 92, 246, 0.15) 0%, transparent 70%);
+}
+
+.bg-noise {
+  position: relative;
+}
+
+.bg-noise::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  opacity: 0.03;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ============================================
+   Portal Effect
+   ============================================ */
+.portal {
+  position: relative;
+  border-radius: 50%;
+}
+
+.portal::before {
+  content: '';
+  position: absolute;
+  inset: -10px;
+  background: conic-gradient(from 0deg,
+      var(--neon-blue),
+      var(--electric-purple),
+      var(--magenta),
+      var(--cyber-pink),
+      var(--neon-blue));
+  border-radius: 50%;
+  animation: portal-spin 4s linear infinite;
+  filter: blur(15px);
+  opacity: 0.6;
+}
+
+/* ============================================
+   Responsive Utilities
+   ============================================ */
+@media (max-width: 768px) {
+  .glass-card {
+    border-radius: 16px;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+}
+
+/* ============================================
+   Animation Utilities
+   ============================================ */
+.animate-glow-pulse {
+  animation: glow-pulse 2s ease-in-out infinite;
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  background-size: 200% 100%;
+  animation: shimmer 2s linear infinite;
+}
+
+.animate-border-glow {
+  animation: border-glow 4s ease-in-out infinite;
+}
+
+/* Stagger animation delays */
+.delay-100 {
+  animation-delay: 100ms;
+}
+
+.delay-200 {
+  animation-delay: 200ms;
+}
+
+.delay-300 {
+  animation-delay: 300ms;
+}
+
+.delay-400 {
+  animation-delay: 400ms;
+}
+
+.delay-500 {
+  animation-delay: 500ms;
 }
