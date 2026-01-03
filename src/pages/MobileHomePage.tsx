@@ -12,8 +12,8 @@ export function MobileHomePage() {
   return (
     <>
       <SEO 
-        title="SITNovate 24-Hour Hackathon - Innovation Challenge"
-        description="Join the SITNovate 24-Hour Hackathon - an intensive innovation hackathon where creativity meets collaboration. Register your team now!"
+        title="ENTHUSIA 5.0 - Enter the Parallel Fest Universe"
+        description="Join ENTHUSIA 5.0 - A three-day techno-cultural experience at SIT Nagpur. 19-21 February 2026. Where innovation, creativity, competition, and celebration collide."
         url="https://sitnovate.vercel.app"
       />
       <div className="flex min-h-svh flex-col">

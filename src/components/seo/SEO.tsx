@@ -24,21 +24,21 @@ interface SEOProps {
 }
 
 export const SEO: FC<SEOProps> = ({
-  title = "Stavros Symeonidis - Patent-Winning Full-Stack Developer",
-  description = "Patent-winning full-stack developer specializing in AI automation, enterprise solutions, and production-ready systems. Building streamlined operations with React, TypeScript, Python, and cutting-edge AI technologies.",
-  keywords = "Stavros Symeonidis, Full-Stack Developer, AI Developer, React Developer, TypeScript, Python, Machine Learning, Patent Winner, CTO, AI Automation, Enterprise Solutions",
-  author = "Stavros Symeonidis",
-  image = "https://www.stavrossymeonidis.dev/og-image.jpg",
-  url = "https://www.stavrossymeonidis.dev",
+  title = "ENTHUSIA 5.0 - Innovation Challenge",
+  description = "Join ENTHUSIA 5.0 - an intensive innovation hackathon where creativity meets collaboration. Register your team now!",
+  keywords = "ENTHUSIA 5.0, Hackathon, Innovation Challenge, SIT Nagpur, TechFest, Cultural Fest, Student Competition",
+  author = "ENTHUSIA 5.0 Team",
+  image = "https://sitnovate.vercel.app/og-image.jpg",
+  url = "https://sitnovate.vercel.app",
   type = "website",
   twitterHandle,
   jsonLd,
   children
 }) => {
   // Construct the full title with branding
-  const fullTitle = title === "Stavros Symeonidis - Patent-Winning Full-Stack Developer" 
+  const fullTitle = title === "ENTHUSIA 5.0 - Innovation Challenge" 
     ? title 
-    : `${title} | Stavros Symeonidis`;
+    : `${title} - SITNagpur`;
 
   return (
     <>
@@ -54,7 +54,7 @@ export const SEO: FC<SEOProps> = ({
       <meta property="og:title" content={fullTitle} />
       <meta property="og:description" content={description} />
       <meta property="og:image" content={image} />
-      <meta property="og:site_name" content="Stavros Symeonidis Portfolio" />
+      <meta property="og:site_name" content="ENTHUSIA 5.0" />
       
       {/* Twitter */}
       <meta name="twitter:card" content="summary_large_image" />

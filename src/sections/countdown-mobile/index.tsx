@@ -63,13 +63,13 @@ export function CountdownMobile() {
       <div className="w-full max-w-md mx-auto">
         <div className="mb-8 text-center">
           <h2 className="font-body text-lg font-light text-foreground mb-4">
-            EVENT COUNTDOWN
+            ⏳ COUNTDOWN TO THE FINAL NIGHT
           </h2>
           <p className="font-heading text-2xl text-foreground mb-2">
-            HACKATHON STARTS IN
+            THE STAGE LIGHTS UP IN...
           </p>
           <p className="font-body text-sm text-[#b3b3b3]">
-            February 19, 2026 • 9:00 AM IST
+            February 19-21, 2026 • SIT Nagpur
           </p>
         </div>
 
@@ -87,10 +87,10 @@ export function CountdownMobile() {
         {/* Call to Action */}
         <div className="text-center px-4">
           <p className="font-body text-sm text-[#b3b3b3] mb-6">
-            Don't miss out on this incredible opportunity!
+            Don't miss out on this incredible three-day techno-cultural experience!
           </p>
           <a
-            href="/register"
+            href="/techfest"
             className="inline-block px-8 py-3 bg-primary text-primary-foreground font-heading text-base rounded-full hover:opacity-90 transition-opacity"
           >
             REGISTER NOW

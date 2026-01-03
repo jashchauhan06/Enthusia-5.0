@@ -120,8 +120,8 @@ export function DashboardPage() {
   return (
     <>
       <SEO 
-        title="Dashboard - SITNovate 24-Hour Hackathon"
-        description="Complete your profile for SITNovate hackathon registration"
+        title="Dashboard - ENTHUSIA 5.0"
+        description="Complete your profile for ENTHUSIA 5.0 registration"
         url="https://sitnovate.vercel.app/dashboard"
       />
       

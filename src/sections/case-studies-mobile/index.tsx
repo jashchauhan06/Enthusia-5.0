@@ -8,48 +8,48 @@ export function CaseStudiesMobile() {
         {/* Section Title */}
         <div className="text-center mb-8">
           <h2 className="font-body text-lg font-light text-foreground mb-4">
-            ABOUT SITNOVATE
+            ABOUT ENTHUSIA 5.0
           </h2>
           <p className="font-heading text-3xl text-foreground">
-            24-Hour Innovation Hackathon
+            Three-Day Techno-Cultural Fest
           </p>
         </div>
         
         {/* Hackathon Description */}
         <div className="space-y-6">
-          {/* SITNovate 2026 - Upcoming */}
+          {/* ENTHUSIA 5.0 - Upcoming */}
           <div className="bg-gradient-to-br from-primary/10 to-primary/5 border-2 border-primary rounded-2xl p-6">
             <div className="flex items-center gap-2 mb-3">
-              <span className="font-heading text-xl text-primary">SITNovate 2026</span>
+              <span className="font-heading text-xl text-primary">ENTHUSIA 5.0</span>
               <span className="px-3 py-1 bg-primary text-primary-foreground text-xs font-heading rounded-full">UPCOMING</span>
             </div>
             <p className="font-body text-base text-foreground leading-relaxed mb-4">
-              Get ready for the next edition! SITNovate 2026 will bring together the brightest minds for another 24-hour innovation marathon.
+              Enter the Parallel Fest Universe! ENTHUSIA 5.0 is the annual flagship techno-cultural fest bringing together technology, creativity, competition, and celebration.
             </p>
             <div className="space-y-2">
               <p className="font-body text-sm text-[#b3b3b3]">
-                <span className="text-foreground font-medium">Date:</span> To be announced
+                <span className="text-foreground font-medium">Date:</span> 19-21 February 2026
               </p>
               <p className="font-body text-sm text-[#b3b3b3]">
                 <span className="text-foreground font-medium">Venue:</span> Symbiosis Institute of Technology, Nagpur
               </p>
               <p className="font-body text-sm text-[#b3b3b3]">
-                <span className="text-foreground font-medium">Expected Teams:</span> 50+ teams
+                <span className="text-foreground font-medium">Expected Participants:</span> 1000+ participants
               </p>
             </div>
           </div>
 
-          {/* SITNovate 2025 - Past Event */}
+          {/* ENTHUSIA 4.0 - Past Event */}
           <div className="bg-card border border-border rounded-2xl p-6">
             <div className="flex items-center gap-2 mb-3">
-              <span className="font-heading text-xl text-foreground">SITNovate 2025</span>
+              <span className="font-heading text-xl text-foreground">ENTHUSIA 4.0</span>
               <span className="px-3 py-1 bg-muted text-muted-foreground text-xs font-heading rounded-full">COMPLETED</span>
             </div>
             <p className="font-body text-base text-[#b3b3b3] leading-relaxed mb-4">
-              A 24-hour coding challenge where <span className="text-foreground font-medium">49 teams</span> developed innovative software solutions to real-world problems.
+              A three-day techno-cultural experience where <span className="text-foreground font-medium">1000+ participants</span> engaged in technical competitions, cultural performances, and celebration.
             </p>
             <p className="font-body text-base text-[#b3b3b3] leading-relaxed">
-              Held from <span className="text-foreground font-medium">19 Feb 2025</span> to <span className="text-foreground font-medium">20 Feb 2025</span> at Symbiosis Institute of Technology (SIT), Nagpur.
+              Held from <span className="text-foreground font-medium">19 Feb 2025</span> to <span className="text-foreground font-medium">21 Feb 2025</span> at Symbiosis Institute of Technology (SIT), Nagpur.
             </p>
           </div>
 
@@ -97,30 +97,32 @@ export function CaseStudiesMobile() {
             </div>
           </div>
 
-          {/* Rounds Information */}
+          {/* Event Gallery */}
           <div className="bg-card border border-border rounded-2xl p-6">
             <h3 className="font-heading text-xl text-foreground mb-4">
-              Competition Rounds
+              Event Gallery
             </h3>
-            <div className="space-y-4">
-              <div>
-                <h4 className="font-heading text-base text-foreground mb-2">Round 1: Initial Screening</h4>
-                <p className="font-body text-sm text-[#b3b3b3]">
-                  Teams submit their project proposals and ideas. Judges review submissions based on innovation, feasibility, and impact.
-                </p>
-              </div>
-              <div>
-                <h4 className="font-heading text-base text-foreground mb-2">Round 2: Technical Evaluation</h4>
-                <p className="font-body text-sm text-[#b3b3b3]">
-                  Selected teams present their technical implementation and demonstrate their working prototypes to the judging panel.
-                </p>
-              </div>
-              <div>
-                <h4 className="font-heading text-base text-foreground mb-2">Round 3: Final Presentation</h4>
-                <p className="font-body text-sm text-[#b3b3b3]">
-                  Finalists pitch their complete solutions. Winners are announced based on overall execution, presentation, and innovation.
-                </p>
-              </div>
+            <div className="grid grid-cols-2 gap-4">
+              <img
+                src="/images/enthusia/1.png"
+                alt="ENTHUSIA 4.0 Event Photo 1"
+                className="w-full h-20 object-cover rounded-lg shadow-md hover:scale-105 transition-transform duration-300"
+              />
+              <img
+                src="/images/enthusia/2.png"
+                alt="ENTHUSIA 4.0 Event Photo 2"
+                className="w-full h-20 object-cover rounded-lg shadow-md hover:scale-105 transition-transform duration-300"
+              />
+              <img
+                src="/images/enthusia/3.png"
+                alt="ENTHUSIA 4.0 Event Photo 3"
+                className="w-full h-20 object-cover rounded-lg shadow-md hover:scale-105 transition-transform duration-300"
+              />
+              <img
+                src="/images/enthusia/4.png"
+                alt="ENTHUSIA 4.0 Event Photo 4"
+                className="w-full h-20 object-cover rounded-lg shadow-md hover:scale-105 transition-transform duration-300"
+              />
             </div>
           </div>
         </div>

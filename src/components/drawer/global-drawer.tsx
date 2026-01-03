@@ -132,7 +132,7 @@ export function GlobalDrawer() {
               
               {!isSubmitSuccessful && (
                 <p className="text-sm leading-relaxed text-muted-foreground font-body">
-                  Have questions about SITNovate? We're here to help! Reach out to us for event details, registration, or any inquiries.
+                  Have questions about ENTHUSIA 5.0? We're here to help! Reach out to us for event details, registration, or any inquiries.
                 </p>
               )}
             </DrawerHeader>
@@ -195,7 +195,7 @@ export function GlobalDrawer() {
                   <input
                     type="email"
                     name="email"
-                    placeholder="jashchauhan@gmail.com"
+                    placeholder="student@sitnagpur.edu.in"
                     required
                     className="w-full px-4 py-3 bg-background border border-border rounded-lg font-body text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-ring transition-colors"
                   />
@@ -208,7 +208,7 @@ export function GlobalDrawer() {
                   </label>
                   <textarea
                     name="message"
-                    placeholder="Your message or questions about SITNovate..."
+                    placeholder="Your message or questions about ENTHUSIA 5.0..."
                     required
                     className="w-full px-4 py-3 bg-background border border-border rounded-lg font-body text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-ring transition-colors resize-none h-28 sm:h-36"
                   />

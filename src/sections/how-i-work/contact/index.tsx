@@ -5,10 +5,10 @@ export function Contact() {
   const [copied, setCopied] = useState(false);
 
   // Original email for copy functionality
-  const originalEmail = "test@gmail.com";
-  
+  const originalEmail = "enthusia@sitnagpur.edu.in";
+
   // Email with invisible characters to prevent mobile auto-detection
-  const emailDisplay = "test" + String.fromCharCode(8203) + "@" + String.fromCharCode(8203) + "gmail.com";
+  const emailDisplay = "enthusia" + String.fromCharCode(8203) + "@" + String.fromCharCode(8203) + "sitnagpur.edu.in";
 
   const handleCopy = async () => {
     try {
@@ -23,15 +23,12 @@ export function Contact() {
   return (
     <div className="w-full h-full flex flex-col items-center justify-center text-center gap-3 p-4">
       <h3 className="font-heading text-lg [@media(min-width:414px)]:text-xl mb-2 text-[#f2f2f2]">Venue & Contact</h3>
-      
+
       <div className="text-[#f2f2f2] text-base font-body font-light">
-        SIT Campus
+        Symbiosis Institute of Technology, Nagpur
+        Nagpur, Maharashtra, India
       </div>
-      
-      <div className="text-[#b3b3b3] text-sm font-body font-light">
-        S-02 AND S-08
-      </div>
-      
+
       <div className="flex items-center gap-2 mt-2">
         <button
           onClick={handleCopy}

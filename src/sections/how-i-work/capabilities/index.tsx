@@ -56,6 +56,7 @@ export function Capabilities() {
         </p>
         <button 
           onClick={handleLetsTalkClick}
+          className="flex items-center gap-2 font-heading text-[#f2f2f2] hover:opacity-80 transition-opacity cursor-pointer"
         >
           View All Prizes
           <ArrowRight className="w-5 h-5 mb-1" />

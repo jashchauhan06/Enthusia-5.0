@@ -71,8 +71,8 @@ export function RegistrationPage() {
   return (
     <>
       <SEO 
-        title="Register for SITNovate 24-Hour Hackathon"
-        description="Register your team for the SITNovate 24-Hour Hackathon. Join us for an intensive innovation challenge."
+        title="Register for ENTHUSIA 5.0"
+        description="Register your team for ENTHUSIA 5.0. Join us for an intensive innovation challenge."
         url="https://sitnovate.vercel.app/register"
       />
       
@@ -92,7 +92,7 @@ export function RegistrationPage() {
               TEAM REGISTRATION
             </h1>
             <p className="font-body text-[#b3b3b3] text-lg mb-2">
-              SITNovate 24-Hour Hackathon
+              ENTHUSIA 5.0
             </p>
             <p className="font-body text-sm text-[#b3b3b3]">
               Teams can have 1, 2, or 3 members

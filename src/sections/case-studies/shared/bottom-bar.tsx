@@ -1,63 +1,101 @@
 import { useRef, useEffect } from "react";
 import gsap from "gsap";
 
-const rounds = [
+// Event images from ENTHUSIA 4.0
+const galleryImages = [
   {
-    title: "Round 1: Initial Screening",
-    description: "Teams submit their project proposals and ideas. Judges review submissions based on innovation, feasibility, and impact."
+    src: "/images/enthusia/1.png",
+    alt: "ENTHUSIA 4.0 Event Photo 1"
   },
   {
-    title: "Round 2: Technical Evaluation",
-    description: "Selected teams present their technical implementation and demonstrate their working prototypes to the judging panel."
+    src: "/images/enthusia/2.png",
+    alt: "ENTHUSIA 4.0 Event Photo 2"
   },
   {
-    title: "Round 3: Final Presentation",
-    description: "Finalists pitch their complete solutions. Winners are announced based on overall execution, presentation, and innovation."
+    src: "/images/enthusia/3.png",
+    alt: "ENTHUSIA 4.0 Event Photo 3"
+  },
+  {
+    src: "/images/enthusia/4.png",
+    alt: "ENTHUSIA 4.0 Event Photo 4"
+  },
+  {
+    src: "/images/enthusia/5.png",
+    alt: "ENTHUSIA 4.0 Event Photo 5"
+  },
+  {
+    src: "/images/enthusia/6.png",
+    alt: "ENTHUSIA 4.0 Event Photo 6"
+  },
+  {
+    src: "/images/enthusia/7.png",
+    alt: "ENTHUSIA 4.0 Event Photo 7"
   }
 ];
 
 export function BottomBar() {
-  const contentRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (!contentRef.current) return;
-    const content = contentRef.current;
+    if (!containerRef.current || !scrollRef.current) return;
     
-    // Initial render - fade in
-    gsap.fromTo(content, 
+    const container = containerRef.current;
+    const scrollElement = scrollRef.current;
+    
+    // Initial fade in
+    gsap.fromTo(container, 
       { opacity: 0, y: 20 },
       { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }
     );
+
+    // Auto-scroll animation - right to left only
+    const scrollWidth = scrollElement.scrollWidth;
+    const containerWidth = scrollElement.clientWidth;
+    const scrollDistance = scrollWidth - containerWidth;
+
+    if (scrollDistance > 0) {
+      // Create infinite right-to-left scrolling
+      gsap.fromTo(scrollElement, 
+        { scrollLeft: 0 },
+        {
+          scrollLeft: scrollDistance,
+          duration: 20,
+          ease: "none",
+          repeat: -1,
+          repeatDelay: 0,
+          onComplete: () => {
+            // Reset to start position instantly
+            gsap.set(scrollElement, { scrollLeft: 0 });
+          }
+        }
+      );
+    }
   }, []);
 
   return (
-    <div className="w-full h-full flex items-center justify-center p-4 [@media(min-width:1390px)]:p-6">
-      <div ref={contentRef} className="w-full">
+    <div className="w-full flex items-start justify-start p-2">
+      <div ref={containerRef} className="w-full max-w-full">
         
-        {/* Desktop Layout (screens ≥600px) - Three columns */}
-        <div className="hidden min-[600px]:grid grid-cols-3 gap-6 w-full">
-          {rounds.map((round, index) => (
-            <div key={index} className="flex flex-col gap-3">
-              <h3 className="font-heading text-lg text-foreground">
-                {round.title}
-              </h3>
-              <p className="font-body text-sm text-muted-foreground">
-                {round.description}
-              </p>
-            </div>
-          ))}
-        </div>
-
-        {/* Mobile Layout (screens <600px) - Stacked */}
-        <div className="flex min-[600px]:hidden flex-col gap-6 w-full">
-          {rounds.map((round, index) => (
-            <div key={index} className="flex flex-col gap-3">
-              <h3 className="font-heading text-base text-foreground">
-                {round.title}
-              </h3>
-              <p className="font-body text-sm text-muted-foreground">
-                {round.description}
-              </p>
+        {/* Horizontal Scrolling Gallery */}
+        <div 
+          ref={scrollRef}
+          className="flex gap-3 overflow-x-auto scrollbar-hide max-w-full"
+          style={{
+            scrollbarWidth: 'none',
+            msOverflowStyle: 'none'
+          }}
+        >
+          {galleryImages.map((image, index) => (
+            <div
+              key={index}
+              className="flex-shrink-0 group"
+            >
+              <img
+                src={image.src}
+                alt={image.alt}
+                className="w-32 h-20 object-cover rounded-lg shadow-lg group-hover:scale-105 group-hover:shadow-xl transition-all duration-300"
+              />
             </div>
           ))}
         </div>

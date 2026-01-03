@@ -7,32 +7,42 @@ export type NavigationItem = {
 export const navigationItems: NavigationItem[] = [
   {
     name: "Home",
-    link: "#home",
-    mobileLink: "#home-mobile"
+    link: "/",
+    mobileLink: "/"
   },
   {
-    name: "Event Details",
-    link: "#how-i-work",
-    mobileLink: "#how-i-work-mobile"
+    name: "About SIT Nagpur",
+    link: "/about-sit-nagpur",
+    mobileLink: "/about-sit-nagpur"
   },
   {
-    name: "About SITNovate",
-    link: "#case-studies",
-    mobileLink: "#case-studies-mobile"
+    name: "About Enthusia 5.0",
+    link: "/about-enthusia",
+    mobileLink: "/about-enthusia"
   },
   {
-    name: "Countdown",
-    link: "#skills",
-    mobileLink: "#skills-mobile"
+    name: "TechFest",
+    link: "/techfest",
+    mobileLink: "/techfest"
   },
   {
-    name: "Our Team",
-    link: "#about-me",
-    mobileLink: "#about-me-mobile"
+    name: "Cultural Fest",
+    link: "/cultural-fest",
+    mobileLink: "/cultural-fest"
   },
   {
-    name: "Contact",
-    link: "#contact",
-    mobileLink: "#contact"
+    name: "Sponsors",
+    link: "/sponsors",
+    mobileLink: "/sponsors"
+  },
+  {
+    name: "Gallery",
+    link: "/gallery",
+    mobileLink: "/gallery"
+  },
+  {
+    name: "Contact Us",
+    link: "/contact",
+    mobileLink: "/contact"
   }
 ];

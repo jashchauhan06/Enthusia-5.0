@@ -13,6 +13,14 @@ export function MobileHome() {
       navigate('/signin');
     };
 
+    const handleTechFestClick = () => {
+      navigate('/techfest');
+    };
+
+    const handleCulturalFestClick = () => {
+      navigate('/cultural-fest');
+    };
+
     return (
       <section 
         id="home-mobile" 
@@ -34,28 +42,51 @@ export function MobileHome() {
                   duration={1.5}
                   spread={5}
               >
-                  SITNovate 24-Hour Hackathon
+                  ENTHUSIA 5.0
               </TextShimmer>
           </h1>
     
           {/* Title */}
-          <h2 className="font-body font-light text-[#b3b3b3] text-center text-[clamp(0.7rem,3vw,1rem)] tracking-[0.4em] mb-6 uppercase relative z-10">
-            INNOVATION CHALLENGE
+          <h2 className="font-body font-light text-[#b3b3b3] text-center text-[clamp(0.6rem,2.5vw,0.9rem)] tracking-[0.3em] mb-2 uppercase relative z-10">
+            ENTER THE PARALLEL FEST UNIVERSE
           </h2>
+
+          {/* Date and Location */}
+          <p className="font-body font-light text-[#b3b3b3] text-center text-[clamp(0.6rem,2.5vw,0.9rem)] mb-6 relative z-10">
+            19 – 21 February 2026 • SIT Nagpur
+          </p>
     
           {/* Description Paragraph */}
-          <p className="font-body text-center text-base leading-relaxed text-[#b3b3b3] max-w-sm mb-10 relative z-10">
-            Join us for an intensive 24-hour hackathon where innovation meets collaboration and creativity drives solutions.
+          <p className="font-body text-center text-sm leading-relaxed text-[#b3b3b3] max-w-xs mb-8 relative z-10">
+            A three-day techno-cultural experience where innovation, creativity, competition, and celebration collide.
           </p>
 
-          {/* Register Button */}
-          <button 
-            onClick={handleRegisterClick}
-            className="relative overflow-hidden rounded-full backdrop-blur-sm font-heading border px-10 py-2 text-foreground mb-14 z-10"
-          >
-            <ShineBorder shineColor={["#A07CFE", "#FE8FB5", "#FFBE7B"]} />
-            <div className="mt-0.5">register now</div>
-          </button>
+          {/* CTA Buttons */}
+          <div className="flex flex-col gap-3 mb-8 relative z-10">
+            <button 
+              onClick={handleTechFestClick}
+              className="relative overflow-hidden rounded-full backdrop-blur-sm font-heading border px-8 py-2 text-foreground"
+            >
+              <ShineBorder shineColor={["#A07CFE", "#FE8FB5", "#FFBE7B"]} />
+              <div className="mt-0.5">explore techfest</div>
+            </button>
+
+            <button 
+              onClick={handleCulturalFestClick}
+              className="relative overflow-hidden rounded-full backdrop-blur-sm font-heading border px-8 py-2 text-foreground"
+            >
+              <ShineBorder shineColor={["#A07CFE", "#FE8FB5", "#FFBE7B"]} />
+              <div className="mt-0.5">explore cultural fest</div>
+            </button>
+
+            <button 
+              onClick={handleRegisterClick}
+              className="relative overflow-hidden rounded-full backdrop-blur-sm font-heading border px-10 py-2 text-foreground"
+            >
+              <ShineBorder shineColor={["#A07CFE", "#FE8FB5", "#FFBE7B"]} />
+              <div className="mt-0.5">register now</div>
+            </button>
+          </div>
 
           {/* Availability Status */}
           <div className="relative z-10">

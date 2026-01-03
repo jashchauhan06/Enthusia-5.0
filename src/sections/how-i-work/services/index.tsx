@@ -4,9 +4,10 @@ import { services } from "./constants";
 import { useHorizontalScroll } from "./useHorizontalScroll";
 import { ScrollProgress } from "@/components/ui/scroll-progress";
 import { motion, AnimatePresence } from "framer-motion";
-import { useDrawerStore } from "@/stores/drawerStore";
+import { useNavigate } from "react-router";
 
 export function Services() {
+  const navigate = useNavigate();
   const { 
     trackRef, 
     viewportRef, 
@@ -15,11 +16,9 @@ export function Services() {
     scrollProgress,
     isScrolling
   } = useHorizontalScroll();
-  const { open: openDrawer } = useDrawerStore();
 
-  const handleRequestServiceClick = () => {
-
-    openDrawer();
+  const handleViewGalleryClick = () => {
+    navigate('/gallery');
   };
 
   return (
@@ -52,11 +51,11 @@ export function Services() {
       {/* Header */}
       <button
         type="button"
-        onClick={handleRequestServiceClick}
+        onClick={handleViewGalleryClick}
         className="font-heading text-xl mb-8 text-[#f2f2f2] hover:opacity-80 transition-opacity flex items-center gap-2 cursor-pointer"
-        aria-label="View Resources"
+        aria-label="View Gallery"
       >
-        What We Provide
+        📸 Relive the Madness
         <ArrowRight className="w-7 h-7 mb-1" aria-hidden="true" />
       </button>
 

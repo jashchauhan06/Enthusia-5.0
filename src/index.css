@@ -321,3 +321,58 @@
     @apply font-heading;
   }
 }
+
+/* Hide scrollbars for gallery */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Custom scrollbar styles */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar:horizontal {
+  display: none;
+}
+
+::-webkit-scrollbar-track {
+  background: #1a1a1a;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(45deg, #A07CFE, #FE8FB5, #FFBE7B);
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(45deg, #9066E8, #E87BA0, #E8A865);
+  box-shadow: 0 0 10px rgba(160, 124, 254, 0.3);
+}
+
+::-webkit-scrollbar-corner {
+  background: #1a1a1a;
+}
+
+/* Firefox scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #A07CFE #1a1a1a;
+}
+
+/* Hide horizontal scrollbars globally */
+html {
+  overflow-x: hidden;
+}
+
+body {
+  overflow-x: hidden;
+}

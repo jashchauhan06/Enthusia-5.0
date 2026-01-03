@@ -66,8 +66,8 @@ export function SignInPage() {
   return (
     <>
       <SEO 
-        title="Sign In - SITNovate 24-Hour Hackathon"
-        description="Sign in to register for the SITNovate 24-Hour Hackathon"
+        title="Sign In - ENTHUSIA 5.0"
+        description="Sign in to register for ENTHUSIA 5.0"
         url="https://sitnovate.vercel.app/signin"
       />
       

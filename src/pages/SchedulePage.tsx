@@ -39,8 +39,8 @@ export function SchedulePage() {
   return (
     <>
       <SEO 
-        title="Event Schedule - SITNovate 24-Hour Hackathon"
-        description="Complete schedule for the SITNovate 24-Hour Hackathon including all events, workshops, and activities."
+        title="Event Schedule - ENTHUSIA 5.0"
+        description="Complete schedule for ENTHUSIA 5.0 including all events, workshops, and activities."
         url="https://sitnovate.vercel.app/schedule"
       />
       

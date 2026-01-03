@@ -1,35 +1,35 @@
 export const getPersonStructuredData = () => ({
     "@context": "https://schema.org",
     "@type": "Organization",
-    "name": "SITNovate",
+    "name": "ENTHUSIA 5.0",
     "url": "https://sitnovate.vercel.app",
     "logo": "https://sitnovate.vercel.app/dev-logo.svg",
-    "description": "SITNovate 24-Hour Hackathon - An intensive innovation challenge where creativity meets collaboration"
+    "description": "ENTHUSIA 5.0 - An intensive innovation challenge where creativity meets collaboration"
   });
   
   export const getWebSiteStructuredData = () => ({
     "@context": "https://schema.org",
     "@type": "WebSite",
-    "name": "SITNovate 24-Hour Hackathon",
+    "name": "ENTHUSIA 5.0",
     "url": "https://sitnovate.vercel.app",
-    "description": "Join the SITNovate 24-Hour Hackathon - an intensive innovation hackathon where creativity meets collaboration",
+    "description": "Join ENTHUSIA 5.0 - an intensive innovation hackathon where creativity meets collaboration",
     "publisher": {
       "@type": "Organization",
-      "name": "SITNovate"
+      "name": "ENTHUSIA 5.0"
     }
   });
   
   export const getEventStructuredData = () => ({
     "@context": "https://schema.org",
     "@type": "Event",
-    "name": "SITNovate 24-Hour Hackathon",
-    "description": "An intensive 24-hour innovation hackathon where creativity meets collaboration",
+    "name": "ENTHUSIA 5.0",
+    "description": "An intensive innovation hackathon where creativity meets collaboration",
     "url": "https://sitnovate.vercel.app",
     "eventStatus": "https://schema.org/EventScheduled",
     "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
     "organizer": {
       "@type": "Organization",
-      "name": "SITNovate"
+      "name": "ENTHUSIA 5.0"
     }
   });
   
@@ -49,10 +49,10 @@ export const getPersonStructuredData = () => ({
     "datePublished": caseStudy.datePublished,
     "author": {
       "@type": "Organization",
-      "name": "SITNovate"
+      "name": "ENTHUSIA 5.0"
     },
     "publisher": {
       "@type": "Organization",
-      "name": "SITNovate"
+      "name": "ENTHUSIA 5.0"
     }
   });

@@ -9,8 +9,8 @@ import type { CaseStudyData } from "../types";
 export const advertisingPlatformData: CaseStudyData = {
   projectData: {
     slug: "advertising-platform",
-    title: "SITNovate 2026",
-    description: "Coming Soon | Feb 19-20, 2026 | Register Now",
+    title: "ENTHUSIA 5.0",
+    description: "Three-day techno-cultural fest | Feb 19-21, 2026 | Register Now",
     sections: [
       {
         title: "What's New",

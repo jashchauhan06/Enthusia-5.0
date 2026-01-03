@@ -1,4 +1,5 @@
 import { navigationItems } from "@/constants/index";
+import { useNavigate } from "react-router";
 import { useNavigationStore, type MobileSectionId } from "@/stores/navigationStore";
 import { useDrawerStore } from "@/stores/drawerStore";
 import RainbowButton from '@/components/magicui/rainbow-button';
@@ -17,28 +18,33 @@ const MOBILE_HREF_TO_SECTION_MAP: Record<string, MobileSectionId> = {
 };
 
 export function MobileNav({ onNavigationClick }: MobileNavProps) {
+  const navigate = useNavigate();
   const { setIsNavigating, setActiveSection } = useNavigationStore();
   const { open: openDrawer } = useDrawerStore();
 
   const handleNavClick = (item: typeof navigationItems[0]) => {
     // Handle Contact button specifically
-    if (item.name === "Contact") {
-
+    if (item.name === "Contact Us") {
       openDrawer();
       onNavigationClick(); // Close sidebar
       return;
     }
     
-    // Handle section navigation for other links using mobile links
+    // Handle page routes (non-anchor links)
     const mobileHref = item.mobileLink;
+    if (!mobileHref.startsWith('#')) {
+      navigate(mobileHref);
+      onNavigationClick(); // Close sidebar
+      return;
+    }
+    
+    // Handle section navigation for anchor links using mobile links
     if (mobileHref.startsWith('#')) {
       const targetId = mobileHref.substring(1); // Remove the #
       const targetElement = document.getElementById(targetId);
       const targetSectionId = MOBILE_HREF_TO_SECTION_MAP[mobileHref];
       
       if (targetElement && targetSectionId) {
-
-        
         // Start navigation state (pauses section tracking)
         setIsNavigating(true);
         
@@ -53,7 +59,6 @@ export function MobileNav({ onNavigationClick }: MobileNavProps) {
         
         // End navigation state after scroll completes
         setTimeout(() => {
-
           setIsNavigating(false);
         }, 1000); // 1 second should be enough for smooth scroll
         
@@ -67,7 +72,7 @@ export function MobileNav({ onNavigationClick }: MobileNavProps) {
     <nav className="flex flex-col gap-2 flex-1 p-4">
       {navigationItems.map((item) => {
         // Special handling for Contact item
-        if (item.name === "Contact") {
+        if (item.name === "Contact Us") {
           return (
             <RainbowButton
               key={item.name}

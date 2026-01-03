@@ -20,11 +20,11 @@ export function AboutMeMobile() {
         {/* Top row: 3 achievement cards */}
         <div className="grid grid-cols-2 gap-4 mb-4">
           <AchievementCard 
-            title={<>SITNovate<br />2025<br />Success</>}
-            description="49 Teams Competed"
+            title={<>ENTHUSIA<br />4.0<br />Success</>}
+            description="500+ Participants"
           />
           <AchievementCard 
-            title={<>International<br />Jury<br />Panel</>}
+            title={<>Expert<br />Jury<br />Panel</>}
             description="7 Industry Experts"
           />
         </div>
@@ -32,8 +32,8 @@ export function AboutMeMobile() {
         {/* Bottom row: 1 achievement card */}
         <div className="grid grid-cols-1 mb-4">
           <AchievementCard 
-            title={<>24-Hour Coding Hackathon</>}
-            description="Non-Stop Innovation"
+            title={<>Three-Day Techno-Cultural Fest</>}
+            description="Innovation & Celebration"
           />
         </div>
 

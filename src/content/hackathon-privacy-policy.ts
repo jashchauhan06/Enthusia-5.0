@@ -54,7 +54,7 @@ Our website may use cookies to improve user experience. You can control cookie p
 
 For questions about this Privacy Policy or your personal data, please contact us at:
 
-**Email**: test@gmail.com
+**Email**: enthusia@sitnagpur.edu.in
 
 ## Changes to This Policy
 

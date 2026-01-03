@@ -67,7 +67,11 @@ export function AvailabilityStatus() {
 
       {/* Desktop version (>= 768px) */}
       <div className="hidden md:flex items-center gap-2 text-white">
+<<<<<<< Updated upstream
         <span>Registration are not opened yet!</span>
+=======
+        <span>Get ready for ENTHUSIA 5.0!</span>
+>>>>>>> Stashed changes
         <span>•</span>
         <span>SIT Nagpur</span>
         <span>•</span>

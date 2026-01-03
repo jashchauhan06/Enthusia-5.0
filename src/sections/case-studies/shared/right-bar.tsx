@@ -1,8 +1,5 @@
 import { useRef, useEffect } from "react";
-import { useNavigate } from "react-router";
 import gsap from "gsap";
-import { ArrowRight } from "lucide-react";
-import { GithubIcon } from "@/components/icons/socials/github-icon";
 import type { ProjectData } from "../types";
 
 interface RightBarProps {
@@ -10,7 +7,6 @@ interface RightBarProps {
 }
 
 export function RightBar({ projectData }: RightBarProps) {
-  const navigate = useNavigate();
   const contentRef = useRef<HTMLDivElement>(null);
   const prevProjectDataRef = useRef<ProjectData | null>(null);
 
@@ -65,23 +61,6 @@ export function RightBar({ projectData }: RightBarProps) {
     prevProjectDataRef.current = projectData;
   }, [projectData]);
 
-  const handleGithubClick = () => {
-    window.open(projectData.buttons.githubUrl, '_blank', 'noopener,noreferrer');
-  };
-
-  const handleLearnMoreClick = () => {
-    // Check if we're on mobile (< 768px)
-    const isMobile = window.innerWidth < 768;
-    
-    if (isMobile) {
-      // Use React Router navigation for mobile
-      navigate(projectData.buttons.detailPath);
-    } else {
-      // Use hard navigation for desktop to bypass scroll restoration issues
-      window.location.href = projectData.buttons.detailPath;
-    }
-  };
-
   return (
     <div className="w-full h-full flex flex-col overflow-y-auto">
       <div ref={contentRef} className="flex flex-col h-full">
@@ -113,20 +92,8 @@ export function RightBar({ projectData }: RightBarProps) {
           ))}
         </div>
 
-        {/* Buttons - Always visible, but positioning adjusts based on screen size */}
-        <div className="flex items-center gap-6 mt-0 [@media(min-width:1390px)]:mt-6 justify-start">
-          <button
-            onClick={handleGithubClick}
-          >
-            <GithubIcon className="w-4 h-4" />
-            GitHub
-          </button>
-          <button
-            onClick={handleLearnMoreClick}
-          >
-            Learn More
-            <ArrowRight className="w-5 h-5 mb-1" />
-          </button>
+        {/* Buttons removed */}
+        <div className="">
         </div>
       </div>
     </div>

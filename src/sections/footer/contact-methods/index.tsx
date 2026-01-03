@@ -5,7 +5,7 @@ import emailIcon from '../../../assets/email-icon.svg';
 export function ContactMethods() {
   const [copied, setCopied] = useState(false);
 
-  const email = "test@gmail.com";
+  const email = "enthusia@sitnagpur.edu.in";
 
   const handleCopyEmail = async () => {
     try {

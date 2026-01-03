@@ -40,27 +40,27 @@ export function AboutMe() {
           {/* 5x6 Bento Grid */}
           <div className="grid grid-cols-5 gap-4">
 
-            {/* Column 1, Row 1 - Innovation Driven */}
-            <SimpleTextCard text="Innovation Driven" />
+            {/* Column 1, Row 1 - Parallel Fest Universe */}
+            <SimpleTextCard text="Parallel Fest Universe" />
 
-            {/* Column 2, Rows 1-2 - SITNovate 2025 */}
+            {/* Column 2, Rows 1-2 - Enthusia 2025 */}
             <AchievementCard 
-              title={<>SITNovate<br />2025<br />Success</>}
-              description="49 Teams Competed"
+              title={<>Enthusia<br />4.0<br />Success</>}
+              description="Biggest Fest Yet"
               className="row-span-2"
             />
 
-            {/* Column 3, Rows 1-2 - International Jury */}
+            {/* Column 3, Rows 1-2 - Three Days */}
             <AchievementCard 
-              title={<>International<br />Jury<br />Panel</>}
-              description="7 Industry Experts"
+              title={<>Three-Day<br />Techno-Cultural<br />Experience</>}
+              description="Innovation + Celebration"
               className="row-span-2"
             />
 
-            {/* Column 4, Rows 1-2 - 24 Hours */}
+            {/* Column 4, Rows 1-2 - SIT Nagpur */}
             <AchievementCard 
-              title={<>24-Hour<br />Coding<br />Hackathon</>}
-              description="Non-Stop Innovation"
+              title={<>SIT Nagpur<br />Flagship<br />Event</>}
+              description="Annual Celebration"
               className="row-span-2"
             />
 
@@ -95,8 +95,8 @@ export function AboutMe() {
             {/* Columns 2-4, Row 6 - Registration Open */}
             <AvailabilityCard />
 
-            {/* Column 5, Row 6 - Student Focused */}
-            <SimpleTextCard text="Student-Focused Event" />
+            {/* Column 5, Row 6 - Techno-Cultural Fusion */}
+            <SimpleTextCard text="Techno-Cultural Fusion" />
             
           </div>
         </div>
@@ -116,16 +116,16 @@ export function AboutMe() {
           {/* Row 1: 3 AchievementCards */}
           <div className="grid grid-cols-3 gap-4">
             <AchievementCard 
-              title={<>SITNovate<br />2025<br />Success</>}
-              description="49 Teams Competed"
+              title={<>Enthusia<br />4.0<br />Success</>}
+              description="Biggest Fest Yet"
             />
             <AchievementCard 
-              title={<>International<br />Jury<br />Panel</>}
-              description="7 Industry Experts"
+              title={<>Three-Day<br />Techno-Cultural<br />Experience</>}
+              description="Innovation + Celebration"
             />
             <AchievementCard 
-              title={<>24-Hour<br />Coding<br />Hackathon</>}
-              description="Non-Stop Innovation"
+              title={<>SIT Nagpur<br />Flagship<br />Event</>}
+              description="Annual Celebration"
             />
           </div>
 
@@ -152,13 +152,13 @@ export function AboutMe() {
               />
               {/* SimpleTextCard only shows in this row on screens >= 1175px */}
               <div className="hidden [@media(min-width:1175px)]:block">
-                <SimpleTextCard text="Student-Focused Event" />
+                <SimpleTextCard text="Techno-Cultural Fusion" />
               </div>
             </div>
             
             {/* SimpleTextCard on its own row for screens < 1175px */}
             <div className="[@media(min-width:1175px)]:hidden">
-              <SimpleTextCard text="Student-Focused Event" />
+              <SimpleTextCard text="Techno-Cultural Fusion" />
             </div>
           </div>
 
@@ -166,7 +166,7 @@ export function AboutMe() {
           <div className="grid grid-cols-3 grid-rows-2 gap-4">
             {/* Column 1, Row 1 */}
             <div className="col-start-1 row-start-1">
-              <SimpleTextCard text="Innovation Driven" />
+              <SimpleTextCard text="Parallel Fest Universe" />
             </div>
             
             {/* Column 1, Row 2 */}

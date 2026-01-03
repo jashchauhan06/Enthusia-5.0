@@ -1,5 +1,6 @@
 import { useRef } from "react";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router";
 import { useNavigationStore, type DesktopSectionId } from "@/stores/navigationStore";
 import { useDrawerStore } from "@/stores/drawerStore";
 import type { TabProps } from "./types";
@@ -15,6 +16,7 @@ const DESKTOP_HREF_TO_SECTION_MAP: Record<string, DesktopSectionId> = {
 
 export const Tab = ({ children, setPosition, href, isActive }: TabProps) => {
   const ref = useRef<HTMLLIElement>(null);
+  const navigate = useNavigate();
   const { setIsNavigating, setActiveSection } = useNavigationStore();
   const { open: openDrawer } = useDrawerStore();
 
@@ -23,20 +25,23 @@ export const Tab = ({ children, setPosition, href, isActive }: TabProps) => {
     
     // Handle Contact button specifically
     if (href === '#contact') {
-
       openDrawer();
       return;
     }
     
-    // Handle section navigation for other links using desktop section IDs
+    // Handle page routes (non-anchor links)
+    if (!href.startsWith('#')) {
+      navigate(href);
+      return;
+    }
+    
+    // Handle section navigation for anchor links using desktop section IDs
     if (href.startsWith('#')) {
       const targetId = href.substring(1); // Remove the #
       const targetElement = document.getElementById(targetId);
       const targetSectionId = DESKTOP_HREF_TO_SECTION_MAP[href];
       
       if (targetElement && targetSectionId) {
-
-        
         // Start navigation state (pauses section tracking)
         setIsNavigating(true);
         
@@ -51,7 +56,6 @@ export const Tab = ({ children, setPosition, href, isActive }: TabProps) => {
         
         // End navigation state after scroll completes
         setTimeout(() => {
-
           setIsNavigating(false);
         }, 1000); // 1 second should be enough for smooth scroll
       }

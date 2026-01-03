@@ -93,7 +93,7 @@ export function ContactForm() {
         <input
           type="email"
           name="email"
-          placeholder="jashchauhan@gmail.com"
+          placeholder="jashchauhan06@gmail.com"
           required
           className="w-full px-4 py-3 bg-background border border-border rounded-lg font-body text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-ring transition-colors"
         />
@@ -106,7 +106,7 @@ export function ContactForm() {
         </label>
         <textarea
           name="message"
-          placeholder="Your message or questions about SITNovate..."
+          placeholder="Your message or questions about ENTHUSIA 5.0..."
           rows={8}
           required
           className="w-full px-4 py-3 bg-background border border-border rounded-lg font-body text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-ring transition-colors resize-none"
