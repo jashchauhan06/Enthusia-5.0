@@ -11,7 +11,7 @@ export function AvailabilityStatus() {
         timeZone: 'Asia/Kolkata',
         hour: '2-digit',
         minute: '2-digit',
-        hour12: false
+        hour12: true
       }).format(now);
       setCurrentTime(indiaTime);
     };
@@ -26,7 +26,7 @@ export function AvailabilityStatus() {
   }, []);
 
   return (
-    <div className="flex items-center justify-center gap-2 text-sm font-body text-[#b3b3b3] whitespace-nowrap">
+    <div className="flex items-center justify-center gap-2 text-sm font-body text-white whitespace-nowrap">
       {/* Animated green dot */}
       <div className="relative">
         <motion.div
@@ -57,23 +57,23 @@ export function AvailabilityStatus() {
       </div>
       
       {/* Mobile version (< 768px) */}
-      <div className="flex items-center gap-2 md:hidden text-xs font-light">
-        <span>India Based</span>
+      <div className="flex items-center gap-2 md:hidden text-xs font-light text-white">
+        <span>SIT Nagpur</span>
         <span>•</span>
-        <span>Available everywhere</span>
+        <span>Feb 19-21, 2026</span>
         <span>•</span>
         <span>{currentTime}</span>
       </div>
 
       {/* Desktop version (>= 768px) */}
-      <div className="hidden md:flex items-center gap-2">
-        <span>Available now</span>
+      <div className="hidden md:flex items-center gap-2 text-white">
+        <span>Registration are not opened yet!</span>
         <span>•</span>
-        <span>India</span>
+        <span>SIT Nagpur</span>
         <span>•</span>
         <span>{currentTime}</span>
         <span>•</span>
-        <span>Global projects welcome</span>
+        <span>Feb 19-21, 2026</span>
       </div>
     </div>
   );
