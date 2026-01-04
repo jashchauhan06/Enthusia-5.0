@@ -4,193 +4,114 @@ import { Footer } from "@/sections/footer";
 import { useBreakpoint } from "@/hooks/useBreakpoint";
 import { Sidebar } from "@/components/navigation/sidebar/sidebar";
 import { ProgressiveBlur } from "@/components/ui/progressive-blur";
+import { motion } from "framer-motion";
+import { SponsorsHero3D, OrbitalRing, FlipCard, CinematicCTA, FloatingParticles } from "@/components/sponsors";
 
-const sponsorshipTiers = [
-  {
-    id: 'diamond',
-    title: 'Diamond Sponsor',
-    icon: '💎',
-    size: 'large',
-    color: 'from-cyan-500/20 to-blue-500/20',
-    borderColor: 'border-cyan-500/40',
-    glowColor: 'hover:shadow-cyan-500/25'
-  },
-  {
-    id: 'platinum',
-    title: 'Platinum Sponsor',
-    icon: '🥇',
-    size: 'medium',
-    color: 'from-gray-400/20 to-slate-400/20',
-    borderColor: 'border-gray-400/40',
-    glowColor: 'hover:shadow-gray-400/25'
-  },
-  {
-    id: 'gold',
-    title: 'Gold Sponsor',
-    icon: '🥈',
-    size: 'medium',
-    color: 'from-yellow-500/20 to-amber-500/20',
-    borderColor: 'border-yellow-500/40',
-    glowColor: 'hover:shadow-yellow-500/25'
-  },
-  {
-    id: 'silver',
-    title: 'Silver Sponsor',
-    icon: '🥉',
-    size: 'small',
-    color: 'from-gray-300/20 to-gray-400/20',
-    borderColor: 'border-gray-300/40',
-    glowColor: 'hover:shadow-gray-300/25'
-  },
-  {
-    id: 'bronze',
-    title: 'Bronze Sponsor',
-    icon: '🔸',
-    size: 'small',
-    color: 'from-orange-600/20 to-amber-700/20',
-    borderColor: 'border-orange-600/40',
-    glowColor: 'hover:shadow-orange-600/25'
-  }
-];
+// Sponsor data - replace with actual sponsor info when available
+const sponsorData = {
+  diamond: [
+    { name: 'Diamond Partner 1', logo: 'https://via.placeholder.com/150' },
+    { name: 'Diamond Partner 2', logo: 'https://via.placeholder.com/150' },
+    { name: 'Diamond Partner 3', logo: 'https://via.placeholder.com/150' }, // New
+    { name: 'Diamond Partner 4', logo: 'https://via.placeholder.com/150' }, // New
+  ],
+  platinum: [
+    { name: 'Platinum Partner 1' },
+    { name: 'Platinum Partner 2' },
+    { name: 'Platinum Partner 3' },
+    { name: 'Platinum Partner 4' }, // Added
+    { name: 'Platinum Partner 5' }, // Added
+  ],
+  gold: [
+    { name: 'Gold Partner 1' },
+    { name: 'Gold Partner 2' },
+    { name: 'Gold Partner 3' },
+    { name: 'Gold Partner 4' },
+    { name: 'Gold Partner 5' }, // Added
+    { name: 'Gold Partner 6' }, // Added
+  ],
+  silver: [
+    { name: 'Silver Partner 1' },
+    { name: 'Silver Partner 2' },
+    { name: 'Silver Partner 3' },
+    { name: 'Silver Partner 4' },
+    { name: 'Silver Partner 5' },
+  ],
+};
 
 const partnerCategories = [
-  { id: 'beverage', title: 'Beverage Partner', icon: '🥤' },
-  { id: 'food', title: 'Food Partner', icon: '🍔' },
-  { id: 'health', title: 'Health Partner', icon: '🏥' },
-  { id: 'music', title: 'Music & Sound Partner', icon: '🎵' },
-  { id: 'travel', title: 'Travel Partner', icon: '✈️' },
   { id: 'tech', title: 'Tech Partner', icon: '🧑‍💻' },
+  { id: 'food', title: 'Food Partner', icon: '🍔' },
   { id: 'media', title: 'Media Partner', icon: '📢' },
+  { id: 'community', title: 'Community Partner', icon: '🤝' },
+  { id: 'travel', title: 'Travel Partner', icon: '✈️' },
   { id: 'merchandise', title: 'Merchandise Partner', icon: '👕' },
-  { id: 'community', title: 'Community Partner', icon: '🤝' }
 ];
-
-function LogoPlaceholder({ size = 'medium', className = '' }: { size?: 'small' | 'medium' | 'large', className?: string }) {
-  const sizeClasses = {
-    small: 'w-24 h-16 md:w-32 md:h-20',
-    medium: 'w-32 h-20 md:w-40 md:h-24',
-    large: 'w-40 h-24 md:w-56 md:h-32'
-  };
-
-  return (
-    <div className={`${sizeClasses[size]} bg-gradient-to-br from-primary/10 to-primary/5 border-2 border-dashed border-primary/30 rounded-lg flex items-center justify-center ${className}`}>
-      <span className="text-primary/60 font-body text-xs md:text-sm">Logo</span>
-    </div>
-  );
-}
 
 function Sponsors() {
   return (
-    <section 
-      id="sponsors" 
-      className="relative w-full py-24 px-4 md:px-8 lg:px-16"
+    <section
+      id="sponsors"
+      className="relative w-full overflow-hidden"
     >
-      <div className="max-w-7xl mx-auto">
-        {/* Hero Header */}
-        <div className="text-center mb-20">
-          <h1 className="font-heading text-5xl md:text-7xl lg:text-8xl text-foreground mb-8 leading-tight">
-            SPONSORS & PARTNERS
-          </h1>
-          <h2 className="font-heading text-2xl md:text-3xl text-primary mb-8">
-            Powering Enthusia 5.0
-          </h2>
-          <p className="font-body text-lg md:text-xl text-[#b3b3b3] leading-relaxed max-w-4xl mx-auto">
-            Enthusia 5.0 is proudly supported by brands and partners who believe in innovation, youth culture, and creative expression. Their support helps us create a larger-than-life fest experience.
-          </p>
-        </div>
+      {/* 3D Cinematic Hero Section */}
+      {/* 3D Cinematic Hero Section */}
+      <SponsorsHero3D
+        diamondSponsors={sponsorData.diamond}
+        platinumSponsors={sponsorData.platinum}
+        goldSponsors={sponsorData.gold}
+      />
 
-        {/* Sponsorship Tiers */}
-        <div className="mb-20">
-          <div className="text-center mb-12">
-            <h3 className="font-heading text-3xl md:text-4xl text-foreground mb-4">
-              🏆 SPONSORSHIP TIERS
-            </h3>
-          </div>
-
-          <div className="space-y-8">
-            {sponsorshipTiers.map((tier) => (
-              <div
-                key={tier.id}
-                className={`bg-gradient-to-br ${tier.color} border-2 ${tier.borderColor} rounded-3xl p-8 transition-all duration-500 ${tier.glowColor} hover:shadow-xl`}
+      {/* Additional Content Below Hero */}
+      <div className="relative z-10 bg-[#0a0a0f] py-24 px-4 md:px-8 lg:px-16">
+        <div className="max-w-7xl mx-auto">
+          {/* Partner Categories - Flip Cards */}
+          <motion.div
+            className="mb-32"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+          >
+            <div className="text-center mb-16">
+              <motion.h3
+                className="font-heading text-3xl md:text-5xl text-foreground mb-6"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
               >
-                <div className="flex flex-col md:flex-row items-center gap-6">
-                  <div className="flex items-center gap-3">
-                    <span className="text-3xl">{tier.icon}</span>
-                    <h4 className="font-heading text-xl md:text-2xl text-foreground">{tier.title}</h4>
-                  </div>
-                  <div className="flex-1 flex justify-center md:justify-end">
-                    <LogoPlaceholder size={tier.size as 'small' | 'medium' | 'large'} />
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Partner Categories */}
-        <div className="mb-20">
-          <div className="text-center mb-12">
-            <h3 className="font-heading text-3xl md:text-4xl text-foreground mb-4">
-              🧩 PARTNER CATEGORIES
-            </h3>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {partnerCategories.map((partner) => (
-              <div
-                key={partner.id}
-                className="bg-card border border-border rounded-2xl p-6 transition-all duration-300 hover:shadow-lg hover:border-primary/30"
+                🧩 PARTNER CATEGORIES
+              </motion.h3>
+              <motion.p
+                className="font-body text-lg text-[#b3b3b3] max-w-2xl mx-auto"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.2 }}
               >
-                <div className="flex items-center gap-3 mb-4">
-                  <span className="text-2xl">{partner.icon}</span>
-                  <h4 className="font-heading text-lg text-foreground">{partner.title}</h4>
-                </div>
-                <div className="flex justify-center">
-                  <LogoPlaceholder size="medium" />
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
+                Flip to discover the brands behind each category
+              </motion.p>
+            </div>
 
-        {/* Previous Sponsors */}
-        <div className="mb-20">
-          <div className="text-center mb-12">
-            <h3 className="font-heading text-3xl md:text-4xl text-foreground mb-4">
-              ⭐ PREVIOUS SPONSORS
-            </h3>
-            <p className="font-body text-lg text-[#b3b3b3]">
-              (Logo showcase section)
-            </p>
-          </div>
-
-          <div className="bg-card border border-border rounded-3xl p-8">
-            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6 items-center justify-items-center">
-              {Array.from({ length: 12 }, (_, index) => (
-                <LogoPlaceholder key={index} size="small" className="opacity-70 hover:opacity-100 transition-opacity duration-300" />
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+              {partnerCategories.map((partner, index) => (
+                <motion.div
+                  key={partner.id}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                >
+                  <FlipCard
+                    icon={partner.icon}
+                    title={partner.title}
+                  />
+                </motion.div>
               ))}
             </div>
-            <p className="text-center text-[#b3b3b3] font-body text-sm mt-6">
-              Grid of logos from previous editions
-            </p>
-          </div>
-        </div>
+          </motion.div>
 
-        {/* Call to Action */}
-        <div className="mb-20">
-          <div className="bg-gradient-to-br from-primary/10 to-primary/5 border border-primary/20 rounded-3xl p-8 md:p-12 text-center">
-            <h3 className="font-heading text-2xl md:text-3xl text-foreground mb-8">
-              📩 WANT TO PARTNER WITH US?
-            </h3>
-            <div className="flex flex-col sm:flex-row gap-6 justify-center">
-              <button className="bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-black font-heading text-lg px-8 py-4 rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-primary/25">
-                👉 Become a Sponsor
-              </button>
-              <button className="bg-gradient-to-r from-transparent to-transparent border-2 border-primary text-primary hover:bg-primary/10 font-heading text-lg px-8 py-4 rounded-xl transition-all duration-300 hover:scale-105">
-                👉 Contact the Sponsorship Team
-              </button>
-            </div>
-          </div>
+          {/* Cinematic CTA */}
+          <CinematicCTA />
         </div>
       </div>
     </section>
@@ -199,112 +120,102 @@ function Sponsors() {
 
 function SponsorsMobile() {
   return (
-    <section 
-      id="sponsors-mobile" 
-      className="relative w-full py-16 px-4"
+    <section
+      id="sponsors-mobile"
+      className="relative w-full py-16 px-4 overflow-hidden"
     >
-      <div className="max-w-4xl mx-auto">
+      <FloatingParticles />
+
+      <div className="relative z-10 max-w-lg mx-auto">
         {/* Hero Header */}
-        <div className="text-center mb-16">
-          <h1 className="font-heading text-3xl text-foreground mb-6 leading-tight">
+        <motion.div
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+        >
+          <h1 className="font-heading text-3xl text-foreground mb-4 leading-tight">
             SPONSORS & PARTNERS
           </h1>
-          <h2 className="font-heading text-lg text-primary mb-6">
-            Powering Enthusia 5.0
+          <h2 className="font-heading text-lg text-primary mb-4">
+            ✨ Orbiting in the Enthusia Universe ✨
           </h2>
           <p className="font-body text-base text-[#b3b3b3] leading-relaxed">
-            Proudly supported by brands who believe in innovation, youth culture, and creative expression.
+            Our sponsors power innovation as vital satellites in the Enthusia constellation.
           </p>
+        </motion.div>
+
+        {/* Mobile Orbital Display - Stacked */}
+        <div className="space-y-20 mb-20">
+          {/* Diamond Tier */}
+          <OrbitalRing
+            tier="diamond"
+            sponsors={sponsorData.diamond}
+            radius={140}
+            duration={35}
+          />
+
+          {/* Platinum Tier */}
+          <OrbitalRing
+            tier="platinum"
+            sponsors={sponsorData.platinum}
+            radius={130}
+            duration={30}
+          />
+
+          {/* Gold Tier */}
+          <OrbitalRing
+            tier="gold"
+            sponsors={sponsorData.gold}
+            radius={120}
+            duration={25}
+          />
+
+          {/* Silver Tier */}
+          <OrbitalRing
+            tier="silver"
+            sponsors={sponsorData.silver}
+            radius={110}
+            duration={20}
+          />
         </div>
 
-        {/* Sponsorship Tiers */}
-        <div className="mb-16">
+        {/* Partner Categories - Flip Cards */}
+        <motion.div
+          className="mb-16"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+        >
           <div className="text-center mb-8">
-            <h3 className="font-heading text-xl text-foreground mb-2">
-              🏆 SPONSORSHIP TIERS
-            </h3>
-          </div>
-
-          <div className="space-y-4">
-            {sponsorshipTiers.map((tier) => (
-              <div
-                key={tier.id}
-                className={`bg-gradient-to-br ${tier.color} border-2 ${tier.borderColor} rounded-2xl p-6`}
-              >
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <span className="text-xl">{tier.icon}</span>
-                    <h4 className="font-heading text-base text-foreground">{tier.title}</h4>
-                  </div>
-                  <LogoPlaceholder size="small" />
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Partner Categories */}
-        <div className="mb-16">
-          <div className="text-center mb-8">
-            <h3 className="font-heading text-xl text-foreground mb-2">
+            <h3 className="font-heading text-2xl text-foreground mb-4">
               🧩 PARTNER CATEGORIES
             </h3>
-          </div>
-
-          <div className="grid grid-cols-1 gap-4">
-            {partnerCategories.map((partner) => (
-              <div
-                key={partner.id}
-                className="bg-card border border-border rounded-2xl p-4"
-              >
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <span className="text-lg">{partner.icon}</span>
-                    <h4 className="font-heading text-sm text-foreground">{partner.title}</h4>
-                  </div>
-                  <LogoPlaceholder size="small" />
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Previous Sponsors */}
-        <div className="mb-16">
-          <div className="text-center mb-8">
-            <h3 className="font-heading text-xl text-foreground mb-2">
-              ⭐ PREVIOUS SPONSORS
-            </h3>
-          </div>
-
-          <div className="bg-card border border-border rounded-2xl p-6">
-            <div className="grid grid-cols-3 gap-4 items-center justify-items-center">
-              {Array.from({ length: 9 }, (_, index) => (
-                <LogoPlaceholder key={index} size="small" className="opacity-70" />
-              ))}
-            </div>
-            <p className="text-center text-[#b3b3b3] font-body text-xs mt-4">
-              Previous edition logos
+            <p className="font-body text-sm text-[#b3b3b3]">
+              Tap to flip and discover partners
             </p>
           </div>
-        </div>
 
-        {/* Call to Action */}
-        <div className="mb-16">
-          <div className="bg-gradient-to-br from-primary/10 to-primary/5 border border-primary/20 rounded-2xl p-6 text-center">
-            <h3 className="font-heading text-lg text-foreground mb-6">
-              📩 WANT TO PARTNER WITH US?
-            </h3>
-            <div className="space-y-4">
-              <button className="w-full bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-black font-heading text-base px-6 py-3 rounded-lg transition-all duration-300">
-                👉 Become a Sponsor
-              </button>
-              <button className="w-full bg-gradient-to-r from-transparent to-transparent border-2 border-primary text-primary hover:bg-primary/10 font-heading text-base px-6 py-3 rounded-lg transition-all duration-300">
-                👉 Contact Sponsorship Team
-              </button>
-            </div>
+          <div className="grid grid-cols-2 gap-4">
+            {partnerCategories.map((partner, index) => (
+              <motion.div
+                key={partner.id}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.05 }}
+              >
+                <FlipCard
+                  icon={partner.icon}
+                  title={partner.title}
+                />
+              </motion.div>
+            ))}
           </div>
-        </div>
+        </motion.div>
+
+        {/* Cinematic CTA */}
+        <CinematicCTA />
       </div>
     </section>
   );
@@ -316,20 +227,20 @@ export function SponsorsPage() {
   if (isMobile) {
     return (
       <>
-        <SEO 
+        <SEO
           title="Sponsors & Partners - Powering Enthusia 5.0"
           description="Meet our sponsors and partners who support Enthusia 5.0. Join us as a sponsor and be part of the innovation and celebration."
           url="https://sitnovate.vercel.app/sponsors"
         />
-        <div className="flex min-h-svh flex-col">
+        <div className="flex min-h-svh flex-col bg-[#0a0a0f]">
           <ProgressiveBlur
             direction="top"
             className="fixed top-0 left-0 w-full h-32 z-40 pointer-events-none"
             blurIntensity={1}
           />
-          
+
           <Sidebar />
-          
+
           <SponsorsMobile />
 
           <Footer />
@@ -340,12 +251,12 @@ export function SponsorsPage() {
 
   return (
     <>
-      <SEO 
+      <SEO
         title="Sponsors & Partners - Powering Enthusia 5.0"
         description="Meet our sponsors and partners who support Enthusia 5.0. Join us as a sponsor and be part of the innovation and celebration."
         url="https://sitnovate.vercel.app/sponsors"
       />
-      <div className="flex min-h-svh flex-col">
+      <div className="flex min-h-svh flex-col bg-[#0a0a0f]">
         <NavBar />
         <main className="w-full max-w-[1550px] mx-auto">
           <Sponsors />
