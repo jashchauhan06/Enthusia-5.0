@@ -1,4 +1,61 @@
+import { useState, useEffect } from 'react';
+
 export function CaseStudiesMobile() {
+  const [currentVersion, setCurrentVersion] = useState<'4.0' | '5.0'>('4.0');
+
+  // Scroll listener to change version
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      const windowHeight = window.innerHeight;
+      
+      // Change to 5.0 after scrolling past 50% of viewport height
+      if (scrollY > windowHeight * 0.5) {
+        setCurrentVersion('5.0');
+      } else {
+        setCurrentVersion('4.0');
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Dynamic content based on version
+  const versionContent = {
+    '4.0': {
+      sectionTitle: 'ABOUT ENTHUSIA',
+      sectionSubtitle: 'Three-day Techno-Cultural Fest',
+      upcomingTitle: 'ENTHUSIA 4.0',
+      upcomingYear: '2025',
+      upcomingStatus: 'COMPLETED',
+      upcomingDescription: 'A three-day techno-cultural experience where innovation, creativity, competition, and celebration collided.',
+      upcomingDate: '19-21 February 2025',
+      upcomingParticipants: '800+ participants',
+      pastTitle: 'ENTHUSIA 3.0',
+      pastYear: '2024', 
+      pastStatus: 'COMPLETED',
+      pastDescription: 'A successful three-day fest where 600+ participants experienced the perfect blend of technology and culture.',
+      pastDate: '19 Feb 2024 to 21 Feb 2024'
+    },
+    '5.0': {
+      sectionTitle: 'ABOUT ENTHUSIA',
+      sectionSubtitle: 'Three-day Techno-Cultural Fest',
+      upcomingTitle: 'ENTHUSIA 5.0',
+      upcomingYear: '2026',
+      upcomingStatus: 'UPCOMING',
+      upcomingDescription: 'A three-day techno-cultural experience where innovation, creativity, competition, and celebration will collide.',
+      upcomingDate: '19-21 February 2026',
+      upcomingParticipants: '1000+ expected participants',
+      pastTitle: 'ENTHUSIA 4.0',
+      pastYear: '2025',
+      pastStatus: 'COMPLETED', 
+      pastDescription: 'A three-day fest where 800+ participants experienced the perfect blend of technology and culture.',
+      pastDate: '19 Feb 2025 to 21 Feb 2025'
+    }
+  };
+
+  const content = versionContent[currentVersion];
   return (
     <section 
       id="case-studies-mobile" 
@@ -8,48 +65,48 @@ export function CaseStudiesMobile() {
         {/* Section Title */}
         <div className="text-center mb-8">
           <h2 className="font-body text-lg font-light text-foreground mb-4">
-            ABOUT SITNOVATE
+            {content.sectionTitle}
           </h2>
           <p className="font-heading text-3xl text-foreground">
-            24-Hour Hackathon
+            {content.sectionSubtitle}
           </p>
         </div>
         
-        {/* Hackathon Description */}
+        {/* Event Description */}
         <div className="space-y-6">
-          {/* SITNovate 2026 - Upcoming */}
+          {/* Upcoming Event */}
           <div className="bg-gradient-to-br from-primary/10 to-primary/5 border-2 border-primary rounded-2xl p-6">
             <div className="flex items-center gap-2 mb-3">
-              <span className="font-heading text-xl text-primary">SITNOVATE 2026</span>
-              <span className="px-3 py-1 bg-primary text-primary-foreground text-xs font-heading rounded-full">UPCOMING</span>
+              <span className="font-heading text-xl text-primary">{content.upcomingTitle}</span>
+              <span className="px-3 py-1 bg-primary text-primary-foreground text-xs font-heading rounded-full">{content.upcomingStatus}</span>
             </div>
             <p className="font-body text-base text-foreground leading-relaxed mb-4">
-              A 24-hour coding marathon where innovation meets competition. Build, code, and create the future in this intensive hackathon experience.
+              {content.upcomingDescription}
             </p>
             <div className="space-y-2">
               <p className="font-body text-sm text-[#b3b3b3]">
-                <span className="text-foreground font-medium">Date:</span> 19-21 February 2026
+                <span className="text-foreground font-medium">Date:</span> {content.upcomingDate}
               </p>
               <p className="font-body text-sm text-[#b3b3b3]">
                 <span className="text-foreground font-medium">Venue:</span> Symbiosis Institute of Technology, Nagpur
               </p>
               <p className="font-body text-sm text-[#b3b3b3]">
-                <span className="text-foreground font-medium">Expected Participants:</span> 500+ participants
+                <span className="text-foreground font-medium">Participants:</span> {content.upcomingParticipants}
               </p>
             </div>
           </div>
 
-          {/* SITNovate 2025 - Past Event */}
+          {/* Past Event */}
           <div className="bg-card border border-border rounded-2xl p-6">
             <div className="flex items-center gap-2 mb-3">
-              <span className="font-heading text-xl text-foreground">SITNOVATE 2025</span>
-              <span className="px-3 py-1 bg-muted text-muted-foreground text-xs font-heading rounded-full">COMPLETED</span>
+              <span className="font-heading text-xl text-foreground">{content.pastTitle}</span>
+              <span className="px-3 py-1 bg-muted text-muted-foreground text-xs font-heading rounded-full">{content.pastStatus}</span>
             </div>
             <p className="font-body text-base text-[#b3b3b3] leading-relaxed mb-4">
-              A 24-hour hackathon where <span className="text-foreground font-medium">500+ participants</span> competed in teams to build innovative solutions and prototypes.
+              {content.pastDescription}
             </p>
             <p className="font-body text-base text-[#b3b3b3] leading-relaxed">
-              Held from <span className="text-foreground font-medium">19 Feb 2025</span> to <span className="text-foreground font-medium">21 Feb 2025</span> at Symbiosis Institute of Technology (SIT), Nagpur.
+              Held from <span className="text-foreground font-medium">{content.pastDate}</span> at Symbiosis Institute of Technology (SIT), Nagpur.
             </p>
           </div>
 

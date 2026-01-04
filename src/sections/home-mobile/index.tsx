@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 import { TextShimmer } from "@/components/ui/text-shimmer";
 import { ShineBorder } from "@/components/magicui/shine-border";
@@ -8,6 +8,10 @@ import { HomeMobileBeams } from "./home-mobile-beams";
 export function MobileHome() {
     const containerRef = useRef<HTMLDivElement>(null);
     const navigate = useNavigate();
+    const [currentVersion, setCurrentVersion] = useState<'4.0' | '5.0'>('5.0');
+
+    // Main home page should always show ENTHUSIA 5.0 (current event)
+    // No scroll-based switching needed here
 
     const handleRegisterClick = () => {
       navigate('/techfest');
@@ -20,6 +24,24 @@ export function MobileHome() {
     const handleCulturalFestClick = () => {
       navigate('/cultural-fest');
     };
+
+    // Dynamic content based on version
+    const versionContent = {
+      '4.0': {
+        title: 'ENTHUSIA 4.0',
+        subtitle: 'Three-day techno-cultural fest',
+        date: '19 – 21 February 2025 • SIT Nagpur',
+        description: 'A three-day experience where innovation, creativity, competition, and celebration collide.'
+      },
+      '5.0': {
+        title: 'ENTHUSIA 5.0', 
+        subtitle: 'Three-day techno-cultural fest',
+        date: '19 – 21 February 2026 • SIT Nagpur',
+        description: 'A three-day experience where innovation, creativity, competition, and celebration collide.'
+      }
+    };
+
+    const content = versionContent[currentVersion];
 
     return (
       <section 
@@ -42,23 +64,23 @@ export function MobileHome() {
                   duration={1.5}
                   spread={5}
               >
-                  SITNOVATE
+                  {content.title}
               </TextShimmer>
           </h1>
     
           {/* Title */}
           <h2 className="font-body font-light text-[#b3b3b3] text-center text-[clamp(0.6rem,2.5vw,0.9rem)] tracking-[0.3em] mb-2 uppercase relative z-10">
-            24-HOUR HACKATHON
+            {content.subtitle}
           </h2>
 
           {/* Date and Location */}
           <p className="font-body font-light text-[#b3b3b3] text-center text-[clamp(0.6rem,2.5vw,0.9rem)] mb-6 relative z-10">
-            19 – 21 February 2026 • SIT Nagpur
+            {content.date}
           </p>
     
           {/* Description Paragraph */}
           <p className="font-body text-center text-sm leading-relaxed text-[#b3b3b3] max-w-xs mb-8 relative z-10">
-            A 24-hour coding marathon where innovation meets competition. Build, code, and create the future.
+            {content.description}
           </p>
 
           {/* CTA Buttons */}
