@@ -8,10 +8,10 @@ export function HomeInfoGrid() {
   const navigate = useNavigate();
 
   // Original email for copy functionality
-  const originalEmail = "test@gmail.com";
+  const originalEmail = "enthusia@sitnagpur.edu.in";
   
   // Email with invisible characters to prevent mobile auto-detection
-  const emailDisplay = "test" + String.fromCharCode(8203) + "@" + String.fromCharCode(8203) + "gmail.com";
+  const emailDisplay = "enthusia" + String.fromCharCode(8203) + "@" + String.fromCharCode(8203) + "sitnagpur.edu.in";
 
   const handleCopy = async () => {
     try {

@@ -176,7 +176,7 @@ npm run analyze      # Analyze bundle size
 - Entertainment events
 
 **Venue**: Symbiosis Institute of Technology, Nagpur, Maharashtra, India
-**Contact**: enthusia@sitngr.edu.in
+**Contact**: enthusia@sitnagpur.edu.in
 
 ## 🤝 Contributing
 

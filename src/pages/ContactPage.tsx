@@ -315,8 +315,8 @@ function Contact() {
       icon: "📧",
       title: "Email Us",
       subtitle: "Official Contact",
-      content: "test@gmail.com",
-      link: "mailto:test@gmail.com",
+      content: "enthusia@sitnagpur.edu.in",
+      link: "mailto:enthusia@sitnagpur.edu.in",
       gradient: "from-green-500/30 to-emerald-500/20",
       delay: 0.2
     },
@@ -518,7 +518,7 @@ function ContactMobile() {
         <div className="grid grid-cols-1 gap-4 mb-12">
           {[
             { icon: "🏢", title: "Visit Us", content: "SIT Nagpur, Maharashtra", gradient: "from-blue-500/30 to-cyan-500/20" },
-            { icon: "📧", title: "Email", content: "test@gmail.com", gradient: "from-green-500/30 to-emerald-500/20" },
+            { icon: "📧", title: "Email", content: "enthusia@sitnagpur.edu.in", gradient: "from-green-500/30 to-emerald-500/20" },
             { icon: "📱", title: "Call", content: "+91 XXXXXXXXXX", gradient: "from-purple-500/30 to-pink-500/20" },
             { icon: "🤝", title: "Partner", content: "partnerships@sitnovate.com", gradient: "from-orange-500/30 to-yellow-500/20" }
           ].map((contact, index) => (
