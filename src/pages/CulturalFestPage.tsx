@@ -1,400 +1,406 @@
+import React from "react";
 import { NavBar } from "@/components/navigation/nav-bar";
 import { SEO } from "@/components/seo/SEO";
 import { Footer } from "@/sections/footer";
 import { useBreakpoint } from "@/hooks/useBreakpoint";
 import { Sidebar } from "@/components/navigation/sidebar/sidebar";
 import { ProgressiveBlur } from "@/components/ui/progressive-blur";
+import { motion, useScroll, useTransform, useMotionTemplate, useMotionValue } from "framer-motion";
+import type { Variants } from "framer-motion";
 
+// --- CULTURAL EVENTS DATA ---
 const culturalEvents = [
   {
-    id: 'cultural-program',
-    title: 'Cultural Program (Auditorium)',
-    subtitle: 'Dance • Drama • Ramp Walk • Felicitation',
-    description: 'A showcase of student talent through curated stage performances and ceremonies.',
-    icon: '🎭',
-    color: 'from-purple-500/20 to-pink-500/20',
-    borderColor: 'border-purple-500/40',
-    glowColor: 'hover:shadow-purple-500/25',
-    buttonText: 'Enter the Auditorium',
-    route: '/events/cultural-program'
+    id: 'dance',
+    title: 'Dance Battle',
+    subtitle: 'Rhythm & Expression',
+    description: 'Showcase your moves. Feel the beat.',
+    icon: '♪',
+    color: 'from-pink-500',
+    accent: 'pink',
+    route: '/events/dance',
+    span: 'md:col-span-2 md:row-span-1'
   },
   {
-    id: 'jamming-night',
-    title: 'Jamming Night',
-    subtitle: 'Open Musical Evening',
-    description: 'An open musical evening filled with vocals, instruments, and spontaneous collaborations.',
-    icon: '🎸',
-    color: 'from-orange-500/20 to-red-500/20',
-    borderColor: 'border-orange-500/40',
-    glowColor: 'hover:shadow-orange-500/25',
-    buttonText: 'Enter the Jam',
-    route: '/events/jamming-night'
+    id: 'drama',
+    title: 'Drama Competition',
+    subtitle: 'Stage Performance',
+    description: 'Tell stories. Captivate audiences.',
+    icon: '♭',
+    color: 'from-purple-500',
+    accent: 'purple',
+    route: '/events/drama',
+    span: 'md:col-span-1 md:row-span-1'
   },
   {
-    id: 'standup-comedy',
+    id: 'rampwalk',
+    title: 'Ramp Walk',
+    subtitle: 'Fashion Show',
+    description: 'Style meets confidence. Own the stage.',
+    icon: '♠',
+    color: 'from-rose-500',
+    accent: 'rose',
+    route: '/events/rampwalk',
+    span: 'md:col-span-1 md:row-span-1'
+  },
+  {
+    id: 'music',
+    title: 'Music Fest',
+    subtitle: 'Live Performance',
+    description: 'Create melodies. Share your voice.',
+    icon: '♫',
+    color: 'from-orange-500',
+    accent: 'orange',
+    route: '/events/music',
+    span: 'md:col-span-1 md:row-span-1'
+  },
+  {
+    id: 'standup',
     title: 'Stand-Up Comedy',
-    subtitle: 'Laughter-Packed Session',
-    description: 'A laughter-packed session featuring witty performances and relatable humor.',
-    icon: '🎤',
-    color: 'from-yellow-500/20 to-orange-500/20',
-    borderColor: 'border-yellow-500/40',
-    glowColor: 'hover:shadow-yellow-500/25',
-    buttonText: 'Enter the Comedy Zone',
-    route: '/events/standup-comedy'
-  },
-  {
-    id: 'celebrity-night',
-    title: 'Celebrity Night',
-    subtitle: 'Artist to be revealed soon',
-    description: 'The most awaited night of the fest — a high-energy live performance by a renowned artist.',
-    icon: '🌟',
-    color: 'from-pink-500/20 to-rose-500/20',
-    borderColor: 'border-pink-500/40',
-    glowColor: 'hover:shadow-pink-500/25',
-    buttonText: 'Enter the Main Stage',
-    route: '/events/celebrity-night'
-  },
-  {
-    id: 'dj-night',
-    title: 'DJ Night',
-    subtitle: 'Electrifying Beats & Immersive Lights',
-    description: 'Electrifying beats, immersive lights, and a vibrant dance floor to close the fest on a high note.',
-    icon: '🎧',
-    color: 'from-cyan-500/20 to-blue-500/20',
-    borderColor: 'border-cyan-500/40',
-    glowColor: 'hover:shadow-cyan-500/25',
-    buttonText: 'Enter the Final Level',
-    route: '/events/dj-night'
+    subtitle: 'Humor & Wit',
+    description: 'Make them laugh. Spread joy.',
+    icon: '♦',
+    color: 'from-yellow-500',
+    accent: 'yellow',
+    route: '/events/standup',
+    span: 'md:col-span-1 md:row-span-1'
   }
 ];
 
-function CulturalFest() {
+// --- VARIANTS FOR GUARANTEED VISIBILITY ---
+const containerVariants: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15,
+      delayChildren: 0.1,
+    },
+  },
+};
+
+const cardVariants: Variants = {
+  hidden: { opacity: 0, x: 30 },
+  visible: { 
+    opacity: 1, 
+    x: 0,
+    transition: { type: "spring", stiffness: 70, damping: 15, mass: 0.8 }
+  },
+};
+
+// --- CULTURAL REACTOR ANIMATION ---
+const CulturalReactor = () => {
+    return (
+        <div className="relative w-28 h-28 flex items-center justify-center">
+            {/* Glow Background */}
+            <div className="absolute inset-0 bg-pink-500/20 blur-[40px] rounded-full opacity-60" />
+
+            <svg viewBox="0 0 200 200" className="w-full h-full">
+                {/* Outer Ring (Static) */}
+                <circle cx="100" cy="100" r="90" stroke="#333" strokeWidth="2" fill="none" opacity="0.5" />
+                
+                {/* Rotating Cultural Ring */}
+                <motion.circle 
+                    cx="100" cy="100" r="85" 
+                    stroke="#ec4899" // Pink
+                    strokeWidth="2" 
+                    fill="none" 
+                    strokeDasharray="10 20"
+                    animate={{ rotate: 360 }}
+                    transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+                    style={{ originX: "50%", originY: "50%" }}
+                />
+
+                {/* Counter-Rotating Inner Ring */}
+                <motion.circle 
+                    cx="100" cy="100" r="60" 
+                    stroke="#f97316" // Orange
+                    strokeWidth="4" 
+                    fill="none" 
+                    strokeDasharray="40 100"
+                    animate={{ rotate: -360 }}
+                    transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+                    style={{ originX: "50%", originY: "50%" }}
+                />
+
+                {/* Pulsing Core */}
+                <motion.circle 
+                    cx="100" cy="100" r="30" 
+                    fill="#ec4899" 
+                    animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.8, 0.3] }}
+                    transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                    style={{ originX: "50%", originY: "50%" }}
+                />
+                
+                {/* Solid Core Dot */}
+                <circle cx="100" cy="100" r="10" fill="white" />
+            </svg>
+        </div>
+    );
+};
+
+// --- DESKTOP COMPONENTS ---
+const BackgroundGrid = () => (
+  <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+    <div className="absolute inset-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:50px_50px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
+    <motion.div 
+      animate={{ opacity: [0.3, 0.6, 0.3] }}
+      transition={{ duration: 5, repeat: Infinity }}
+      className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-pink-500/20 blur-[120px] rounded-full"
+    />
+  </div>
+);
+
+const EventCard = ({ event }: { event: any }) => {
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  function handleMouseMove({ currentTarget, clientX, clientY }: React.MouseEvent) {
+    const { left, top } = currentTarget.getBoundingClientRect();
+    mouseX.set(clientX - left);
+    mouseY.set(clientY - top);
+  }
+
   return (
-    <section 
-      id="cultural-fest" 
-      className="relative w-full py-24 px-4 md:px-8 lg:px-16 bg-gradient-to-b from-black/80 to-purple-900/20"
+    <motion.div
+      layout
+      initial={{ opacity: 0, scale: 0.9 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      viewport={{ once: true, amount: 0.3 }}
+      transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+      className={`group relative border border-white/10 bg-black/40 overflow-hidden rounded-3xl ${event.span} flex flex-col justify-between cursor-pointer`}
+      onMouseMove={handleMouseMove}
+      onClick={() => window.location.href = event.route}
     >
-      <div className="max-w-7xl mx-auto">
-        {/* Hero Header */}
-        <div className="text-center mb-20">
-          <h1 className="font-heading text-6xl md:text-8xl lg:text-9xl text-foreground mb-8 leading-tight">
-            🎭 CULTURAL FEST
-          </h1>
-          <h2 className="font-heading text-2xl md:text-4xl text-pink-400 mb-8">
-            Feel the Vibe. Own the Night.
-          </h2>
-          <p className="font-body text-lg md:text-xl text-[#b3b3b3] leading-relaxed max-w-4xl mx-auto mb-6">
-            The Cultural Fest of Enthusia 5.0 is where expression takes over and the campus transforms into a stage of music, performance, laughter, and celebration. After intense competitions, the Cultural Fest offers students a space to express freely, connect deeply, and celebrate together.
-          </p>
-          <p className="font-body text-lg md:text-xl text-pink-400 font-medium">
-            Inspired by fictional worlds and festival-scale energy, each cultural segment is designed as a moment, not just an event.
-          </p>
+      <motion.div
+        className="pointer-events-none absolute -inset-px rounded-3xl opacity-0 transition duration-300 group-hover:opacity-100"
+        style={{
+          background: useMotionTemplate`radial-gradient(650px circle at ${mouseX}px ${mouseY}px, rgba(var(--${event.accent}-500-rgb), 0.15), transparent 80%)`,
+        }}
+      />
+      <div className="relative z-10 p-6 h-full flex flex-col">
+        <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${event.color} to-transparent bg-opacity-10 flex items-center justify-center text-xl mb-4 border border-white/10 group-hover:scale-110 transition-transform duration-300`}>
+          {event.icon}
         </div>
-
-        {/* Cultural Highlights */}
-        <div className="mb-20">
-          <div className="text-center mb-12">
-            <h3 className="font-heading text-3xl md:text-4xl text-foreground mb-4">
-              🌟 CULTURAL HIGHLIGHTS
-            </h3>
-            <p className="font-body text-lg text-[#b3b3b3]">
-              (Click to explore)
-            </p>
-          </div>
-
-          {/* Event Cards Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {culturalEvents.map((event) => (
-              <div
-                key={event.id}
-                className={`group relative bg-gradient-to-br ${event.color} border-2 ${event.borderColor} rounded-3xl p-8 transition-all duration-700 hover:scale-105 ${event.glowColor} hover:shadow-2xl cursor-pointer transform hover:-translate-y-3`}
-              >
-                {/* Stage Spotlight Effect */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${event.color} rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 blur-xl`}></div>
-                
-                {/* Warm Glow Effect */}
-                <div className="absolute inset-0 bg-gradient-to-t from-yellow-500/5 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                
-                {/* Content */}
-                <div className="relative z-10">
-                  <div className="flex items-center gap-3 mb-4">
-                    <span className="text-3xl">{event.icon}</span>
-                    <h4 className="font-heading text-xl md:text-2xl text-foreground">{event.title}</h4>
-                  </div>
-                  
-                  <p className="font-body text-sm md:text-base text-pink-400 font-medium mb-4">
-                    {event.subtitle}
-                  </p>
-                  
-                  <p className="font-body text-sm md:text-base text-[#b3b3b3] leading-relaxed mb-6">
-                    {event.description}
-                  </p>
-                  
-                  <button 
-                    className="w-full bg-gradient-to-r from-pink-500/20 to-purple-500/20 border border-pink-500/40 rounded-xl py-3 px-6 font-heading text-pink-400 hover:bg-pink-500/30 hover:border-pink-500/60 transition-all duration-500 hover:shadow-lg hover:shadow-pink-500/25"
-                    onClick={() => {
-                      window.location.href = event.route;
-                    }}
-                  >
-                    👉 {event.buttonText}
-                  </button>
-                </div>
-
-                {/* Stage Light Sweep Effect */}
-                <div className="absolute inset-0 rounded-3xl overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-yellow-300/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1500"></div>
-                </div>
-              </div>
-            ))}
-          </div>
+        <div>
+           <h3 className="font-heading text-2xl text-foreground mb-2 group-hover:text-primary transition-colors">{event.title}</h3>
+          <p className={`font-mono text-xs uppercase tracking-wider bg-clip-text text-transparent bg-gradient-to-r ${event.color} to-white mb-3`}>{event.subtitle}</p>
+          <p className="font-body text-zinc-400 text-sm leading-relaxed max-w-sm">{event.description}</p>
         </div>
-
-        {/* Why Cultural Fest */}
-        <div className="mb-20">
-          <div className="bg-gradient-to-br from-rose-500/10 to-pink-500/10 border border-rose-500/20 rounded-3xl p-8 md:p-12">
-            <div className="flex items-center gap-3 mb-8">
-              <span className="text-3xl">✨</span>
-              <h3 className="font-heading text-3xl md:text-4xl text-foreground">Why Cultural Fest?</h3>
-            </div>
-            <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {[
-                "High-energy evening experiences",
-                "Inclusive & high-participation events",
-                "Perfect balance to the TechFest",
-                "Unforgettable campus memories"
-              ].map((benefit, index) => (
-                <li key={index} className="flex items-start gap-3">
-                  <span className="text-rose-400 mt-1 text-xl">•</span>
-                  <p className="font-body text-lg text-[#b3b3b3]">{benefit}</p>
-                </li>
-              ))}
-            </ul>
-          </div>
+        <div className="mt-auto flex items-center gap-2 text-sm font-medium text-white/50 group-hover:text-white transition-colors">
+          <span>Enter Stage</span>
+          <motion.span className="inline-block" transition={{ type: "spring", stiffness: 400 }} animate={{ x: 0 }} whileHover={{ x: 5 }}>→</motion.span>
         </div>
+      </div>
+      <div className={`absolute -bottom-20 -right-20 w-64 h-64 bg-gradient-to-br ${event.color} to-transparent opacity-10 blur-[80px] group-hover:opacity-20 transition-opacity duration-500`} />
+    </motion.div>
+  );
+};
 
-        {/* Timeline */}
-        <div className="mb-20">
-          <div className="bg-gradient-to-br from-purple-500/10 to-pink-500/10 border border-purple-500/20 rounded-3xl p-8 md:p-12 text-center">
-            <div className="flex items-center justify-center gap-3 mb-8">
-              <span className="text-3xl">⏳</span>
-              <h3 className="font-heading text-3xl md:text-4xl text-foreground">Cultural Fest Timeline</h3>
-            </div>
-            <div className="space-y-4">
-              <p className="font-body text-xl md:text-2xl text-foreground">
-                📅 19 – 21 February 2026
-              </p>
-              <p className="font-body text-xl md:text-2xl text-foreground">
-                📍 Symbiosis Institute of Technology, Nagpur
-              </p>
-              <p className="font-body text-base text-[#b3b3b3] mt-4">
-                (Detailed timings available in the Schedule section)
-              </p>
-            </div>
-          </div>
-        </div>
+// --- DESKTOP LAYOUT ---
+function CulturalFest() {
+  const { scrollYProgress } = useScroll();
+  const y = useTransform(scrollYProgress, [0, 1], [0, -50]);
+  const textX = useTransform(scrollYProgress, [0, 0.5], [0, -1000]);
 
-        {/* Call to Action */}
-        <div className="mb-20">
-          <div className="text-center">
-            <h3 className="font-heading text-2xl md:text-3xl text-foreground mb-8">
-              🔘 CALL TO ACTION
-            </h3>
-            <div className="flex flex-col sm:flex-row gap-6 justify-center">
-              <button className="bg-gradient-to-r from-pink-500 to-purple-500 hover:from-pink-400 hover:to-purple-400 text-white font-heading text-lg px-8 py-4 rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-pink-500/25">
-                View Event Schedule
-              </button>
-              <button className="bg-gradient-to-r from-transparent to-transparent border-2 border-pink-500 text-pink-400 hover:bg-pink-500/10 font-heading text-lg px-8 py-4 rounded-xl transition-all duration-300 hover:scale-105">
-                Register for Cultural Events
-              </button>
-            </div>
-          </div>
+  return (
+    <section className="relative w-full min-h-screen bg-black overflow-hidden pb-32">
+      <BackgroundGrid />
+      <div className="max-w-[1400px] mx-auto px-6 pt-32 relative z-10">
+        <div className="relative mb-32">
+          <motion.h1 
+            initial={{ opacity: 0, y: 100 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "circOut" }}
+            className="font-heading text-[10vw] leading-[0.85] tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white to-white/40 mix-blend-overlay"
+          >
+            CULTURAL<br/>FEST
+          </motion.h1>
+          <motion.div initial={{ opacity: 0, x: -50 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.4 }} className="absolute top-1/2 right-0 md:right-10 max-w-md text-right hidden md:block">
+            <p className="font-mono text-primary mb-2">/// CREATIVE EXPRESSION ACTIVE</p>
+            <p className="text-zinc-400 text-lg">Five stages. Artistic challenges.<br />Express your creativity.</p>
+          </motion.div>
+          <motion.div style={{ x: textX }} className="absolute -top-20 left-0 whitespace-nowrap opacity-10 pointer-events-none select-none">
+             <span className="text-[200px] font-heading font-bold text-stroke">EXPRESS • CREATE • PERFORM • </span>
+          </motion.div>
         </div>
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 auto-rows-[280px]">
+           <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="md:col-span-1 flex flex-col justify-end p-6">
+              <h2 className="font-heading text-4xl text-white mb-4">SELECT<br/>STAGE</h2>
+              <p className="text-zinc-500">Choose your platform. Click a card to register.</p>
+           </motion.div>
+           {culturalEvents.map((event) => (<EventCard key={event.id} event={event} />))}
+        </div>
+        <motion.div style={{ y }} className="mt-32 flex justify-center">
+          <div className="relative group">
+            <div className="absolute -inset-1 bg-gradient-to-r from-pink-500 via-purple-500 to-orange-500 rounded-full blur opacity-25 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
+            <button className="relative px-12 py-6 bg-black ring-1 ring-white/10 rounded-full font-heading text-2xl tracking-wide text-white flex items-center gap-4 transition-transform active:scale-95">
+              <span>INITIALIZE PERFORMANCE</span>
+              <span className="animate-pulse">_</span>
+            </button>
+          </div>
+        </motion.div>
       </div>
     </section>
   );
+}
+
+// --- MOBILE COMPONENTS ---
+const CircuitLine = () => {
+    return (
+        <div className="absolute left-[29px] top-0 bottom-0 w-0.5 bg-zinc-800 overflow-hidden z-0">
+            <motion.div 
+                animate={{ top: ["0%", "100%"], opacity: [0, 1, 0] }}
+                transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+                className="absolute left-0 w-full h-32 bg-gradient-to-b from-transparent via-pink-500 to-transparent"
+            />
+        </div>
+    )
+}
+
+const MobileHoloCard = ({ event }: { event: any }) => {
+    return (
+        <motion.div
+            variants={cardVariants}
+            whileTap={{ scale: 0.96 }}
+            className="relative pl-12 mb-8" 
+            onClick={() => window.location.href = event.route}
+        >
+            <div className={`absolute left-[24px] top-8 w-3 h-3 rounded-full bg-black border-2 border-zinc-600 z-10 shadow-[0_0_10px_rgba(0,0,0,1)]`}>
+                <div className={`w-full h-full rounded-full bg-${event.accent}-500 opacity-0 animate-ping`} />
+                <div className={`absolute inset-0 rounded-full bg-white opacity-20`} />
+            </div>
+            <div className="absolute left-[29px] top-[38px] w-8 h-[1px] bg-zinc-700" />
+            <div className="relative overflow-hidden rounded-xl bg-black/60 border border-zinc-800 backdrop-blur-md">
+                <motion.div 
+                    animate={{ left: ["-100%", "200%"] }}
+                    transition={{ duration: 4, repeat: Infinity, delay: Math.random() * 2, ease: "linear" }}
+                    className="absolute top-0 bottom-0 w-12 bg-gradient-to-r from-transparent via-white/5 to-transparent skew-x-12 z-20 pointer-events-none"
+                />
+                <div className="p-5 relative z-10">
+                    <div className="flex justify-between items-start mb-3">
+                        <div className={`p-2 rounded-lg bg-zinc-900 border border-zinc-800 text-2xl font-mono text-white`}>{event.icon}</div>
+                        <div className={`px-2 py-1 rounded bg-zinc-900/80 border border-zinc-800`}>
+                            <span className={`text-[10px] font-mono uppercase text-${event.accent}-400`}>// {event.id}</span>
+                        </div>
+                    </div>
+                    <h3 className="font-heading text-xl text-white mb-1">{event.title}</h3>
+                    <p className={`text-xs font-bold uppercase tracking-wider text-transparent bg-clip-text bg-gradient-to-r ${event.color} to-white mb-2`}>{event.subtitle}</p>
+                    <p className="text-sm text-zinc-400 leading-relaxed">{event.description}</p>
+                </div>
+                <div className="h-1 w-full bg-zinc-900 mt-2 flex">
+                    <div className={`h-full bg-gradient-to-r ${event.color} w-2/3 opacity-50`} />
+                    <div className="h-full bg-transparent w-1/3" />
+                </div>
+            </div>
+        </motion.div>
+    )
 }
 
 function CulturalFestMobile() {
   return (
-    <section 
-      id="cultural-fest-mobile" 
-      className="relative w-full py-16 px-4 bg-gradient-to-b from-black/80 to-purple-900/20"
-    >
-      <div className="max-w-4xl mx-auto">
-        {/* Hero Header */}
-        <div className="text-center mb-16">
-          <h1 className="font-heading text-4xl text-foreground mb-6 leading-tight">
-            🎭 CULTURAL FEST
-          </h1>
-          <h2 className="font-heading text-lg text-pink-400 mb-6">
-            Feel the Vibe. Own the Night.
-          </h2>
-          <p className="font-body text-base text-[#b3b3b3] leading-relaxed mb-4">
-            Where expression takes over and the campus transforms into a stage of music, performance, laughter, and celebration.
-          </p>
-          <p className="font-body text-base text-pink-400 font-medium">
-            Each cultural segment is designed as a moment, not just an event.
-          </p>
-        </div>
+    <section className="relative w-full min-h-screen bg-black overflow-x-hidden pb-20">
+      <div className="fixed inset-0 z-0 opacity-20 pointer-events-none">
+         <div className="absolute inset-0 bg-[linear-gradient(to_right,#ff69b40a_1px,transparent_1px),linear-gradient(to_bottom,#ff69b40a_1px,transparent_1px)] bg-[size:24px_24px]" />
+      </div>
+      <div className="fixed inset-0 bg-gradient-to-b from-black via-transparent to-black z-0 pointer-events-none" />
 
-        {/* Cultural Highlights */}
-        <div className="mb-16">
-          <div className="text-center mb-8">
-            <h3 className="font-heading text-xl text-foreground mb-2">
-              🌟 CULTURAL HIGHLIGHTS
-            </h3>
-            <p className="font-body text-sm text-[#b3b3b3]">
-              (Click to explore)
-            </p>
-          </div>
-
-          {/* Event Cards */}
-          <div className="space-y-6">
-            {culturalEvents.map((event) => (
-              <div
-                key={event.id}
-                className={`group relative bg-gradient-to-br ${event.color} border-2 ${event.borderColor} rounded-2xl p-6 transition-all duration-500 hover:scale-102 ${event.glowColor} hover:shadow-xl cursor-pointer`}
-              >
-                {/* Stage Spotlight Effect */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${event.color} rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-lg`}></div>
-                
-                {/* Warm Glow Effect */}
-                <div className="absolute inset-0 bg-gradient-to-t from-yellow-500/5 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                
-                {/* Content */}
-                <div className="relative z-10">
-                  <div className="flex items-center gap-2 mb-3">
-                    <span className="text-xl">{event.icon}</span>
-                    <h4 className="font-heading text-lg text-foreground">{event.title}</h4>
-                  </div>
-                  
-                  <p className="font-body text-sm text-pink-400 font-medium mb-3">
-                    {event.subtitle}
-                  </p>
-                  
-                  <p className="font-body text-sm text-[#b3b3b3] leading-relaxed mb-4">
-                    {event.description}
-                  </p>
-                  
-                  <button 
-                    className="w-full bg-gradient-to-r from-pink-500/20 to-purple-500/20 border border-pink-500/40 rounded-lg py-2 px-4 font-heading text-sm text-pink-400 hover:bg-pink-500/30 hover:border-pink-500/60 transition-all duration-300"
-                    onClick={() => {
-                      window.location.href = event.route;
-                    }}
-                  >
-                    👉 {event.buttonText}
-                  </button>
+      <div className="relative z-10 px-4 pt-24">
+        
+        {/* HEADER SECTION WITH ANIMATION */}
+        <div className="flex items-center justify-between mb-12 relative z-10">
+            {/* Left Side: Text */}
+            <motion.div 
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              className="ml-10"
+            >
+                <div className="flex items-center gap-2 mb-2">
+                    <div className="w-2 h-2 bg-pink-500 rounded-full animate-pulse" />
+                    <span className="font-mono text-[10px] text-pink-500">STAGE ONLINE</span>
                 </div>
+                <h1 className="font-heading text-5xl text-white mb-2 tracking-tighter leading-none">
+                    CULTURAL<br/>
+                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-orange-500">FEST</span>
+                </h1>
+                <p className="font-mono text-xs text-zinc-500 tracking-widest max-w-[180px]">
+                    SELECT YOUR STAGE. <br/> EXPRESS YOURSELF.
+                </p>
+            </motion.div>
 
-                {/* Stage Light Sweep */}
-                <div className="absolute inset-0 rounded-2xl overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-yellow-300/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
-                </div>
-              </div>
-            ))}
-          </div>
+            {/* Right Side: The Cultural Reactor Animation */}
+            <motion.div 
+                initial={{ opacity: 0, scale: 0, rotate: -90 }}
+                animate={{ opacity: 1, scale: 1, rotate: 0 }}
+                transition={{ duration: 0.8, delay: 0.2, type: "spring" }}
+            >
+                <CulturalReactor />
+            </motion.div>
         </div>
 
-        {/* Why Cultural Fest */}
-        <div className="mb-16">
-          <div className="bg-gradient-to-br from-rose-500/10 to-pink-500/10 border border-rose-500/20 rounded-2xl p-6">
-            <div className="flex items-center gap-2 mb-4">
-              <span className="text-xl">✨</span>
-              <h3 className="font-heading text-lg text-foreground">Why Cultural Fest?</h3>
-            </div>
-            <ul className="space-y-2">
-              {[
-                "High-energy evening experiences",
-                "Inclusive & high-participation events",
-                "Perfect balance to the TechFest",
-                "Unforgettable campus memories"
-              ].map((benefit, index) => (
-                <li key={index} className="flex items-start gap-2">
-                  <span className="text-rose-400 mt-1 text-sm">•</span>
-                  <p className="font-body text-sm text-[#b3b3b3]">{benefit}</p>
-                </li>
-              ))}
-            </ul>
-          </div>
+        {/* THE CIRCUIT LAYOUT */}
+        <div className="relative min-h-[600px]">
+            <CircuitLine />
+            <motion.div 
+                className="relative z-10"
+                variants={containerVariants}
+                initial="hidden"
+                animate="visible"
+            >
+                {culturalEvents.map((event) => (
+                    <MobileHoloCard key={event.id} event={event} />
+                ))}
+            </motion.div>
         </div>
 
-        {/* Timeline */}
-        <div className="mb-16">
-          <div className="bg-gradient-to-br from-purple-500/10 to-pink-500/10 border border-purple-500/20 rounded-2xl p-6 text-center">
-            <div className="flex items-center justify-center gap-2 mb-4">
-              <span className="text-xl">⏳</span>
-              <h3 className="font-heading text-lg text-foreground">Timeline</h3>
-            </div>
-            <div className="space-y-2">
-              <p className="font-body text-base text-foreground">📅 19 – 21 Feb 2026</p>
-              <p className="font-body text-base text-foreground">📍 SIT Nagpur</p>
-            </div>
-          </div>
-        </div>
+        {/* CTA */}
+        <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1, duration: 0.5 }}
+            className="mt-8 relative z-20"
+        >
+           <button className="w-full group relative overflow-hidden rounded-xl bg-gradient-to-r from-pink-500 to-orange-500 text-black py-4 font-heading text-lg shadow-[0_0_30px_rgba(236,72,153,0.3)]">
+                <span className="relative z-10 group-active:scale-95 transition-transform block">ENTER STAGE</span>
+                <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-500 ease-in-out" />
+           </button>
+        </motion.div>
 
-        {/* Call to Action */}
-        <div className="mb-16">
-          <div className="text-center">
-            <h3 className="font-heading text-lg text-foreground mb-6">
-              🔘 CALL TO ACTION
-            </h3>
-            <div className="space-y-4">
-              <button className="w-full bg-gradient-to-r from-pink-500 to-purple-500 hover:from-pink-400 hover:to-purple-400 text-white font-heading text-base px-6 py-3 rounded-lg transition-all duration-300">
-                View Event Schedule
-              </button>
-              <button className="w-full bg-gradient-to-r from-transparent to-transparent border-2 border-pink-500 text-pink-400 hover:bg-pink-500/10 font-heading text-base px-6 py-3 rounded-lg transition-all duration-300">
-                Register for Cultural Events
-              </button>
-            </div>
-          </div>
-        </div>
       </div>
     </section>
   );
 }
 
+// --- MAIN PAGE EXPORT ---
 export function CulturalFestPage() {
   const { isMobile } = useBreakpoint();
 
-  if (isMobile) {
-    return (
-      <>
-        <SEO 
-          title="Cultural Fest - Feel the Vibe. Own the Night."
-          description="Experience the Cultural Fest of Enthusia 5.0. Music, performance, laughter, and celebration. 5 amazing cultural events await."
-          url="https://sitnovate.vercel.app/cultural-fest"
-        />
-        <div className="flex min-h-svh flex-col">
-          <ProgressiveBlur
-            direction="top"
-            className="fixed top-0 left-0 w-full h-32 z-40 pointer-events-none"
-            blurIntensity={1}
-          />
-          
-          <Sidebar />
-          
-          <CulturalFestMobile />
-
-          <Footer />
-        </div>
-      </>
-    );
-  }
-
   return (
     <>
-      <SEO 
-        title="Cultural Fest - Feel the Vibe. Own the Night."
-        description="Experience the Cultural Fest of Enthusia 5.0. Music, performance, laughter, and celebration. 5 amazing cultural events await."
+      <SEO
+        title="Cultural Fest - Express Yourself"
+        description="Creative expression and artistic performances."
         url="https://sitnovate.vercel.app/cultural-fest"
       />
-      <div className="flex min-h-svh flex-col">
-        <NavBar />
-        <main className="w-full max-w-[1550px] mx-auto">
-          <CulturalFest />
-          <Footer />
-        </main>
-      </div>
+      <motion.div className="flex min-h-svh flex-col bg-black text-white selection:bg-primary selection:text-black">
+        {isMobile ? (
+          <>
+           <ProgressiveBlur direction="top" className="fixed top-0 left-0 w-full h-32 z-40 pointer-events-none" blurIntensity={1}/>
+           <Sidebar />
+           <CulturalFestMobile />
+           <Footer />
+          </>
+        ) : (
+          <>
+            <NavBar />
+            <main className="w-full">
+              <CulturalFest />
+              <Footer />
+            </main>
+          </>
+        )}
+      </motion.div>
     </>
   );
 }

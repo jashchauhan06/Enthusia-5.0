@@ -10,7 +10,7 @@ export function MobileHome() {
     const navigate = useNavigate();
 
     const handleRegisterClick = () => {
-      navigate('/signin');
+      navigate('/techfest');
     };
 
     const handleTechFestClick = () => {
@@ -42,13 +42,13 @@ export function MobileHome() {
                   duration={1.5}
                   spread={5}
               >
-                  ENTHUSIA 5.0
+                  SITNOVATE
               </TextShimmer>
           </h1>
     
           {/* Title */}
           <h2 className="font-body font-light text-[#b3b3b3] text-center text-[clamp(0.6rem,2.5vw,0.9rem)] tracking-[0.3em] mb-2 uppercase relative z-10">
-            ENTER THE PARALLEL FEST UNIVERSE
+            24-HOUR HACKATHON
           </h2>
 
           {/* Date and Location */}
@@ -58,7 +58,7 @@ export function MobileHome() {
     
           {/* Description Paragraph */}
           <p className="font-body text-center text-sm leading-relaxed text-[#b3b3b3] max-w-xs mb-8 relative z-10">
-            A three-day techno-cultural experience where innovation, creativity, competition, and celebration collide.
+            A 24-hour coding marathon where innovation meets competition. Build, code, and create the future.
           </p>
 
           {/* CTA Buttons */}

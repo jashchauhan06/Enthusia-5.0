@@ -54,7 +54,7 @@ export function HowIWork() {
           </div>
 
           {/* Past Events Gallery - Row 5 */}
-          <div className="bento-no-min min-[907px]:col-span-2 min-[1390px]:col-span-2 min-[907px]:order-5 min-[1390px]:order-5">
+          <div className="bento-no-min min-[907px]:col-span-2 min-[1390px]:col-span-2 min-[907px]:order-5 min-[1390px]:order-5 h-[28rem]">
             <Services />
           </div>
         </div>

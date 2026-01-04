@@ -4,9 +4,478 @@ import { Footer } from "@/sections/footer";
 import { useBreakpoint } from "@/hooks/useBreakpoint";
 import { Sidebar } from "@/components/navigation/sidebar/sidebar";
 import { ProgressiveBlur } from "@/components/ui/progressive-blur";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
+import { motion } from "framer-motion";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-function ContactForm() {
+// Register GSAP plugins
+gsap.registerPlugin(ScrollTrigger);
+
+interface ContactCardProps {
+  icon: string;
+  title: string;
+  subtitle: string;
+  content: string;
+  link?: string;
+  gradient: string;
+  delay?: number;
+}
+
+function ContactCard({ icon, title, subtitle, content, link, gradient, delay = 0 }: ContactCardProps) {
+  const cardRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (cardRef.current) {
+      gsap.fromTo(cardRef.current, 
+        { 
+          opacity: 0, 
+          y: 50,
+          scale: 0.9
+        },
+        {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: 0.8,
+          delay: delay,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: cardRef.current,
+            start: "top 80%",
+            toggleActions: "play none none reverse"
+          }
+        }
+      );
+
+      // Hover animation
+      const handleMouseEnter = () => {
+        gsap.to(cardRef.current, {
+          scale: 1.05,
+          duration: 0.3,
+          ease: "power2.out"
+        });
+      };
+
+      const handleMouseLeave = () => {
+        gsap.to(cardRef.current, {
+          scale: 1,
+          duration: 0.3,
+          ease: "power2.out"
+        });
+      };
+
+      cardRef.current.addEventListener('mouseenter', handleMouseEnter);
+      cardRef.current.addEventListener('mouseleave', handleMouseLeave);
+
+      return () => {
+        if (cardRef.current) {
+          cardRef.current.removeEventListener('mouseenter', handleMouseEnter);
+          cardRef.current.removeEventListener('mouseleave', handleMouseLeave);
+        }
+      };
+    }
+  }, [delay]);
+
+  return (
+    <div 
+      ref={cardRef}
+      className={`relative overflow-hidden rounded-2xl bg-gradient-to-br ${gradient} border border-white/10 p-8 group cursor-pointer`}
+    >
+      <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-all duration-500" />
+      <div className="relative z-10">
+        <div className="text-4xl mb-4">{icon}</div>
+        <h3 className="font-heading text-2xl text-white mb-2">{title}</h3>
+        <p className="font-mono text-sm text-white/60 mb-4 uppercase tracking-wider">{subtitle}</p>
+        {link ? (
+          <a 
+            href={link}
+            className="font-body text-lg text-white hover:text-primary transition-colors duration-300 break-all"
+          >
+            {content}
+          </a>
+        ) : (
+          <p className="font-body text-lg text-white/80">{content}</p>
+        )}
+      </div>
+      <div className="absolute top-4 right-4 w-2 h-2 bg-green-400 rounded-full animate-pulse" />
+    </div>
+  );
+}
+
+function AnimatedForm() {
+  const formRef = useRef<HTMLFormElement>(null);
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    queryType: 'Event',
+    message: ''
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  useEffect(() => {
+    if (formRef.current) {
+      const inputs = formRef.current.querySelectorAll('input, select, textarea');
+      
+      gsap.fromTo(inputs, 
+        { 
+          opacity: 0, 
+          x: -30 
+        },
+        {
+          opacity: 1,
+          x: 0,
+          duration: 0.6,
+          stagger: 0.1,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: formRef.current,
+            start: "top 80%",
+            toggleActions: "play none none reverse"
+          }
+        }
+      );
+    }
+  }, []);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    
+    // Simulate form submission
+    await new Promise(resolve => setTimeout(resolve, 2000));
+    
+    console.log('Form submitted:', formData);
+    setIsSubmitting(false);
+    
+    // Reset form
+    setFormData({
+      name: '',
+      email: '',
+      phone: '',
+      queryType: 'Event',
+      message: ''
+    });
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  return (
+    <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-zinc-900/50 to-black/50 border border-white/10 p-8">
+      <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-blue-500/5" />
+      <div className="relative z-10">
+        <div className="flex items-center gap-3 mb-8">
+          <span className="text-3xl">💬</span>
+          <h3 className="font-heading text-2xl text-white">Get In Touch</h3>
+        </div>
+        
+        <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="relative">
+              <input
+                type="text"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+                placeholder="Your Name"
+                className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-4 text-white placeholder-white/40 focus:border-primary focus:outline-none focus:bg-white/10 transition-all duration-300"
+                required
+              />
+            </div>
+            <div className="relative">
+              <input
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                placeholder="Your Email"
+                className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-4 text-white placeholder-white/40 focus:border-primary focus:outline-none focus:bg-white/10 transition-all duration-300"
+                required
+              />
+            </div>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="relative">
+              <input
+                type="tel"
+                name="phone"
+                value={formData.phone}
+                onChange={handleChange}
+                placeholder="Contact Number"
+                className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-4 text-white placeholder-white/40 focus:border-primary focus:outline-none focus:bg-white/10 transition-all duration-300"
+              />
+            </div>
+            <div className="relative">
+              <select
+                name="queryType"
+                value={formData.queryType}
+                onChange={handleChange}
+                className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-4 text-white focus:border-primary focus:outline-none focus:bg-white/10 transition-all duration-300"
+              >
+                <option value="Event" className="bg-black">Event Inquiry</option>
+                <option value="Registration" className="bg-black">Registration Help</option>
+                <option value="Sponsorship" className="bg-black">Sponsorship</option>
+                <option value="Partnership" className="bg-black">Partnership</option>
+                <option value="Other" className="bg-black">Other</option>
+              </select>
+            </div>
+          </div>
+
+          <div className="relative">
+            <textarea
+              name="message"
+              value={formData.message}
+              onChange={handleChange}
+              rows={5}
+              placeholder="Tell us about your query..."
+              className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-4 text-white placeholder-white/40 focus:border-primary focus:outline-none focus:bg-white/10 transition-all duration-300 resize-none"
+              required
+            />
+          </div>
+
+          <motion.button
+            type="submit"
+            disabled={isSubmitting}
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            className="w-full bg-gradient-to-r from-primary to-blue-500 hover:from-primary/90 hover:to-blue-500/90 text-black font-heading text-lg px-8 py-4 rounded-xl transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            {isSubmitting ? (
+              <div className="flex items-center justify-center gap-2">
+                <div className="w-5 h-5 border-2 border-black/30 border-t-black rounded-full animate-spin" />
+                Sending...
+              </div>
+            ) : (
+              'Send Message'
+            )}
+          </motion.button>
+        </form>
+      </div>
+    </div>
+  );
+}
+
+function Contact() {
+  const heroRef = useRef<HTMLDivElement>(null);
+  const titleRef = useRef<HTMLHeadingElement>(null);
+
+  useEffect(() => {
+    // Hero animation
+    if (heroRef.current && titleRef.current) {
+      const tl = gsap.timeline();
+      
+      tl.fromTo(titleRef.current, 
+        { 
+          opacity: 0, 
+          y: 100,
+          scale: 0.8
+        },
+        {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: 1.2,
+          ease: "power3.out"
+        }
+      );
+
+      // Floating animation for title
+      gsap.to(titleRef.current, {
+        y: -10,
+        duration: 2,
+        repeat: -1,
+        yoyo: true,
+        ease: "power2.inOut"
+      });
+    }
+
+    // Cleanup
+    return () => {
+      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+    };
+  }, []);
+
+  const contactData = [
+    {
+      icon: "🏢",
+      title: "Visit Us",
+      subtitle: "Campus Location",
+      content: "Symbiosis Institute of Technology, Nagpur, Maharashtra, India",
+      gradient: "from-blue-500/30 to-cyan-500/20",
+      delay: 0.1
+    },
+    {
+      icon: "📧",
+      title: "Email Us",
+      subtitle: "Official Contact",
+      content: "test@gmail.com",
+      link: "mailto:test@gmail.com",
+      gradient: "from-green-500/30 to-emerald-500/20",
+      delay: 0.2
+    },
+    {
+      icon: "📱",
+      title: "Call Us",
+      subtitle: "Direct Line",
+      content: "+91 XXXXXXXXXX",
+      link: "tel:+91XXXXXXXXXX",
+      gradient: "from-purple-500/30 to-pink-500/20",
+      delay: 0.3
+    },
+    {
+      icon: "🤝",
+      title: "Partnerships",
+      subtitle: "Sponsorship & Collaboration",
+      content: "partnerships@sitnovate.com",
+      link: "mailto:partnerships@sitnovate.com",
+      gradient: "from-orange-500/30 to-yellow-500/20",
+      delay: 0.4
+    }
+  ];
+
+  return (
+    <section className="relative w-full py-24 px-4 md:px-8 lg:px-16 bg-black min-h-screen overflow-hidden">
+      {/* Background Effects */}
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-blue-500/5" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary/10 via-transparent to-transparent" />
+      
+      <div className="max-w-7xl mx-auto relative z-10">
+        {/* Hero Header */}
+        <div ref={heroRef} className="text-center mb-20">
+          <h1 
+            ref={titleRef}
+            className="font-heading text-6xl md:text-8xl lg:text-9xl text-white mb-8 leading-tight tracking-tight"
+          >
+            CONTACT
+          </h1>
+          <div className="w-32 h-1 bg-gradient-to-r from-primary to-blue-400 mx-auto mb-8" />
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5, duration: 0.8 }}
+            className="font-body text-xl md:text-2xl text-zinc-400 leading-relaxed max-w-4xl mx-auto"
+          >
+            Ready to innovate? Let's connect and build the future together.
+          </motion.p>
+        </div>
+
+        {/* Contact Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-20">
+          {contactData.map((contact, index) => (
+            <ContactCard key={index} {...contact} />
+          ))}
+        </div>
+
+        {/* Form Section */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-20">
+          <div className="space-y-8">
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.6, duration: 0.8 }}
+            >
+              <h2 className="font-heading text-4xl text-white mb-6">Let's Start a Conversation</h2>
+              <p className="font-body text-lg text-zinc-400 leading-relaxed mb-8">
+                Whether you're interested in participating, sponsoring, or partnering with SITNovate 2026, 
+                we'd love to hear from you. Our team is here to answer your questions and help you get involved.
+              </p>
+              
+              {/* Quick Stats */}
+              <div className="grid grid-cols-2 gap-6">
+                <div className="text-center p-6 bg-white/5 rounded-xl border border-white/10">
+                  <div className="text-3xl font-heading text-primary mb-2">24</div>
+                  <div className="text-sm font-body text-zinc-400">Hours Response</div>
+                </div>
+                <div className="text-center p-6 bg-white/5 rounded-xl border border-white/10">
+                  <div className="text-3xl font-heading text-primary mb-2">100%</div>
+                  <div className="text-sm font-body text-zinc-400">Support Rate</div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+          
+          <div>
+            <AnimatedForm />
+          </div>
+        </div>
+
+        {/* Social Media Section */}
+        <motion.div 
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.8, duration: 0.8 }}
+          className="text-center mb-20"
+        >
+          <h3 className="font-heading text-3xl text-white mb-8">Follow Our Journey</h3>
+          <div className="flex flex-wrap justify-center gap-6">
+            {[
+              { name: 'Instagram', icon: '📸', color: 'from-pink-500 to-purple-500', handle: '@sitnovate' },
+              { name: 'LinkedIn', icon: '💼', color: 'from-blue-600 to-blue-700', handle: 'SITNovate' },
+              { name: 'Twitter', icon: '🐦', color: 'from-blue-400 to-blue-500', handle: '@sitnovate' },
+              { name: 'YouTube', icon: '📺', color: 'from-red-500 to-red-600', handle: 'SITNovate' }
+            ].map((social) => (
+              <motion.a
+                key={social.name}
+                href="#"
+                whileHover={{ scale: 1.05, y: -5 }}
+                whileTap={{ scale: 0.95 }}
+                className={`bg-gradient-to-r ${social.color} p-6 rounded-2xl text-white min-w-[200px] group`}
+              >
+                <div className="text-3xl mb-2">{social.icon}</div>
+                <div className="font-heading text-lg">{social.name}</div>
+                <div className="font-mono text-sm opacity-80">{social.handle}</div>
+              </motion.a>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* CTA Section */}
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 1, duration: 0.8 }}
+          className="text-center"
+        >
+          <div className="bg-gradient-to-r from-primary/20 to-blue-500/20 border border-primary/30 rounded-3xl p-12">
+            <h3 className="font-heading text-3xl md:text-4xl text-white mb-6">
+              Ready to Join SITNovate 2026?
+            </h3>
+            <p className="text-zinc-400 text-lg mb-8 max-w-2xl mx-auto">
+              Don't miss out on the biggest hackathon of the year. Register now and be part of innovation history.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-6 justify-center">
+              <motion.a 
+                href="/techfest"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="bg-primary text-black font-heading text-lg px-8 py-4 rounded-xl hover:bg-primary/90 transition-all duration-300"
+              >
+                Register Now
+              </motion.a>
+              <motion.a 
+                href="/gallery"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="border-2 border-primary text-primary font-heading text-lg px-8 py-4 rounded-xl hover:bg-primary/10 transition-all duration-300"
+              >
+                View Gallery
+              </motion.a>
+            </div>
+          </div>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
+function ContactMobile() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -17,7 +486,6 @@ function ContactForm() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission
     console.log('Form submitted:', formData);
   };
 
@@ -29,432 +497,173 @@ function ContactForm() {
   };
 
   return (
-    <div className="bg-card border border-border rounded-3xl p-8">
-      <h3 className="font-heading text-2xl text-foreground mb-6">
-        📝 QUICK CONTACT FORM
-      </h3>
-      <form onSubmit={handleSubmit} className="space-y-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div>
-            <label className="block font-body text-sm text-[#b3b3b3] mb-2">Name</label>
+    <section className="relative w-full py-16 px-4 bg-black min-h-screen">
+      <div className="max-w-4xl mx-auto">
+        {/* Hero Header */}
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="text-center mb-12"
+        >
+          <h1 className="font-heading text-4xl text-white mb-4 tracking-tight">
+            CONTACT
+          </h1>
+          <div className="w-16 h-1 bg-gradient-to-r from-primary to-blue-400 mx-auto mb-6" />
+          <p className="font-body text-base text-zinc-400 leading-relaxed">
+            Ready to innovate? Let's connect and build the future together.
+          </p>
+        </motion.div>
+
+        {/* Contact Cards */}
+        <div className="grid grid-cols-1 gap-4 mb-12">
+          {[
+            { icon: "🏢", title: "Visit Us", content: "SIT Nagpur, Maharashtra", gradient: "from-blue-500/30 to-cyan-500/20" },
+            { icon: "📧", title: "Email", content: "test@gmail.com", gradient: "from-green-500/30 to-emerald-500/20" },
+            { icon: "📱", title: "Call", content: "+91 XXXXXXXXXX", gradient: "from-purple-500/30 to-pink-500/20" },
+            { icon: "🤝", title: "Partner", content: "partnerships@sitnovate.com", gradient: "from-orange-500/30 to-yellow-500/20" }
+          ].map((contact, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: index * 0.1, duration: 0.6 }}
+              className={`bg-gradient-to-br ${contact.gradient} border border-white/10 rounded-xl p-4`}
+            >
+              <div className="flex items-center gap-3">
+                <span className="text-2xl">{contact.icon}</span>
+                <div>
+                  <h3 className="font-heading text-lg text-white">{contact.title}</h3>
+                  <p className="font-body text-sm text-white/80">{contact.content}</p>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Contact Form */}
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4 }}
+          className="bg-gradient-to-br from-zinc-900/50 to-black/50 border border-white/10 rounded-2xl p-6 mb-12"
+        >
+          <h3 className="font-heading text-xl text-white mb-6 flex items-center gap-2">
+            <span>💬</span> Get In Touch
+          </h3>
+          
+          <form onSubmit={handleSubmit} className="space-y-4">
             <input
               type="text"
               name="name"
               value={formData.name}
               onChange={handleChange}
-              className="w-full bg-muted/50 border border-border rounded-lg px-4 py-3 text-foreground focus:border-primary focus:outline-none transition-colors"
+              placeholder="Your Name"
+              className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-white/40 focus:border-primary focus:outline-none"
               required
             />
-          </div>
-          <div>
-            <label className="block font-body text-sm text-[#b3b3b3] mb-2">Email</label>
             <input
               type="email"
               name="email"
               value={formData.email}
               onChange={handleChange}
-              className="w-full bg-muted/50 border border-border rounded-lg px-4 py-3 text-foreground focus:border-primary focus:outline-none transition-colors"
+              placeholder="Your Email"
+              className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-white/40 focus:border-primary focus:outline-none"
               required
             />
-          </div>
-        </div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div>
-            <label className="block font-body text-sm text-[#b3b3b3] mb-2">Contact Number</label>
             <input
               type="tel"
               name="phone"
               value={formData.phone}
               onChange={handleChange}
-              className="w-full bg-muted/50 border border-border rounded-lg px-4 py-3 text-foreground focus:border-primary focus:outline-none transition-colors"
+              placeholder="Contact Number"
+              className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-white/40 focus:border-primary focus:outline-none"
             />
-          </div>
-          <div>
-            <label className="block font-body text-sm text-[#b3b3b3] mb-2">Query Type</label>
             <select
               name="queryType"
               value={formData.queryType}
               onChange={handleChange}
-              className="w-full bg-muted/50 border border-border rounded-lg px-4 py-3 text-foreground focus:border-primary focus:outline-none transition-colors"
+              className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white focus:border-primary focus:outline-none"
             >
-              <option value="Event">Event</option>
-              <option value="Registration">Registration</option>
-              <option value="Sponsorship">Sponsorship</option>
-              <option value="Other">Other</option>
+              <option value="Event" className="bg-black">Event Inquiry</option>
+              <option value="Registration" className="bg-black">Registration</option>
+              <option value="Sponsorship" className="bg-black">Sponsorship</option>
+              <option value="Other" className="bg-black">Other</option>
             </select>
-          </div>
-        </div>
+            <textarea
+              name="message"
+              value={formData.message}
+              onChange={handleChange}
+              rows={4}
+              placeholder="Your message..."
+              className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-white/40 focus:border-primary focus:outline-none resize-none"
+              required
+            />
+            <button
+              type="submit"
+              className="w-full bg-gradient-to-r from-primary to-blue-500 text-black font-heading text-base px-6 py-3 rounded-lg hover:from-primary/90 hover:to-blue-500/90 transition-all duration-300"
+            >
+              Send Message
+            </button>
+          </form>
+        </motion.div>
 
-        <div>
-          <label className="block font-body text-sm text-[#b3b3b3] mb-2">Message</label>
-          <textarea
-            name="message"
-            value={formData.message}
-            onChange={handleChange}
-            rows={5}
-            className="w-full bg-muted/50 border border-border rounded-lg px-4 py-3 text-foreground focus:border-primary focus:outline-none transition-colors resize-none"
-            placeholder="Tell us about your query..."
-            required
-          />
-        </div>
-
-        <button
-          type="submit"
-          className="w-full bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-black font-heading text-lg px-8 py-4 rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-primary/25"
+        {/* Social Media */}
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.6 }}
+          className="text-center mb-12"
         >
-          👉 Submit
-        </button>
-      </form>
-    </div>
-  );
-}
-
-function Contact() {
-  return (
-    <section 
-      id="contact" 
-      className="relative w-full py-24 px-4 md:px-8 lg:px-16"
-    >
-      <div className="max-w-7xl mx-auto">
-        {/* Hero Header */}
-        <div className="text-center mb-20">
-          <h1 className="font-heading text-5xl md:text-7xl lg:text-8xl text-foreground mb-8 leading-tight">
-            📞 CONTACT US
-          </h1>
-          <h2 className="font-heading text-2xl md:text-3xl text-primary mb-8">
-            Let's Connect
-          </h2>
-          <p className="font-body text-lg md:text-xl text-[#b3b3b3] leading-relaxed max-w-4xl mx-auto">
-            Have a question about events, registrations, sponsorships, or collaborations? The Enthusia 5.0 team is here to help.
-          </p>
-        </div>
-
-        {/* Contact Information Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-20">
-          {/* Left Column - Contact Info */}
-          <div className="space-y-8">
-            {/* Venue */}
-            <div className="bg-gradient-to-br from-blue-500/10 to-cyan-500/10 border border-blue-500/20 rounded-3xl p-8">
-              <div className="flex items-center gap-3 mb-6">
-                <span className="text-3xl">🏫</span>
-                <h3 className="font-heading text-2xl text-foreground">FEST VENUE</h3>
-              </div>
-              <div className="space-y-3">
-                <p className="font-body text-lg text-foreground font-medium">
-                  Symbiosis Institute of Technology, Nagpur
-                </p>
-                <p className="font-body text-base text-[#b3b3b3]">
-                  Nagpur, Maharashtra, India
-                </p>
-                <div className="mt-4 p-4 bg-muted/30 rounded-lg border border-border/50">
-                  <p className="font-body text-sm text-[#b3b3b3] text-center">
-                    📍 (Embedded Google Map recommended here)
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* Email */}
-            <div className="bg-gradient-to-br from-green-500/10 to-emerald-500/10 border border-green-500/20 rounded-3xl p-8">
-              <div className="flex items-center gap-3 mb-6">
-                <span className="text-3xl">📧</span>
-                <h3 className="font-heading text-2xl text-foreground">EMAIL</h3>
-              </div>
-              <div className="space-y-4">
-                <div>
-                  <p className="font-body text-base text-[#b3b3b3] mb-2">Official Fest Email:</p>
-                  <a 
-                    href="mailto:enthusia@sitnagpur.edu.in" 
-                    className="font-body text-lg text-green-400 hover:text-green-300 transition-colors"
-                  >
-                    📩 enthusia@sitnagpur.edu.in
-                  </a>
-                  <p className="font-body text-xs text-[#b3b3b3] mt-1">(placeholder – update with final ID)</p>
-                </div>
-              </div>
-            </div>
-
-            {/* Phone */}
-            <div className="bg-gradient-to-br from-purple-500/10 to-pink-500/10 border border-purple-500/20 rounded-3xl p-8">
-              <div className="flex items-center gap-3 mb-6">
-                <span className="text-3xl">📱</span>
-                <h3 className="font-heading text-2xl text-foreground">PHONE</h3>
-              </div>
-              <div className="space-y-4">
-                <div>
-                  <p className="font-body text-base text-[#b3b3b3] mb-2">Fest President / Core Team:</p>
-                  <a 
-                    href="tel:+91XXXXXXXXXX" 
-                    className="font-body text-lg text-purple-400 hover:text-purple-300 transition-colors"
-                  >
-                    📞 +91 XXXXXXXXXX
-                  </a>
-                  <p className="font-body text-xs text-[#b3b3b3] mt-1">(to be updated)</p>
-                </div>
-              </div>
-            </div>
-
-            {/* Sponsorship */}
-            <div className="bg-gradient-to-br from-orange-500/10 to-yellow-500/10 border border-orange-500/20 rounded-3xl p-8">
-              <div className="flex items-center gap-3 mb-6">
-                <span className="text-3xl">🤝</span>
-                <h3 className="font-heading text-2xl text-foreground">SPONSORSHIP & PARTNERSHIPS</h3>
-              </div>
-              <div className="space-y-4">
-                <p className="font-body text-base text-[#b3b3b3]">
-                  For sponsorships, partnerships, and brand collaborations:
-                </p>
-                <a 
-                  href="mailto:sponsorships.enthusia@sitnagpur.edu.in" 
-                  className="font-body text-lg text-orange-400 hover:text-orange-300 transition-colors block"
-                >
-                  📩 sponsorships.enthusia@sitnagpur.edu.in
-                </a>
-                <p className="font-body text-xs text-[#b3b3b3]">(placeholder)</p>
-              </div>
-            </div>
-          </div>
-
-          {/* Right Column - Contact Form */}
-          <div>
-            <ContactForm />
-          </div>
-        </div>
-
-        {/* Social Media */}
-        <div className="mb-20">
-          <div className="bg-gradient-to-br from-indigo-500/10 to-purple-500/10 border border-indigo-500/20 rounded-3xl p-8 md:p-12 text-center">
-            <div className="flex items-center justify-center gap-3 mb-8">
-              <span className="text-3xl">🌐</span>
-              <h3 className="font-heading text-2xl md:text-3xl text-foreground">FOLLOW US</h3>
-            </div>
-            <p className="font-body text-lg text-[#b3b3b3] mb-8">
-              Stay updated with announcements, reveals, and behind-the-scenes content:
-            </p>
-            <div className="flex flex-col sm:flex-row gap-6 justify-center">
-              <button className="bg-gradient-to-r from-pink-500/20 to-purple-500/20 border border-pink-500/40 text-pink-400 hover:bg-pink-500/30 hover:border-pink-500/60 font-heading text-lg px-8 py-4 rounded-xl transition-all duration-300 hover:scale-105">
-                📸 Instagram
-              </button>
-              <button className="bg-gradient-to-r from-blue-500/20 to-cyan-500/20 border border-blue-500/40 text-blue-400 hover:bg-blue-500/30 hover:border-blue-500/60 font-heading text-lg px-8 py-4 rounded-xl transition-all duration-300 hover:scale-105">
-                💼 LinkedIn
-              </button>
-              <button className="bg-gradient-to-r from-gray-500/20 to-slate-500/20 border border-gray-500/40 text-gray-400 hover:bg-gray-500/30 hover:border-gray-500/60 font-heading text-lg px-8 py-4 rounded-xl transition-all duration-300 hover:scale-105">
-                🐦 X / Twitter
-              </button>
-            </div>
-            <p className="font-body text-sm text-[#b3b3b3] mt-4">
-              (Icons with links recommended)
-            </p>
-          </div>
-        </div>
-
-        {/* Call to Action */}
-        <div className="mb-20">
-          <div className="bg-gradient-to-br from-primary/10 to-primary/5 border border-primary/20 rounded-3xl p-8 md:p-12 text-center">
-            <h3 className="font-heading text-2xl md:text-3xl text-foreground mb-8">
-              🔘 CALL TO ACTION
-            </h3>
-            <div className="flex flex-col sm:flex-row gap-6 justify-center">
-              <button className="bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-black font-heading text-lg px-8 py-4 rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-primary/25">
-                Register for Enthusia 5.0
-              </button>
-              <button className="bg-gradient-to-r from-transparent to-transparent border-2 border-primary text-primary hover:bg-primary/10 font-heading text-lg px-8 py-4 rounded-xl transition-all duration-300 hover:scale-105">
-                Explore Events
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function ContactMobile() {
-  return (
-    <section 
-      id="contact-mobile" 
-      className="relative w-full py-16 px-4"
-    >
-      <div className="max-w-4xl mx-auto">
-        {/* Hero Header */}
-        <div className="text-center mb-16">
-          <h1 className="font-heading text-3xl text-foreground mb-6 leading-tight">
-            📞 CONTACT US
-          </h1>
-          <h2 className="font-heading text-lg text-primary mb-6">
-            Let's Connect
-          </h2>
-          <p className="font-body text-base text-[#b3b3b3] leading-relaxed">
-            Have questions about events, registrations, sponsorships, or collaborations? We're here to help.
-          </p>
-        </div>
-
-        {/* Contact Information */}
-        <div className="space-y-6 mb-16">
-          {/* Venue */}
-          <div className="bg-gradient-to-br from-blue-500/10 to-cyan-500/10 border border-blue-500/20 rounded-2xl p-6">
-            <div className="flex items-center gap-2 mb-4">
-              <span className="text-xl">🏫</span>
-              <h3 className="font-heading text-lg text-foreground">FEST VENUE</h3>
-            </div>
-            <p className="font-body text-base text-foreground font-medium mb-2">
-              Symbiosis Institute of Technology, Nagpur
-            </p>
-            <p className="font-body text-sm text-[#b3b3b3] mb-3">
-              Nagpur, Maharashtra, India
-            </p>
-            <div className="p-3 bg-muted/30 rounded-lg border border-border/50">
-              <p className="font-body text-xs text-[#b3b3b3] text-center">
-                📍 (Google Map recommended)
-              </p>
-            </div>
-          </div>
-
-          {/* Email */}
-          <div className="bg-gradient-to-br from-green-500/10 to-emerald-500/10 border border-green-500/20 rounded-2xl p-6">
-            <div className="flex items-center gap-2 mb-4">
-              <span className="text-xl">📧</span>
-              <h3 className="font-heading text-lg text-foreground">EMAIL</h3>
-            </div>
-            <p className="font-body text-sm text-[#b3b3b3] mb-2">Official Fest Email:</p>
-            <a 
-              href="mailto:enthusia@sitnagpur.edu.in" 
-              className="font-body text-base text-green-400 hover:text-green-300 transition-colors"
-            >
-              📩 enthusia@sitnagpur.edu.in
-            </a>
-          </div>
-
-          {/* Phone */}
-          <div className="bg-gradient-to-br from-purple-500/10 to-pink-500/10 border border-purple-500/20 rounded-2xl p-6">
-            <div className="flex items-center gap-2 mb-4">
-              <span className="text-xl">📱</span>
-              <h3 className="font-heading text-lg text-foreground">PHONE</h3>
-            </div>
-            <p className="font-body text-sm text-[#b3b3b3] mb-2">Fest President / Core Team:</p>
-            <a 
-              href="tel:+91XXXXXXXXXX" 
-              className="font-body text-base text-purple-400 hover:text-purple-300 transition-colors"
-            >
-              📞 +91 XXXXXXXXXX
-            </a>
-          </div>
-
-          {/* Sponsorship */}
-          <div className="bg-gradient-to-br from-orange-500/10 to-yellow-500/10 border border-orange-500/20 rounded-2xl p-6">
-            <div className="flex items-center gap-2 mb-4">
-              <span className="text-xl">🤝</span>
-              <h3 className="font-heading text-lg text-foreground">SPONSORSHIP</h3>
-            </div>
-            <p className="font-body text-sm text-[#b3b3b3] mb-2">
-              For sponsorships & partnerships:
-            </p>
-            <a 
-              href="mailto:sponsorships.enthusia@sitnagpur.edu.in" 
-              className="font-body text-base text-orange-400 hover:text-orange-300 transition-colors"
-            >
-              📩 sponsorships.enthusia@sitnagpur.edu.in
-            </a>
-          </div>
-        </div>
-
-        {/* Contact Form */}
-        <div className="mb-16">
-          <div className="bg-card border border-border rounded-2xl p-6">
-            <h3 className="font-heading text-lg text-foreground mb-6">
-              📝 QUICK CONTACT FORM
-            </h3>
-            <form className="space-y-4">
-              <div>
-                <input
-                  type="text"
-                  placeholder="Name"
-                  className="w-full bg-muted/50 border border-border rounded-lg px-4 py-3 text-foreground focus:border-primary focus:outline-none transition-colors"
-                  required
-                />
-              </div>
-              <div>
-                <input
-                  type="email"
-                  placeholder="Email"
-                  className="w-full bg-muted/50 border border-border rounded-lg px-4 py-3 text-foreground focus:border-primary focus:outline-none transition-colors"
-                  required
-                />
-              </div>
-              <div>
-                <input
-                  type="tel"
-                  placeholder="Contact Number"
-                  className="w-full bg-muted/50 border border-border rounded-lg px-4 py-3 text-foreground focus:border-primary focus:outline-none transition-colors"
-                />
-              </div>
-              <div>
-                <select className="w-full bg-muted/50 border border-border rounded-lg px-4 py-3 text-foreground focus:border-primary focus:outline-none transition-colors">
-                  <option value="Event">Event</option>
-                  <option value="Registration">Registration</option>
-                  <option value="Sponsorship">Sponsorship</option>
-                  <option value="Other">Other</option>
-                </select>
-              </div>
-              <div>
-                <textarea
-                  rows={4}
-                  placeholder="Your message..."
-                  className="w-full bg-muted/50 border border-border rounded-lg px-4 py-3 text-foreground focus:border-primary focus:outline-none transition-colors resize-none"
-                  required
-                />
-              </div>
-              <button
-                type="submit"
-                className="w-full bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-black font-heading text-base px-6 py-3 rounded-lg transition-all duration-300"
+          <h3 className="font-heading text-xl text-white mb-6">Follow Our Journey</h3>
+          <div className="grid grid-cols-2 gap-3">
+            {[
+              { name: 'Instagram', icon: '📸', color: 'from-pink-500 to-purple-500' },
+              { name: 'LinkedIn', icon: '💼', color: 'from-blue-600 to-blue-700' },
+              { name: 'Twitter', icon: '🐦', color: 'from-blue-400 to-blue-500' },
+              { name: 'YouTube', icon: '📺', color: 'from-red-500 to-red-600' }
+            ].map((social) => (
+              <a
+                key={social.name}
+                href="#"
+                className={`bg-gradient-to-r ${social.color} p-4 rounded-xl text-white text-center`}
               >
-                👉 Submit
-              </button>
-            </form>
+                <div className="text-2xl mb-1">{social.icon}</div>
+                <div className="font-heading text-sm">{social.name}</div>
+              </a>
+            ))}
           </div>
-        </div>
+        </motion.div>
 
-        {/* Social Media */}
-        <div className="mb-16">
-          <div className="bg-gradient-to-br from-indigo-500/10 to-purple-500/10 border border-indigo-500/20 rounded-2xl p-6 text-center">
-            <div className="flex items-center justify-center gap-2 mb-4">
-              <span className="text-xl">🌐</span>
-              <h3 className="font-heading text-lg text-foreground">FOLLOW US</h3>
-            </div>
-            <p className="font-body text-sm text-[#b3b3b3] mb-6">
-              Stay updated with announcements and content:
+        {/* CTA */}
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.8 }}
+          className="text-center"
+        >
+          <div className="bg-gradient-to-r from-primary/20 to-blue-500/20 border border-primary/30 rounded-2xl p-6">
+            <h3 className="font-heading text-lg text-white mb-4">
+              Ready to Join SITNovate 2026?
+            </h3>
+            <p className="text-zinc-400 text-sm mb-6">
+              Don't miss the biggest hackathon of the year.
             </p>
             <div className="space-y-3">
-              <button className="w-full bg-gradient-to-r from-pink-500/20 to-purple-500/20 border border-pink-500/40 text-pink-400 font-heading text-sm px-6 py-3 rounded-lg transition-all duration-300">
-                📸 Instagram
-              </button>
-              <button className="w-full bg-gradient-to-r from-blue-500/20 to-cyan-500/20 border border-blue-500/40 text-blue-400 font-heading text-sm px-6 py-3 rounded-lg transition-all duration-300">
-                💼 LinkedIn
-              </button>
-              <button className="w-full bg-gradient-to-r from-gray-500/20 to-slate-500/20 border border-gray-500/40 text-gray-400 font-heading text-sm px-6 py-3 rounded-lg transition-all duration-300">
-                🐦 X / Twitter
-              </button>
+              <a 
+                href="/techfest"
+                className="block bg-primary text-black font-heading text-sm px-6 py-3 rounded-lg hover:bg-primary/90 transition-all duration-300"
+              >
+                Register Now
+              </a>
+              <a 
+                href="/gallery"
+                className="block border border-primary text-primary font-heading text-sm px-6 py-3 rounded-lg hover:bg-primary/10 transition-all duration-300"
+              >
+                View Gallery
+              </a>
             </div>
           </div>
-        </div>
-
-        {/* Call to Action */}
-        <div className="mb-16">
-          <div className="bg-gradient-to-br from-primary/10 to-primary/5 border border-primary/20 rounded-2xl p-6 text-center">
-            <h3 className="font-heading text-lg text-foreground mb-6">
-              🔘 CALL TO ACTION
-            </h3>
-            <div className="space-y-4">
-              <button className="w-full bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-black font-heading text-base px-6 py-3 rounded-lg transition-all duration-300">
-                Register for Enthusia 5.0
-              </button>
-              <button className="w-full bg-gradient-to-r from-transparent to-transparent border-2 border-primary text-primary hover:bg-primary/10 font-heading text-base px-6 py-3 rounded-lg transition-all duration-300">
-                Explore Events
-              </button>
-            </div>
-          </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
@@ -467,8 +676,8 @@ export function ContactPage() {
     return (
       <>
         <SEO 
-          title="Contact Us - Let's Connect"
-          description="Get in touch with the Enthusia 5.0 team. Contact us for events, registrations, sponsorships, and collaborations."
+          title="Contact Us - SITNovate 2026"
+          description="Get in touch with the SITNovate team. Contact us for hackathon registration, sponsorships, and partnerships."
           url="https://sitnovate.vercel.app/contact"
         />
         <div className="flex min-h-svh flex-col">
@@ -491,8 +700,8 @@ export function ContactPage() {
   return (
     <>
       <SEO 
-        title="Contact Us - Let's Connect"
-        description="Get in touch with the Enthusia 5.0 team. Contact us for events, registrations, sponsorships, and collaborations."
+        title="Contact Us - SITNovate 2026"
+        description="Get in touch with the SITNovate team. Contact us for hackathon registration, sponsorships, and partnerships."
         url="https://sitnovate.vercel.app/contact"
       />
       <div className="flex min-h-svh flex-col">

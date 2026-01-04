@@ -20,7 +20,7 @@ export function AboutMeMobile() {
         {/* Top row: 3 achievement cards */}
         <div className="grid grid-cols-2 gap-4 mb-4">
           <AchievementCard 
-            title={<>ENTHUSIA<br />4.0<br />Success</>}
+            title={<>SITNOVATE<br />2025<br />Success</>}
             description="500+ Participants"
           />
           <AchievementCard 
@@ -32,8 +32,8 @@ export function AboutMeMobile() {
         {/* Bottom row: 1 achievement card */}
         <div className="grid grid-cols-1 mb-4">
           <AchievementCard 
-            title={<>Three-Day Techno-Cultural Fest</>}
-            description="Innovation & Celebration"
+            title={<>24-Hour Hackathon</>}
+            description="Innovation & Competition"
           />
         </div>
 

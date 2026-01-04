@@ -22,7 +22,7 @@ export function Services() {
   };
 
   return (
-    <div className="w-full h-full text-[#f2f2f2] flex flex-col relative">
+    <div className="w-full max-h-80 text-[#f2f2f2] flex flex-col relative pb-8">
       {/* Horizontal Scroll Progress Bar - positioned right under top border */}
       <AnimatePresence>
         {isScrolling && (
@@ -73,7 +73,7 @@ export function Services() {
           {/* Horizontal track */}
           <div
             ref={trackRef}
-            className="flex gap-6 h-full w-max will-change-transform"
+            className="flex gap-6 h-full w-max will-change-transform pl-6"
           >
             {services.map((service, index) => (
               <ServiceCard
