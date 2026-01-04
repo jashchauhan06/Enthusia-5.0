@@ -1,5 +1,5 @@
 import { motion, useInView } from 'framer-motion';
-import { useRef } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { DiamondCarousel } from './DiamondCarousel';
 import { RotatingCarousel } from './RotatingCarousel';
 import { PlatinumCard } from './PlatinumCard';
@@ -25,6 +25,44 @@ export function SponsorsHero3D({
     const containerRef = useRef<HTMLDivElement>(null);
     // Relaxed margin to trigger earlier, or immediately if even slightly visible
     const isInView = useInView(containerRef, { once: true, margin: '0px 0px -10% 0px' });
+
+    const [radiusConfig, setRadiusConfig] = useState({
+        diamond: { x: 400, z: 140 },
+        platinum: { x: 350, z: 120 },
+        gold: { x: 300, z: 100 }
+    });
+
+    useEffect(() => {
+        const handleResize = () => {
+            const width = window.innerWidth;
+            if (width < 768) {
+                // Mobile
+                setRadiusConfig({
+                    diamond: { x: 160, z: 60 },
+                    platinum: { x: 140, z: 50 },
+                    gold: { x: 120, z: 40 }
+                });
+            } else if (width < 1024) {
+                // Tablet
+                setRadiusConfig({
+                    diamond: { x: 300, z: 100 },
+                    platinum: { x: 250, z: 90 },
+                    gold: { x: 200, z: 80 }
+                });
+            } else {
+                // Desktop
+                setRadiusConfig({
+                    diamond: { x: 400, z: 140 },
+                    platinum: { x: 350, z: 120 },
+                    gold: { x: 300, z: 100 }
+                });
+            }
+        };
+
+        handleResize(); // Init
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
 
     // Animation variants for staggered entrance
     const containerVariants = {
@@ -73,7 +111,7 @@ export function SponsorsHero3D({
 
             {/* Main Content Container */}
             <motion.div
-                className="relative z-10 w-full max-w-7xl mx-auto px-4 flex flex-col items-center gap-4 md:gap-8"
+                className="relative z-10 w-full max-w-7xl mx-auto px-4 flex flex-col items-center gap-16 md:gap-8"
                 variants={containerVariants}
                 initial="hidden"
                 // Fallback to visible if isInView detection errs
@@ -81,21 +119,24 @@ export function SponsorsHero3D({
             >
                 {/* TIER 1: Diamond Carousel (Center Top) */}
                 <motion.div
-                    className="z-30 w-full flex justify-center -mb-4 focus:outline-none"
+                    className="z-30 w-full flex justify-center mb-0 md:-mb-4 focus:outline-none"
                     initial={{ opacity: 0, scale: 0.8 }}
                     animate={isInView ? { opacity: 1, scale: 1 } : {}}
                     transition={{ duration: 1.2, ease: "easeOut", delay: 0.2 }}
                 >
                     <div className="scale-75 md:scale-90 lg:scale-100">
-                        {/* Using the specialized DiamondCarousel or generic for finer control */}
-                        <DiamondCarousel sponsors={diamondSponsors} />
+                        <DiamondCarousel
+                            sponsors={diamondSponsors}
+                            radiusX={radiusConfig.diamond.x}
+                            radiusZ={radiusConfig.diamond.z}
+                        />
                     </div>
                 </motion.div>
 
                 {/* TIER 2: Platinum Carousel */}
                 <motion.div
                     variants={itemVariants}
-                    className="w-full flex flex-col items-center z-20 -mt-10"
+                    className="w-full flex flex-col items-center z-20 mt-0 md:-mt-10"
                 >
                     {/* Platinum Label */}
                     <div className="flex items-center gap-4 text-slate-400/30 text-xs font-bold tracking-widest uppercase mb-4">
@@ -104,14 +145,14 @@ export function SponsorsHero3D({
                         <div className="h-[1px] w-12 bg-slate-400/20" />
                     </div>
 
-                    <div className="scale-90 md:scale-100">
+                    <div className="scale-80 md:scale-100">
                         <RotatingCarousel
                             sponsors={platinumSponsors}
                             renderCard={(sponsor, index) => (
                                 <PlatinumCard sponsor={sponsor} index={index} />
                             )}
-                            radiusX={350}
-                            radiusZ={120}
+                            radiusX={radiusConfig.platinum.x}
+                            radiusZ={radiusConfig.platinum.z}
                             rotationSpeed={0.006} // Faster than Diamond
                             baseScale={0.9}
                         />
@@ -121,7 +162,7 @@ export function SponsorsHero3D({
                 {/* TIER 3: Gold Carousel */}
                 <motion.div
                     variants={itemVariants}
-                    className="flex flex-col items-center w-full z-10 -mt-10"
+                    className="flex flex-col items-center w-full z-10 mt-0 md:-mt-10"
                 >
                     <div className="flex items-center gap-4 text-amber-500/30 text-xs font-bold tracking-widest uppercase mb-4">
                         <div className="h-[1px] w-12 bg-amber-500/20" />
@@ -129,14 +170,14 @@ export function SponsorsHero3D({
                         <div className="h-[1px] w-12 bg-amber-500/20" />
                     </div>
 
-                    <div className="scale-90 md:scale-100">
+                    <div className="scale-80 md:scale-100">
                         <RotatingCarousel
                             sponsors={goldSponsors}
                             renderCard={(sponsor, index) => (
                                 <GoldCard sponsor={sponsor} index={index} />
                             )}
-                            radiusX={300}
-                            radiusZ={100}
+                            radiusX={radiusConfig.gold.x}
+                            radiusZ={radiusConfig.gold.z}
                             rotationSpeed={0.008} // Fastest
                             baseScale={0.8}
                         />

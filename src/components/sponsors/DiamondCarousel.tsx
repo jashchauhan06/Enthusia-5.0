@@ -9,17 +9,22 @@ interface Sponsor {
 
 interface DiamondCarouselProps {
     sponsors: Sponsor[];
+    radiusX?: number;
+    radiusZ?: number;
 }
 
-export function DiamondCarousel({ sponsors }: DiamondCarouselProps) {
+export function DiamondCarousel({
+    sponsors,
+    radiusX = 400,
+    radiusZ = 140
+}: DiamondCarouselProps) {
     const [angle, setAngle] = useState(0);
     const requestRef = useRef<number | null>(null);
     const previousTimeRef = useRef<number | null>(null);
 
     // Config
     const rotationSpeed = 0.004; // Faster rotation
-    const radiusX = 400; // Wider orbit
-    const radiusZ = 140; // Deeper orbit for more 3D impact
+    // Radius props are passed in now
 
     const animate = (time: number) => {
         if (previousTimeRef.current !== null) {
