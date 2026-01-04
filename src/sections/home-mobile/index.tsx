@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect } from "react";
+import { useRef } from "react";
 import { useNavigate } from "react-router";
 import { TextShimmer } from "@/components/ui/text-shimmer";
 import { ShineBorder } from "@/components/magicui/shine-border";
@@ -8,7 +8,6 @@ import { HomeMobileBeams } from "./home-mobile-beams";
 export function MobileHome() {
     const containerRef = useRef<HTMLDivElement>(null);
     const navigate = useNavigate();
-    const [currentVersion, setCurrentVersion] = useState<'4.0' | '5.0'>('5.0');
 
     // Main home page should always show ENTHUSIA 5.0 (current event)
     // No scroll-based switching needed here
@@ -25,23 +24,13 @@ export function MobileHome() {
       navigate('/cultural-fest');
     };
 
-    // Dynamic content based on version
-    const versionContent = {
-      '4.0': {
-        title: 'ENTHUSIA 4.0',
-        subtitle: 'Three-day techno-cultural fest',
-        date: '19 – 21 February 2025 • SIT Nagpur',
-        description: 'A three-day experience where innovation, creativity, competition, and celebration collide.'
-      },
-      '5.0': {
-        title: 'ENTHUSIA 5.0', 
-        subtitle: 'Three-day techno-cultural fest',
-        date: '19 – 21 February 2026 • SIT Nagpur',
-        description: 'A three-day experience where innovation, creativity, competition, and celebration collide.'
-      }
+    // Dynamic content - always show ENTHUSIA 5.0 for main home page
+    const content = {
+      title: 'ENTHUSIA 5.0', 
+      subtitle: 'Three-day techno-cultural fest',
+      date: '19 – 21 February 2026 • SIT Nagpur',
+      description: 'A three-day experience where innovation, creativity, competition, and celebration collide.'
     };
-
-    const content = versionContent[currentVersion];
 
     return (
       <section 
