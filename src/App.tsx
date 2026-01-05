@@ -5,7 +5,7 @@ import { GlobalDrawer } from "@/components/drawer/global-drawer";
 import { Routes, Route } from "react-router";
 import { HomePage } from "@/pages/HomePage";
 import { MobileHomePage } from "@/pages/MobileHomePage";
-import { AboutSITNagpurPage } from "@/pages/AboutSITNagpurPage";
+import AboutSITNagpurPage from "@/pages/AboutSITNagpurPage";
 import { AboutEnthusiaPage } from "@/pages/AboutEnthusiaPage";
 import { TechFestPage } from "@/pages/TechFestPage";
 import { CulturalFestPage } from "@/pages/CulturalFestPage";
