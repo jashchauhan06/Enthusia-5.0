@@ -18,7 +18,7 @@ const techEvents = [
     icon: '</>',
     color: 'from-blue-500',
     accent: 'blue',
-    route: '/events/sitnovate',
+    route: '/sitnovate',
     span: 'md:col-span-2 md:row-span-1'
   },
   {
