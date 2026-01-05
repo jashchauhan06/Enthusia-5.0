@@ -149,7 +149,7 @@ function AboutEnthusia() {
                 📍 Symbiosis Institute of Technology, Nagpur
               </p>
               <p className="font-body text-xl md:text-2xl text-foreground">
-                📅 19 – 21 February 2026
+                📅 12 – 14 February 2026
               </p>
             </div>
           </div>
@@ -277,7 +277,7 @@ function AboutEnthusiaMobile() {
             </div>
             <div className="space-y-2">
               <p className="font-body text-base text-foreground">📍 SIT Nagpur</p>
-              <p className="font-body text-base text-foreground">📅 19 – 21 Feb 2026</p>
+              <p className="font-body text-base text-foreground">📅 12 – 14 Feb 2026</p>
             </div>
           </div>
 

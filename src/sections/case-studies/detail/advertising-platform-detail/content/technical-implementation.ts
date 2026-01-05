@@ -12,7 +12,7 @@ export const technicalImplementationContent: ContentSection = {
 • Microsoft Form submission triggers Power Automate workflow
 • Power Automate transforms form Q&A into structured JSON payload
 • JSON sent via email to unique organisation address: \`forms+uuid@unyte.ai\`
-• ForwardEmail.net catches emails and forwards to Supabase webhook
+• ForwardEmail.net catches emails and forwards to backend webhook
 • UUID enables automatic attribution to correct organisation/account
 • Form data appears instantly in organisation's Unyte dashboard`
     },

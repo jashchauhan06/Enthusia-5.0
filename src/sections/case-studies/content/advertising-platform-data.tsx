@@ -2,7 +2,6 @@ import { TypescriptIcon } from "@/components/icons/skills/typescript-icon";
 import { NextjsIcon } from "@/components/icons/skills/next-js-icon";
 import { GoogleAdsIcon } from "@/components/icons/skills/google-ads-icon";
 import { MetaIcon } from "@/components/icons/skills/meta-icon";
-import { SupabaseIcon } from "@/components/icons/skills/supabase-icon";
 import { VercelIcon } from "@/components/icons/skills/vercel-icon";
 import type { CaseStudyData } from "../types";
 
@@ -10,7 +9,7 @@ export const advertisingPlatformData: CaseStudyData = {
   projectData: {
     slug: "advertising-platform",
     title: "ENTHUSIA 5.0",
-    description: "Three-day techno-cultural fest | Feb 19-21, 2026 | Register Now",
+    description: "Three-day techno-cultural fest | Feb 12-14, 2026 | Register Now",
     sections: [
       {
         title: "Technical Events Overview",
@@ -47,7 +46,7 @@ export const advertisingPlatformData: CaseStudyData = {
       {
         title: "Event Highlights",
         items: [
-          "• Three-day immersive techno-cultural experience from Feb 19-21, 2026",
+          "• Three-day immersive techno-cultural experience from Feb 12-14, 2026",
           "• Perfect blend of technical competitions and cultural celebrations",
           "• Expected participation of 1000+ students from various institutions",
           "• 15+ events spanning both technical and cultural domains",
@@ -66,7 +65,6 @@ export const advertisingPlatformData: CaseStudyData = {
     { icon: <NextjsIcon className="[@media(min-width:1390px)]:w-12 [@media(min-width:1390px)]:h-12 w-10 h-10" />, name: "Next.js" },
     { icon: <GoogleAdsIcon className="[@media(min-width:1390px)]:w-12 [@media(min-width:1390px)]:h-12 w-10 h-10" />, name: "GoogleAdsAPI" },
     { icon: <MetaIcon className="[@media(min-width:1390px)]:w-12 [@media(min-width:1390px)]:h-12 w-10 h-10" />, name: "MetaAPI" },
-    { icon: <VercelIcon className="[@media(min-width:1390px)]:w-12 [@media(min-width:1390px)]:h-12 w-10 h-10" />, name: "Vercel" },
-    { icon: <SupabaseIcon className="[@media(min-width:1390px)]:w-12 [@media(min-width:1390px)]:h-12 w-10 h-10" />, name: "Supabase" }
+    { icon: <VercelIcon className="[@media(min-width:1390px)]:w-12 [@media(min-width:1390px)]:h-12 w-10 h-10" />, name: "Vercel" }
   ]
 };

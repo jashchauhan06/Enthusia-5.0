@@ -58,7 +58,7 @@ function SITNovateDesktop() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="font-body text-xl text-zinc-400 mb-8 max-w-3xl mx-auto"
           >
-            24-Hour Hackathon • February 19-21, 2026 • SIT Nagpur
+            24-Hour Hackathon • February 12-14, 2026 • SIT Nagpur
           </motion.p>
           <motion.div 
             initial={{ opacity: 0, scale: 0.8 }}
@@ -465,7 +465,7 @@ function SITNovateMobile() {
             SITNOVATE<br/>2026
           </h1>
           <p className="font-body text-sm text-zinc-400 mb-6">
-            24-Hour Hackathon • Feb 19-21, 2026
+            24-Hour Hackathon • Feb 12-14, 2026
           </p>
           <div className="grid grid-cols-2 gap-4 mb-8">
             <div className="bg-gradient-to-br from-cyan-500/10 to-cyan-500/5 rounded-xl p-4 border border-cyan-500/30 text-center">
@@ -570,9 +570,12 @@ function SITNovateMobile() {
                   { name: "Pizza Hut", logo: "pizzahut.png", category: "Food Partner", color: "from-red-400 to-orange-400" },
                   { name: "MIA by Tanishq", logo: "MIA.png", category: "Jewelry Partner", color: "from-rose-400 to-pink-400" },
                   { name: "Insterra", logo: "Insterra.webp", category: "Technology Partner", color: "from-blue-400 to-cyan-400" },
+                  { name: "PB Creation", logo: "PB.png", category: "Creative Partner", color: "from-purple-400 to-pink-400" },
                   { name: "Devfolio", logo: "dev.png", category: "Platform Partner", color: "from-blue-500 to-indigo-500" },
                   { name: "ETH India", logo: "eth.png", category: "Blockchain Partner", color: "from-purple-500 to-violet-500" },
-                  { name: "Polygon", logo: "poly.png", category: "Web3 Partner", color: "from-violet-400 to-purple-400" }
+                  { name: "Polygon", logo: "poly.png", category: "Web3 Partner", color: "from-violet-400 to-purple-400" },
+                  { name: "Unstop", logo: "un.png", category: "Hiring Partner", color: "from-blue-600 to-cyan-600" },
+                  { name: "UCN", logo: "R.png", category: "Media Partner", color: "from-orange-500 to-red-500" }
                 ].map((sponsor, index) => (
                   <motion.div 
                     key={index}

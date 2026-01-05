@@ -45,7 +45,7 @@ export function CaseStudiesMobile() {
       upcomingYear: '2026',
       upcomingStatus: 'UPCOMING',
       upcomingDescription: 'A three-day techno-cultural experience where innovation, creativity, competition, and celebration will collide.',
-      upcomingDate: '19-21 February 2026',
+      upcomingDate: '12-14 February 2026',
       upcomingParticipants: '1000+ expected participants',
       pastTitle: 'ENTHUSIA 4.0',
       pastYear: '2025',

@@ -60,7 +60,7 @@ export function AvailabilityStatus() {
       <div className="flex items-center gap-2 md:hidden text-xs font-light text-white">
         <span>SIT Nagpur</span>
         <span>•</span>
-        <span>Feb 19-21, 2026</span>
+        <span>Feb 12-14, 2026</span>
         <span>•</span>
         <span>{currentTime}</span>
       </div>
@@ -73,7 +73,7 @@ export function AvailabilityStatus() {
         <span>•</span>
         <span>{currentTime}</span>
         <span>•</span>
-        <span>Feb 19-21, 2026</span>
+        <span>Feb 12-14, 2026</span>
       </div>
     </div>
   );

@@ -76,7 +76,7 @@ export function AboutEnthusia() {
           <div className="inline-flex items-center gap-4 bg-primary/10 px-8 py-4 rounded-full">
             <div className="text-2xl">📅</div>
             <div>
-              <div className="font-semibold text-foreground">February 19-21, 2026</div>
+              <div className="font-semibold text-foreground">February 12-14, 2026</div>
               <div className="text-foreground/70">SIT Nagpur Campus</div>
             </div>
           </div>

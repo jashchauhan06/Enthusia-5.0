@@ -22,7 +22,7 @@ export const solutionContent: ContentSection = {
 
 **Multi-Platform Support:** Single form submission creates campaigns across Google Ads, Meta, TikTok, LinkedIn, and other major platforms
 
-**Multi-Tenant Architecture:** UUID-based organisation routing with ForwardEmail.net providing reliable message routing to Supabase backend`
+**Multi-Tenant Architecture:** UUID-based organisation routing with ForwardEmail.net providing reliable message routing to backend database`
     }
   ]
 };

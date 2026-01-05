@@ -25,7 +25,7 @@ export function HomePage() {
     <>
       <SEO 
         title="ENTHUSIA 5.0 - Enter the Parallel Fest Universe"
-        description="Join ENTHUSIA 5.0 - A three-day techno-cultural experience at SIT Nagpur. 19-21 February 2026. Where innovation, creativity, competition, and celebration collide."
+        description="Join ENTHUSIA 5.0 - A three-day techno-cultural experience at SIT Nagpur. 12-14 February 2026. Where innovation, creativity, competition, and celebration collide."
         url="https://sitnovate.vercel.app"
         jsonLd={structuredData}
       />

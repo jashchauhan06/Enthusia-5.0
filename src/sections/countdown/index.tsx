@@ -10,9 +10,9 @@ export function Countdown() {
   });
 
   useEffect(() => {
-    // Create target date: Feb 19, 2026, 9:00 AM IST
+    // Create target date: Feb 12, 2026, 9:00 AM IST
     // IST is UTC+5:30, so 9:00 AM IST = 3:30 AM UTC
-    const targetDate = Date.UTC(2026, 1, 19, 3, 30, 0); // Month is 0-indexed (1 = February)
+    const targetDate = Date.UTC(2026, 1, 12, 3, 30, 0); // Month is 0-indexed (1 = February)
 
     const updateCountdown = () => {
       const now = Date.now();
@@ -69,7 +69,7 @@ export function Countdown() {
             THE STAGE LIGHTS UP IN...
           </p>
           <p className="font-body text-base text-[#b3b3b3]">
-            February 19-21, 2026 • SIT Nagpur
+            February 12-14, 2026 • SIT Nagpur
           </p>
         </div>
 

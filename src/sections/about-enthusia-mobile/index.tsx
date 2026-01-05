@@ -65,7 +65,7 @@ export function AboutEnthusiaMobile() {
 
           <div className="text-center bg-card p-4 rounded-lg border">
             <div className="text-lg">📅</div>
-            <div className="font-semibold text-foreground">February 19-21, 2026</div>
+            <div className="font-semibold text-foreground">February 12-14, 2026</div>
             <div className="text-sm text-foreground/70">SIT Nagpur Campus</div>
           </div>
         </div>

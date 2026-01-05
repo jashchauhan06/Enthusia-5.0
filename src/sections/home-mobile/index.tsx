@@ -28,7 +28,7 @@ export function MobileHome() {
     const content = {
       title: 'ENTHUSIA 5.0', 
       subtitle: 'Three-day techno-cultural fest',
-      date: '19 – 21 February 2026 • SIT Nagpur',
+      date: '12 – 14 February 2026 • SIT Nagpur',
       description: 'A three-day experience where innovation, creativity, competition, and celebration collide.'
     };
 

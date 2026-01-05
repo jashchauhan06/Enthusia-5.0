@@ -9,7 +9,7 @@ export function HomeTitle() {
           Enter the Parallel Fest Universe
         </p>
         <p className="font-body font-light text-[clamp(0.9rem,1.5vw,1.2rem)] text-white mt-2">
-          19 – 21 February 2026 • SIT Nagpur
+          12 – 14 February 2026 • SIT Nagpur
         </p>
       </div>
     </div>
