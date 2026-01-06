@@ -1,19 +1,19 @@
 const contactInfo = [
   {
     title: 'General Inquiries',
-    email: 'info@enthusia.sit.edu',
+    email: 'info@sitnagpur.siu.edu.in',
     phone: '+91 9876543210',
     icon: '📧'
   },
   {
     title: 'Registration',
-    email: 'register@enthusia.sit.edu',
+    email: 'register@sitnagpur.siu.edu.in',
     phone: '+91 9876543211',
     icon: '📝'
   },
   {
     title: 'Sponsorship',
-    email: 'sponsors@enthusia.sit.edu',
+    email: 'sponsors@sitnagpur.siu.edu.in',
     phone: '+91 9876543212',
     icon: '🤝'
   }

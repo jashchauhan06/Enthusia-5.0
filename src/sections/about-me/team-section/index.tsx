@@ -9,24 +9,24 @@ interface TeamMember {
 
 const teamMembers: TeamMember[] = [
   {
-    name: "Team Member 1",
-    role: "Event Coordinator",
+    name: "Sunidhi Haware",
+    role: "President",
+    image: "/images/sitnovate/Sunidhi.jpg"
+  },
+  {
+    name: "Prathmesh Raipurkar",
+    role: "Vice President",
     image: "/profile-dev.jpg"
   },
   {
-    name: "Team Member 2",
-    role: "Technical Lead",
-    image: "/profile-dev.jpg"
+    name: "Parth Choudhari",
+    role: "Lead",
+    image: "/images/sitnovate/Parth Choudhari.jpg"
   },
   {
-    name: "Team Member 3",
-    role: "Marketing Head",
-    image: "/profile-dev.jpg"
-  },
-  {
-    name: "Team Member 4",
-    role: "Logistics Manager",
-    image: "/profile-dev.jpg"
+    name: "Jash Chauhan",
+    role: "Web Development Team",
+    image: "/images/sitnovate/Jash.jpg"
   }
 ];
 

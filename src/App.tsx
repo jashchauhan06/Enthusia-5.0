@@ -15,7 +15,6 @@ import { GalleryPage } from "@/pages/GalleryPage";
 import { ContactPage } from "@/pages/ContactPage";
 import { CaseStudyDetailPage } from "@/pages/CaseStudyDetailPage";
 import { PrivacyPolicyPage } from "@/pages/PrivacyPolicyPage";
-import { RegistrationPage } from "@/pages/RegistrationPage";
 import { SchedulePage } from "@/pages/SchedulePage";
 import { SmoothScrollProvider } from "@/components/providers/smooth-scroll-provider";
 import { useBreakpoint } from "@/hooks/useBreakpoint";
@@ -35,7 +34,6 @@ function DesktopApp() {
         <Route path="/sponsors" element={<SponsorsPage />} />
         <Route path="/gallery" element={<GalleryPage />} />
         <Route path="/contact" element={<ContactPage />} />
-        <Route path="/register" element={<RegistrationPage />} />
         <Route path="/schedule" element={<SchedulePage />} />
         <Route path="/case-studies/:slug" element={<CaseStudyDetailPage />} />
         <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
@@ -58,7 +56,6 @@ function MobileApp() {
         <Route path="/sponsors" element={<SponsorsPage />} />
         <Route path="/gallery" element={<GalleryPage />} />
         <Route path="/contact" element={<ContactPage />} />
-        <Route path="/register" element={<RegistrationPage />} />
         <Route path="/schedule" element={<SchedulePage />} />
         <Route path="/case-studies/:slug" element={<CaseStudyDetailPage />} />
         <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />

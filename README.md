@@ -12,7 +12,6 @@ A modern, interactive website for SITNovate's Enthusia 5.0 - the premier techno-
 - **Sponsors Showcase** with 3D carousel displays
 - **Gallery** with past event highlights
 - **Contact Information** and venue details
-- **Registration System** for event participation
 
 ### 🛠 Technical Stack
 - **Frontend**: React 19 + TypeScript + Vite
@@ -56,6 +55,7 @@ src/
 │   ├── sponsors/       # Sponsor showcase components
 │   └── ui/            # Base UI components
 ├── pages/              # Page components
+│   └── ...           # Main website pages
 ├── sections/           # Page sections
 │   ├── hero/          # Hero sections
 │   ├── how-i-work/    # Event information sections
@@ -97,7 +97,7 @@ vercel
 
 ## 📚 Documentation
 
-- [`DEPLOYMENT_GUIDE.md`](./DEPLOYMENT_GUIDE.md) - Production deployment
+- [`README.md`](./README.md) - Main project documentation
 
 ## 🛠 Available Scripts
 
@@ -126,7 +126,7 @@ npm run analyze      # Analyze bundle size
 - Entertainment events
 
 **Venue**: Symbiosis Institute of Technology, Nagpur, Maharashtra, India
-**Contact**: enthusia@sitnagpur.edu.in
+**Contact**: src.sit@sitnagpur.siu.edu.in
 
 ## 🤝 Contributing
 

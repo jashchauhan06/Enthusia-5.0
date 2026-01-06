@@ -141,7 +141,7 @@ export function SponsorsMobile() {
             </button>
           </div>
           <div className="mt-4 text-xs text-foreground/70">
-            <p>sponsors@enthusia.sit.edu</p>
+            <p>sponsors@sitnagpur.siu.edu.in</p>
             <p>+91 9876543210</p>
           </div>
         </div>

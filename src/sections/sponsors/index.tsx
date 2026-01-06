@@ -180,7 +180,7 @@ export function Sponsors() {
             </button>
           </div>
           <div className="mt-6 text-foreground/70">
-            <p>For sponsorship inquiries: <a href="mailto:sponsors@enthusia.sit.edu" className="text-primary hover:underline">sponsors@enthusia.sit.edu</a></p>
+            <p>For sponsorship inquiries: <a href="mailto:sponsors@sitnagpur.siu.edu.in" className="text-primary hover:underline">sponsors@sitnagpur.siu.edu.in</a></p>
             <p>Contact: +91 9876543210</p>
           </div>
         </div>

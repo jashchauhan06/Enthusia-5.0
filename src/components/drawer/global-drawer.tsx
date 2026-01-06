@@ -195,7 +195,7 @@ export function GlobalDrawer() {
                   <input
                     type="email"
                     name="email"
-                    placeholder="student@sitnagpur.edu.in"
+                    placeholder="student@sitnagpur.siu.edu.in"
                     required
                     className="w-full px-4 py-3 bg-background border border-border rounded-lg font-body text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-ring transition-colors"
                   />

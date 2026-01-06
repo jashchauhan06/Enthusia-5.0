@@ -14,8 +14,7 @@ export const technologiesContent: ContentSection = {
     },
     {
       title: 'Backend & Database',
-      content: `• **PostgreSQL** - Reliable database system
-• **ForwardEmail.net** - Email forwarding service`
+      content: `• **ForwardEmail.net** - Email forwarding service`
     },
     {
       title: 'Integrations',

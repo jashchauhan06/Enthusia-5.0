@@ -84,7 +84,7 @@ export function AdvertisingPlatformDetail() {
 
       {/* Tech Stack */}
       <p className="font-body text-sm text-muted-foreground mb-12">
-        Next.js 15 • TypeScript • React 19 • PostgreSQL • Google Ads API • Meta API • TikTok API • LinkedIn API • Microsoft Forms • Power Automate • ForwardEmail.net
+        Next.js 15 • TypeScript • React 19 • Google Ads API • Meta API • TikTok API • LinkedIn API • Microsoft Forms • Power Automate • ForwardEmail.net
       </p>
 
       {/* Two Column Grid Layout */}
