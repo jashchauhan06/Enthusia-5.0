@@ -84,15 +84,6 @@ const fadeDownVariant = {
   hidden: { opacity: 0, y: -50 },
   visible: { opacity: 1, y: 0, transition: { type: "spring" as const, bounce: 0.4, duration: 1.2 } }
 };
-const generateScatterVariant = (index: number) => {
-  const randomX = (index % 2 === 0 ? -1 : 1) * (Math.random() * 200 + 50);
-  const randomY = (Math.random() * 200 - 100);
-  const randomRotate = (Math.random() * 45 - 22.5);
-  return {
-    hidden: { opacity: 0, x: randomX, y: randomY, rotate: randomRotate, scale: 0.5 },
-    visible: { opacity: 1, x: 0, y: 0, rotate: 0, scale: 1, transition: { type: "spring" as const, stiffness: 60, damping: 12, delay: index * 0.05 } }
-  };
-};
 
 // --- 4. MAGICAL COMPONENTS ---
 
@@ -221,7 +212,7 @@ function SITNovateDesktop() {
                        {/* Main white text with strong black outline */}
                        <span className="relative text-white drop-shadow-[0_0_20px_rgba(0,0,0,1)] [text-shadow:0_0_20px_rgba(0,0,0,1),-2px_-2px_0_#000,2px_-2px_0_#000,-2px_2px_0_#000,2px_2px_0_#000]">SITNovate 2.0</span>
                    </h1>
-                   <motion.p initial={{ opacity: 0, x: -50 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.3, duration: 0.8 }} className="text-3xl text-amber-300 font-serif italic tracking-wide mb-10 pl-2 drop-shadow-lg [text-shadow:2px_2px_6px_rgba(0,0,0,0.9)] bg-black/30 backdrop-blur-sm px-4 py-2 rounded-lg border border-amber-500/30">"The Triwizard Tech Tournament"</motion.p>
+                   <motion.p initial={{ opacity: 0, x: -50 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.3, duration: 0.8 }} className="text-3xl text-amber-300 font-serif italic tracking-wide mb-10 pl-2 drop-shadow-lg [text-shadow:2px_2px_6px_rgba(0,0,0,0.9)] bg-black/30 backdrop-blur-sm px-4 py-2 rounded-lg border border-amber-500/30">"24-Hour Innovation Challenge"</motion.p>
                    <div className="flex flex-wrap gap-6 mb-16">
                        <button className="group relative px-8 py-4 bg-black/40 backdrop-blur-md overflow-hidden rounded-lg border-2 border-amber-600/60 text-amber-100 font-sans font-bold tracking-widest hover:text-white transition-colors hover:shadow-[0_0_40px_rgba(217,119,6,0.6)] shadow-lg cursor-none">
                           <span className="relative z-10">REGISTER NOW</span>
@@ -481,7 +472,7 @@ function SITNovateMobile() {
             <div className="text-left mb-16 border-l-4 border-amber-500 pl-4 mt-8">
                 <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} className="text-amber-500 text-xs tracking-[0.3em] uppercase mb-2">Hogwarts Legacy</motion.div>
                 <motion.h1 initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.2 }} className="text-5xl font-serif text-white mb-2 drop-shadow-lg">SITNOVATE</motion.h1>
-                <p className="text-slate-500 italic mt-2">The Triwizard Tech Tournament</p>
+                <p className="text-slate-500 italic mt-2">24-Hour Innovation Challenge</p>
             </div>
 
             {/* Mobile About */}
@@ -602,7 +593,7 @@ export function SITNovatePage() {
 
   return (
     <>
-      <SEO title="SITNovate 2026" description="The Triwizard Tech Tournament" url="https://sitnovate.vercel.app" />
+      <SEO title="SITNovate 2026" description="24-Hour Innovation Challenge" url="https://sitnovate.vercel.app" />
       <div className="flex min-h-svh flex-col bg-[#020617] text-white">
         {isMobile ? (
           <>
