@@ -223,7 +223,7 @@ function SITNovateDesktop() {
                    </h1>
                    <motion.p initial={{ opacity: 0, x: -50 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.3, duration: 0.8 }} className="text-3xl text-amber-300 font-serif italic tracking-wide mb-10 pl-2 drop-shadow-lg [text-shadow:2px_2px_6px_rgba(0,0,0,0.9)] bg-black/30 backdrop-blur-sm px-4 py-2 rounded-lg border border-amber-500/30">"The Triwizard Tech Tournament"</motion.p>
                    <div className="flex flex-wrap gap-6 mb-16">
-                       <button className="group relative px-8 py-4 bg-black/40 backdrop-blur-md overflow-hidden rounded-lg border-2 border-amber-600/60 text-amber-100 font-sans font-bold tracking-widest hover:text-white transition-colors hover:shadow-[0_0_40px_rgba(217,119,6,0.6)] shadow-lg">
+                       <button className="group relative px-8 py-4 bg-black/40 backdrop-blur-md overflow-hidden rounded-lg border-2 border-amber-600/60 text-amber-100 font-sans font-bold tracking-widest hover:text-white transition-colors hover:shadow-[0_0_40px_rgba(217,119,6,0.6)] shadow-lg cursor-none">
                           <span className="relative z-10">REGISTER NOW</span>
                           <div className="absolute inset-0 bg-amber-600 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></div>
                        </button>
@@ -248,7 +248,7 @@ function SITNovateDesktop() {
                         <p className="text-lg text-slate-300 leading-relaxed font-sans mb-8">With 49 participating teams, 800+ participants, and a prize pool of around 1 Lakh, SITNovate has established itself as a catalyst for technological innovation and entrepreneurship. The event not only showcases exceptional talent but also creates lasting connections between students, industry professionals, and tech enthusiasts.</p>
                         <div className="pl-6 border-l-4 border-amber-600"><p className="text-amber-200/90 italic font-serif text-lg">"Participants get the opportunity to work with cutting-edge technologies and transform their innovative ideas into reality through intensive collaboration and expert guidance."</p></div>
                     </div>
-                    <motion.div whileHover={{ scale: 1.05 }} className="relative h-[400px] rounded-2xl overflow-hidden border-2 border-slate-700 shadow-2xl rotate-2 hover:rotate-0 transition-all duration-500">
+                    <motion.div whileHover={{ scale: 1.05 }} className="relative h-[400px] rounded-2xl overflow-hidden border-2 border-slate-700 shadow-2xl rotate-2 hover:rotate-0 transition-all duration-500 cursor-none">
                         <SmartImage src="/images/sitnovate/about.jpg" alt="About" fit="cover" className="grayscale group-hover:grayscale-0 transition-all duration-700" />
                     </motion.div>
                 </div>
@@ -272,7 +272,7 @@ function SITNovateDesktop() {
                         whileInView={{ opacity: 1, y: 0 }} 
                         transition={{ delay: idx * 0.2 }} 
                         whileHover={{ y: -10, scale: 1.02 }} 
-                        className={`relative bg-gradient-to-br ${card.color} backdrop-blur-sm border-2 ${card.borderColor} p-12 rounded-[2rem] transition-all duration-500 group overflow-hidden ${card.glowColor} hover:shadow-2xl`}
+                        className={`relative bg-gradient-to-br ${card.color} backdrop-blur-sm border-2 ${card.borderColor} p-12 rounded-[2rem] transition-all duration-500 group overflow-hidden ${card.glowColor} hover:shadow-2xl cursor-none`}
                      >
                          {/* Magical background pattern */}
                          <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-10 pointer-events-none"></div>
@@ -294,7 +294,7 @@ function SITNovateDesktop() {
                                  <motion.div 
                                     key={i} 
                                     whileHover={{ x: 5 }}
-                                    className="flex items-center gap-3 p-3 rounded-lg bg-black/20 border border-white/5 backdrop-blur-sm group/item hover:bg-black/30 transition-all duration-300"
+                                    className="flex items-center gap-3 p-3 rounded-lg bg-black/20 border border-white/5 backdrop-blur-sm group/item hover:bg-black/30 transition-all duration-300 cursor-none"
                                  >
                                      <div className="group-hover/item:scale-125 transition-transform duration-300">
                                          {(item as any).icon || <span className="text-2xl">{(item as any).i}</span>}
@@ -327,7 +327,7 @@ function SITNovateDesktop() {
              </motion.div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-4">
                 {HIGHLIGHTS_DATA.map((img, idx) => (
-                    <motion.div key={img.index} initial={{ opacity: 0, x: (idx % 2 === 0 ? -50 : 50), y: 50, rotate: (idx % 2 === 0 ? -5 : 5) }} whileInView={{ opacity: 1, x: 0, y: 0, rotate: 0 }} viewport={{ once: true }} transition={{ type: "spring", stiffness: 50, delay: idx * 0.1 }} whileHover={{ scale: 1.05, zIndex: 10 }} className="relative aspect-[4/3] rounded-2xl overflow-hidden border-2 border-slate-800 bg-[#0a0f18] group cursor-pointer shadow-lg">
+                    <motion.div key={img.index} initial={{ opacity: 0, x: (idx % 2 === 0 ? -50 : 50), y: 50, rotate: (idx % 2 === 0 ? -5 : 5) }} whileInView={{ opacity: 1, x: 0, y: 0, rotate: 0 }} viewport={{ once: true }} transition={{ type: "spring", stiffness: 50, delay: idx * 0.1 }} whileHover={{ scale: 1.05, zIndex: 10 }} className="relative aspect-[4/3] rounded-2xl overflow-hidden border-2 border-slate-800 bg-[#0a0f18] group cursor-none shadow-lg">
                         <SmartImage src={`/images/sitnovate/${img.index}.${img.ext}`} alt={`Highlight ${img.index}`} fit="cover" className="opacity-80 group-hover:opacity-100 transition-opacity duration-500" />
                         <div className="absolute bottom-4 left-4 bg-black/60 backdrop-blur-md px-4 py-2 rounded-full border border-white/10"><span className="text-xs font-medium text-cyan-400">{img.name}</span></div>
                     </motion.div>
@@ -345,7 +345,7 @@ function SITNovateDesktop() {
                  {SPONSORS_DATA.map((sp, i) => (
                      <div key={i} className="flex flex-col items-center group">
                          <div className="h-10 w-[1px] bg-slate-700 mb-[-2px] origin-top group-hover:scale-y-110 transition-transform"></div>
-                         <motion.div variants={fadeDownVariant} initial="hidden" whileInView="visible" viewport={{ once: true }} transition={{ delay: i * 0.1 }} whileHover={{ rotateX: 15, rotateY: 5 }} className="w-full bg-[#1e293b] border border-slate-700 p-4 rounded-xl shadow-lg relative overflow-hidden flex flex-col items-center justify-center z-10">
+                         <motion.div variants={fadeDownVariant} initial="hidden" whileInView="visible" viewport={{ once: true }} transition={{ delay: i * 0.1 }} whileHover={{ rotateX: 15, rotateY: 5 }} className="w-full bg-[#1e293b] border border-slate-700 p-4 rounded-xl shadow-lg relative overflow-hidden flex flex-col items-center justify-center z-10 cursor-none">
                              <div className="w-full h-24 mb-4 bg-black/20 rounded-lg p-3 flex items-center justify-center"><img src={`/images/sponsors/${sp.logo}`} alt={sp.name} className="w-full h-full object-contain filter drop-shadow-md" loading="lazy" /></div>
                              <h4 className="text-white font-bold font-sans text-xs text-center">{sp.name}</h4>
                              <p className={`text-[10px] uppercase tracking-widest mt-1 font-bold text-center ${sp.color}`}>{sp.category}</p>
@@ -359,7 +359,7 @@ function SITNovateDesktop() {
                 <motion.button 
                     whileHover={{ scale: 1.05, y: -5 }} 
                     whileTap={{ scale: 0.95 }}
-                    className="group relative inline-flex items-center gap-4 bg-gradient-to-r from-[#1a1612] via-[#2d2416] to-[#1a1612] text-amber-100 font-serif font-bold px-10 py-5 rounded-lg border-2 border-amber-600/60 shadow-[0_0_30px_rgba(217,119,6,0.3)] hover:shadow-[0_0_50px_rgba(217,119,6,0.5)] transition-all duration-500 overflow-hidden"
+                    className="group relative inline-flex items-center gap-4 bg-gradient-to-r from-[#1a1612] via-[#2d2416] to-[#1a1612] text-amber-100 font-serif font-bold px-10 py-5 rounded-lg border-2 border-amber-600/60 shadow-[0_0_30px_rgba(217,119,6,0.3)] hover:shadow-[0_0_50px_rgba(217,119,6,0.5)] transition-all duration-500 overflow-hidden cursor-none"
                     onClick={() => window.open('mailto:src.sit@sitnagpur.siu.edu.in?subject=Sponsorship Inquiry for SITNovate 2026&body=Hello,%0D%0A%0D%0AI am interested in sponsoring SITNovate 2026. Please provide more information about sponsorship opportunities.%0D%0A%0D%0AThank you!', '_blank')}
                 >
                     {/* Parchment texture overlay */}
@@ -414,7 +414,7 @@ function SITNovateDesktop() {
                         initial={{ opacity: 0, y: 50 }} 
                         whileInView={{ opacity: 1, y: 0 }} 
                         whileHover={{ y: -10, scale: 1.02 }} 
-                        className="bg-gradient-to-br from-slate-800/50 to-slate-900/50 backdrop-blur-md border border-amber-500/30 rounded-2xl p-6 text-center shadow-2xl hover:border-amber-400/60 hover:shadow-[0_0_40px_rgba(251,191,36,0.2)] transition-all duration-500 group"
+                        className="bg-gradient-to-br from-slate-800/50 to-slate-900/50 backdrop-blur-md border border-amber-500/30 rounded-2xl p-6 text-center shadow-2xl hover:border-amber-400/60 hover:shadow-[0_0_40px_rgba(251,191,36,0.2)] transition-all duration-500 group cursor-none"
                      >
                          {/* Profile Image */}
                          <div className="relative mb-6">
@@ -454,7 +454,7 @@ function SITNovateDesktop() {
 
         <div className="text-center relative py-20 border-t border-slate-800/50">
              <h2 className="text-6xl font-serif text-white mb-10 drop-shadow-lg">Ready to Innovate?</h2>
-             <button onClick={() => navigate('/contact')} className="relative px-12 py-5 bg-transparent border-2 border-amber-500 text-amber-500 font-sans font-bold tracking-widest rounded-full overflow-hidden group hover:text-black transition-colors">
+             <button onClick={() => navigate('/contact')} className="relative px-12 py-5 bg-transparent border-2 border-amber-500 text-amber-500 font-sans font-bold tracking-widest rounded-full overflow-hidden group hover:text-black transition-colors cursor-none">
                 <span className="relative z-10">CONTACT US</span>
                 <div className="absolute inset-0 bg-amber-500 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></div>
              </button>
