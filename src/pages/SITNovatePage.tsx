@@ -457,130 +457,405 @@ function SITNovateDesktop() {
   );
 }
 
-// --- 5. MOBILE COMPONENT (Pocket Magic Edition) ---
+// --- 5. MOBILE COMPONENT (Enhanced Pocket Magic Edition) ---
 function SITNovateMobile() {
     const navigate = useNavigate();
+    const [activeTab, setActiveTab] = useState('about');
   return (
-    <section className="relative min-h-screen text-slate-200 pt-24 pb-20 px-4 font-sans bg-[#020617] overflow-hidden">
+    <section className="relative min-h-screen text-slate-200 pt-20 pb-20 font-sans bg-[#020617] overflow-hidden">
         {/* Mobile Live Background */}
         <div className="absolute inset-0 bg-[#020617] z-0"></div>
         <MobileLiveBackground />
-        <FloatingCandles count={10} />
+        <FloatingCandles count={8} />
         
-        <div className="relative z-10">
-            {/* Mobile Hero */}
-            <div className="text-left mb-16 border-l-4 border-amber-500 pl-4 mt-8">
-                <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} className="text-amber-500 text-xs tracking-[0.3em] uppercase mb-2">Hogwarts Legacy</motion.div>
-                <motion.h1 initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.2 }} className="text-5xl font-serif text-white mb-2 drop-shadow-lg">SITNOVATE</motion.h1>
-                <p className="text-slate-500 italic mt-2">24-Hour Innovation Challenge</p>
-            </div>
-
-            {/* Mobile About */}
-            <motion.div 
-               initial={{ opacity: 0, scale: 0.9 }}
-               whileInView={{ opacity: 1, scale: 1 }}
-               viewport={{ once: true }}
-               className="mb-12 bg-[#1a1612] border border-amber-900/40 p-6 rounded-lg shadow-xl relative overflow-hidden"
-            >
-                {/* Parchment Texture */}
-                <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/aged-paper.png')] opacity-20 pointer-events-none"></div>
-                <div className="relative z-10">
-                    <h2 className="text-xl font-bold text-amber-100 mb-4 font-serif border-b border-amber-800 pb-2">The Prophecy</h2>
-                    <p className="text-sm text-stone-300 leading-relaxed mb-6 font-serif">SITNovate is the flagship 24-hour hackathon organized by SIT Nagpur. Innovation meets competition.</p>
-                    <div className="grid grid-cols-2 gap-3 text-center">
-                        <div className="bg-black/40 p-2 rounded border border-blue-900/30 text-blue-300 text-sm font-bold">Facilities</div>
-                        <div className="bg-black/40 p-2 rounded border border-amber-900/30 text-amber-300 text-sm font-bold">Rewards</div>
-                    </div>
-                </div>
-            </motion.div>
-
-            {/* Mobile Highlights */}
-            <div className="mb-12">
-                <h2 className="text-xl font-bold text-white mb-6 font-serif pl-2 border-l-4 border-cyan-500">Memories</h2>
-                <div className="grid grid-cols-2 gap-3">
-                    {HIGHLIGHTS_DATA.slice(0, 4).map((img, i) => (
-                        <motion.div key={img.index} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} className="h-32 w-full rounded-lg overflow-hidden border border-slate-800 relative shadow-lg">
-                            <SmartImage src={`/images/sitnovate/${img.index}.${img.ext}`} alt="Highlight" fit="cover" />
-                        </motion.div>
-                    ))}
-                </div>
-            </div>
-
-            {/* Mobile Sponsors - Levitating */}
-            <div className="mb-12">
-                <h2 className="text-xl font-bold text-white mb-6 font-serif pl-2 border-l-4 border-purple-500">Partners</h2>
-                <div className="grid grid-cols-2 gap-3">
-                    {SPONSORS_DATA.map((sp, i) => (
+        <div className="relative z-10 px-4">
+            {/* Enhanced Mobile Hero */}
+            <div className="relative mb-12 mt-4">
+                {/* Hero Background with Hogwarts Castle */}
+                <div className="relative h-64 rounded-2xl overflow-hidden border-2 border-amber-500/30 shadow-2xl mb-6">
+                    <div 
+                        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+                        style={{ 
+                            backgroundImage: 'url(/images/hogwarts_legacy___ever_edition_4k_wallpaper_by_aksensei_dg29l08.png)',
+                        }}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
+                    <div className="absolute inset-0 bg-gradient-to-r from-blue-900/20 via-transparent to-purple-900/20"></div>
+                    
+                    {/* Hero Content */}
+                    <div className="absolute bottom-0 left-0 right-0 p-6">
                         <motion.div 
-                           key={i} 
-                           animate={{ y: [0, -4, 0] }}
-                           transition={{ duration: 4, repeat: Infinity, delay: i * 0.5, ease: "easeInOut" }}
-                           className="bg-[#0f172a] p-3 rounded text-center border border-slate-800 shadow-md shadow-blue-900/10"
+                            initial={{ opacity: 0, y: 20 }} 
+                            animate={{ opacity: 1, y: 0 }} 
+                            className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-amber-500/50 bg-black/60 backdrop-blur-sm mb-3"
                         >
-                            <div className="h-12 w-full flex items-center justify-center mb-2 bg-white/5 rounded p-1">
-                                <img src={`/images/sponsors/${sp.logo}`} alt={sp.name} className="w-full h-full object-contain" />
-                            </div>
-                            <p className="text-[10px] text-slate-400 font-bold">{sp.name}</p>
+                            <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse"></span>
+                            <span className="text-amber-100 text-xs font-bold tracking-wider uppercase">Registration Open</span>
                         </motion.div>
+                        <motion.h1 
+                            initial={{ opacity: 0 }} 
+                            animate={{ opacity: 1 }} 
+                            transition={{ delay: 0.2 }} 
+                            className="text-4xl font-serif text-white mb-2 drop-shadow-2xl font-bold"
+                        >
+                            SITNovate 2.0
+                        </motion.h1>
+                        <p className="text-amber-300 italic text-lg font-serif drop-shadow-lg">"24-Hour Innovation Challenge"</p>
+                    </div>
+                </div>
+
+                {/* Quick Stats Cards */}
+                <div className="grid grid-cols-3 gap-3 mb-6">
+                    {[
+                        { icon: "👥", value: "800+", label: "Participants" },
+                        { icon: "🏆", value: "₹1L", label: "Prize Pool" },
+                        { icon: "⏰", value: "24hrs", label: "Duration" }
+                    ].map((stat, i) => (
+                        <motion.div 
+                            key={i}
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.3 + i * 0.1 }}
+                            className="bg-gradient-to-br from-slate-800/50 to-slate-900/50 backdrop-blur-sm border border-amber-500/20 rounded-xl p-4 text-center"
+                        >
+                            <div className="text-2xl mb-1">{stat.icon}</div>
+                            <div className="text-lg font-bold text-amber-400">{stat.value}</div>
+                            <div className="text-xs text-slate-400">{stat.label}</div>
+                        </motion.div>
+                    ))}
+                </div>
+
+                {/* Register Button */}
+                <motion.button 
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: 0.6 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="w-full px-6 py-4 bg-gradient-to-r from-amber-600 to-amber-700 rounded-xl font-bold text-black shadow-lg shadow-amber-900/50 tracking-wider font-serif text-lg relative overflow-hidden group"
+                >
+                    <span className="relative z-10">REGISTER NOW</span>
+                    <div className="absolute inset-0 bg-gradient-to-r from-amber-500 to-amber-600 transform scale-x-0 group-active:scale-x-100 transition-transform origin-left duration-200"></div>
+                </motion.button>
+            </div>
+
+            {/* Enhanced Tab Navigation */}
+            <div className="mb-8">
+                <div className="flex bg-slate-900/50 backdrop-blur-sm rounded-xl p-1 border border-slate-700/50">
+                    {[
+                        { id: 'about', label: 'About', icon: '📜' },
+                        { id: 'facilities', label: 'Facilities', icon: '🏰' },
+                        { id: 'highlights', label: 'Gallery', icon: '📸' },
+                        { id: 'team', label: 'Team', icon: '👑' }
+                    ].map((tab) => (
+                        <button
+                            key={tab.id}
+                            onClick={() => setActiveTab(tab.id)}
+                            className={`flex-1 flex items-center justify-center gap-2 py-3 px-2 rounded-lg font-medium text-sm transition-all duration-300 ${
+                                activeTab === tab.id 
+                                    ? 'bg-amber-600 text-black shadow-lg' 
+                                    : 'text-slate-300 hover:text-white hover:bg-slate-800/50'
+                            }`}
+                        >
+                            <span className="text-base">{tab.icon}</span>
+                            <span className="font-serif">{tab.label}</span>
+                        </button>
                     ))}
                 </div>
             </div>
 
-            {/* Mobile Team - Full Order of Code */}
-            <div>
-                <h2 className="text-xl font-bold text-white mb-6 font-serif pl-2 border-l-4 border-amber-500">The Order of Code</h2>
-                
-                {/* 1. Faculty (Headmasters) */}
-                <div className="mb-6">
-                    <h3 className="text-amber-500 text-sm font-bold uppercase mb-3 tracking-widest pl-1">Headmasters</h3>
-                    <div className="space-y-3">
-                        {FACULTY_DATA.map((f, i) => (
-                            <motion.div 
-                               key={i}
-                               initial={{ x: -20, opacity: 0 }}
-                               whileInView={{ x: 0, opacity: 1 }}
-                               viewport={{ once: true }}
-                               className="bg-[#0f172a] p-3 rounded-lg flex items-center gap-4 border border-slate-800 shadow-md"
-                            >
-                                <div className="w-10 h-10 rounded-full bg-amber-900/30 flex items-center justify-center text-amber-500 font-bold border border-amber-500/30">{f.name.charAt(4)}</div>
-                                <div>
-                                    <div className="text-sm font-bold text-slate-200">{f.name}</div>
-                                    <div className="text-[10px] text-slate-500">{f.role}</div>
+            {/* Enhanced Tab Content */}
+            <div className="min-h-[400px]">
+                {/* About Tab */}
+                {activeTab === 'about' && (
+                    <motion.div 
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="space-y-6"
+                    >
+                        <div className="bg-gradient-to-br from-slate-800/40 to-slate-900/40 backdrop-blur-sm border border-amber-500/20 p-6 rounded-2xl relative overflow-hidden">
+                            <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/old-map.png')] opacity-10 pointer-events-none"></div>
+                            <div className="relative z-10">
+                                <h2 className="text-2xl font-serif text-amber-100 mb-4 flex items-center gap-3">
+                                    <span className="text-3xl">⚡</span>
+                                    The Prophecy
+                                </h2>
+                                <p className="text-slate-300 leading-relaxed mb-4 font-serif">
+                                    SITNovate is the flagship 24-hour hackathon organized by Symbiosis Institute of Technology, Nagpur. 
+                                    This premier innovation event brings together the brightest minds in technology to collaborate, compete, 
+                                    and create groundbreaking solutions.
+                                </p>
+                                <p className="text-slate-300 leading-relaxed mb-6 font-serif">
+                                    With 49 participating teams, 800+ participants, and a prize pool of ₹1 Lakh, SITNovate has established 
+                                    itself as a catalyst for technological innovation and entrepreneurship.
+                                </p>
+                                
+                                {/* Key Features */}
+                                <div className="grid grid-cols-2 gap-3">
+                                    {[
+                                        { icon: "🤖", title: "AI/ML", desc: "Machine Learning" },
+                                        { icon: "⛓️", title: "Blockchain", desc: "Web3 Tech" },
+                                        { icon: "🌐", title: "Web Dev", desc: "Full Stack" },
+                                        { icon: "📱", title: "Mobile", desc: "App Development" }
+                                    ].map((feature, i) => (
+                                        <div key={i} className="bg-black/30 p-3 rounded-lg border border-slate-700/50">
+                                            <div className="text-xl mb-1">{feature.icon}</div>
+                                            <div className="text-sm font-bold text-amber-400">{feature.title}</div>
+                                            <div className="text-xs text-slate-400">{feature.desc}</div>
+                                        </div>
+                                    ))}
                                 </div>
-                            </motion.div>
-                        ))}
-                    </div>
-                </div>
+                            </div>
+                        </div>
+                    </motion.div>
+                )}
 
-                {/* 2. Students (Prefects) */}
-                <div>
-                    <h3 className="text-blue-500 text-sm font-bold uppercase mb-3 tracking-widest pl-1">Prefects</h3>
-                    <div className="space-y-3">
-                        {STUDENT_DATA.map((s, i) => (
-                            <motion.div 
-                               key={i} 
-                               initial={{ x: 20, opacity: 0 }}
-                               whileInView={{ x: 0, opacity: 1 }}
-                               viewport={{ once: true }}
-                               className="bg-[#0f172a] p-3 rounded-lg flex justify-between items-center border border-slate-800 relative overflow-hidden shadow-md"
+                {/* Facilities Tab */}
+                {activeTab === 'facilities' && (
+                    <motion.div 
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="space-y-6"
+                    >
+                        {/* Facilities Section */}
+                        <div className="bg-gradient-to-br from-blue-900/20 to-blue-950/20 backdrop-blur-sm border border-blue-500/20 p-6 rounded-2xl">
+                            <h3 className="text-xl font-serif text-blue-300 mb-4 flex items-center gap-3">
+                                <CastleIcon />
+                                Facilities
+                            </h3>
+                            <div className="grid grid-cols-2 gap-3">
+                                {[
+                                    { icon: <WiFiIcon />, title: "High-Speed WiFi", desc: "Unlimited Internet" },
+                                    { icon: <LightningIcon />, title: "Power Stations", desc: "24/7 Charging" },
+                                    { icon: <FoodIcon />, title: "Food & Drinks", desc: "Round the Clock" },
+                                    { icon: <RestIcon />, title: "Rest Areas", desc: "Comfortable Zones" }
+                                ].map((item, i) => (
+                                    <motion.div 
+                                        key={i}
+                                        initial={{ opacity: 0, scale: 0.9 }}
+                                        animate={{ opacity: 1, scale: 1 }}
+                                        transition={{ delay: i * 0.1 }}
+                                        className="bg-black/30 p-4 rounded-lg border border-blue-500/20 text-center"
+                                    >
+                                        <div className="mb-2 flex justify-center">{item.icon}</div>
+                                        <div className="text-sm font-bold text-blue-300 mb-1">{item.title}</div>
+                                        <div className="text-xs text-slate-400">{item.desc}</div>
+                                    </motion.div>
+                                ))}
+                            </div>
+                        </div>
+
+                        {/* Rewards Section */}
+                        <div className="bg-gradient-to-br from-amber-900/20 to-amber-950/20 backdrop-blur-sm border border-amber-500/20 p-6 rounded-2xl">
+                            <h3 className="text-xl font-serif text-amber-300 mb-4 flex items-center gap-3">
+                                <TrophyIcon />
+                                Rewards
+                            </h3>
+                            <div className="grid grid-cols-2 gap-3">
+                                {[
+                                    { icon: <MoneyIcon />, title: "Cash Prizes", desc: "₹1 Lakh Pool" },
+                                    { icon: <MentorIcon />, title: "Mentorship", desc: "Industry Experts" },
+                                    { icon: <SwagIcon />, title: "Swag Kits", desc: "Exclusive Merch" },
+                                    { icon: <CertificateIcon />, title: "Certificates", desc: "Recognition" }
+                                ].map((item, i) => (
+                                    <motion.div 
+                                        key={i}
+                                        initial={{ opacity: 0, scale: 0.9 }}
+                                        animate={{ opacity: 1, scale: 1 }}
+                                        transition={{ delay: i * 0.1 }}
+                                        className="bg-black/30 p-4 rounded-lg border border-amber-500/20 text-center"
+                                    >
+                                        <div className="mb-2 flex justify-center">{item.icon}</div>
+                                        <div className="text-sm font-bold text-amber-300 mb-1">{item.title}</div>
+                                        <div className="text-xs text-slate-400">{item.desc}</div>
+                                    </motion.div>
+                                ))}
+                            </div>
+                        </div>
+                    </motion.div>
+                )}
+
+                {/* Gallery Tab */}
+                {activeTab === 'highlights' && (
+                    <motion.div 
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="space-y-6"
+                    >
+                        <div className="bg-gradient-to-br from-slate-800/40 to-slate-900/40 backdrop-blur-sm border border-cyan-500/20 p-6 rounded-2xl">
+                            <h3 className="text-xl font-serif text-cyan-300 mb-4 flex items-center gap-3">
+                                <span className="text-2xl">📸</span>
+                                Event Memories
+                            </h3>
+                            <div className="grid grid-cols-2 gap-3 mb-4">
+                                {HIGHLIGHTS_DATA.slice(0, 6).map((img, i) => (
+                                    <motion.div 
+                                        key={img.index} 
+                                        initial={{ opacity: 0, scale: 0.8 }} 
+                                        animate={{ opacity: 1, scale: 1 }} 
+                                        transition={{ delay: i * 0.1 }}
+                                        whileTap={{ scale: 0.95 }}
+                                        className="aspect-square rounded-xl overflow-hidden border border-slate-700 relative shadow-lg group"
+                                    >
+                                        <SmartImage 
+                                            src={`/images/sitnovate/${img.index}.${img.ext}`} 
+                                            alt={img.name} 
+                                            fit="cover" 
+                                            className="group-active:scale-110 transition-transform duration-300"
+                                        />
+                                        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-2">
+                                            <div className="text-xs text-cyan-300 font-medium">{img.name}</div>
+                                        </div>
+                                    </motion.div>
+                                ))}
+                            </div>
+                            
+                            {/* View More Button */}
+                            <button 
+                                onClick={() => navigate('/gallery')}
+                                className="w-full py-3 bg-cyan-600/20 border border-cyan-500/30 rounded-lg text-cyan-300 font-medium text-sm hover:bg-cyan-600/30 transition-colors"
                             >
-                                <div className={`absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b ${s.color}`}></div>
-                                <div className="text-sm font-bold text-slate-300 ml-3">{s.name}</div>
-                                <div className="text-[10px] text-amber-600 uppercase font-bold tracking-wider">{s.house}</div>
-                            </motion.div>
-                        ))}
-                    </div>
-                </div>
+                                View Full Gallery →
+                            </button>
+                        </div>
+
+                        {/* Sponsors Section */}
+                        <div className="bg-gradient-to-br from-purple-900/20 to-purple-950/20 backdrop-blur-sm border border-purple-500/20 p-6 rounded-2xl">
+                            <h3 className="text-xl font-serif text-purple-300 mb-4 flex items-center gap-3">
+                                <span className="text-2xl">🤝</span>
+                                Our Partners
+                            </h3>
+                            <div className="grid grid-cols-2 gap-3">
+                                {SPONSORS_DATA.slice(0, 6).map((sp, i) => (
+                                    <motion.div 
+                                        key={i} 
+                                        initial={{ opacity: 0, y: 20 }}
+                                        animate={{ 
+                                            opacity: 1, 
+                                            y: [0, -2, 0] 
+                                        }}
+                                        transition={{ 
+                                            opacity: { delay: i * 0.1 },
+                                            y: { duration: 3, repeat: Infinity, delay: i * 0.3, ease: "easeInOut" }
+                                        }}
+                                        className="bg-black/30 p-3 rounded-lg text-center border border-purple-500/20"
+                                    >
+                                        <div className="h-12 w-full flex items-center justify-center mb-2 bg-white/5 rounded p-1">
+                                            <img src={`/images/sponsors/${sp.logo}`} alt={sp.name} className="w-full h-full object-contain" />
+                                        </div>
+                                        <div className="text-xs text-slate-300 font-medium">{sp.name}</div>
+                                        <div className={`text-[10px] uppercase tracking-wider ${sp.color}`}>{sp.category}</div>
+                                    </motion.div>
+                                ))}
+                            </div>
+                        </div>
+                    </motion.div>
+                )}
+
+                {/* Team Tab */}
+                {activeTab === 'team' && (
+                    <motion.div 
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="space-y-6"
+                    >
+                        {/* Faculty Section */}
+                        <div className="bg-gradient-to-br from-amber-900/20 to-amber-950/20 backdrop-blur-sm border border-amber-500/20 p-6 rounded-2xl">
+                            <h3 className="text-xl font-serif text-amber-300 mb-4 flex items-center gap-3">
+                                <span className="text-2xl">👑</span>
+                                Leadership Council
+                            </h3>
+                            <div className="space-y-3">
+                                {FACULTY_DATA.map((f, i) => (
+                                    <motion.div 
+                                        key={i}
+                                        initial={{ opacity: 0, x: -20 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        transition={{ delay: i * 0.1 }}
+                                        className="bg-black/30 p-4 rounded-lg flex items-center gap-4 border border-amber-500/20"
+                                    >
+                                        <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-amber-500/50 flex-shrink-0">
+                                            {f.photo ? (
+                                                <img 
+                                                    src={`/images/sitnovate/${f.photo}`}
+                                                    alt={f.name}
+                                                    className="w-full h-full object-cover"
+                                                />
+                                            ) : (
+                                                <div className="w-full h-full bg-amber-900/30 flex items-center justify-center text-amber-500 font-bold text-lg">
+                                                    {f.name.charAt(0)}
+                                                </div>
+                                            )}
+                                        </div>
+                                        <div className="flex-1">
+                                            <div className="text-sm font-bold text-amber-100">{f.name}</div>
+                                            <div className="text-xs text-amber-400 font-medium">{f.role}</div>
+                                            <div className="text-xs text-slate-500">{f.dept}</div>
+                                        </div>
+                                    </motion.div>
+                                ))}
+                            </div>
+                        </div>
+
+                        {/* Student Team Section */}
+                        <div className="bg-gradient-to-br from-blue-900/20 to-blue-950/20 backdrop-blur-sm border border-blue-500/20 p-6 rounded-2xl">
+                            <h3 className="text-xl font-serif text-blue-300 mb-4 flex items-center gap-3">
+                                <span className="text-2xl">⚡</span>
+                                House Prefects
+                            </h3>
+                            <div className="space-y-3">
+                                {STUDENT_DATA.map((s, i) => (
+                                    <motion.div 
+                                        key={i} 
+                                        initial={{ opacity: 0, x: 20 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        transition={{ delay: i * 0.1 }}
+                                        className="bg-black/30 p-4 rounded-lg flex justify-between items-center border border-blue-500/20 relative overflow-hidden"
+                                    >
+                                        <div className={`absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b ${s.color}`}></div>
+                                        <div className="ml-3">
+                                            <div className="text-sm font-bold text-blue-100">{s.name}</div>
+                                            <div className="text-xs text-blue-400">{s.role}</div>
+                                        </div>
+                                        <div className="text-right">
+                                            <div className="text-xs text-amber-400 uppercase font-bold tracking-wider">{s.house}</div>
+                                        </div>
+                                    </motion.div>
+                                ))}
+                            </div>
+                        </div>
+                    </motion.div>
+                )}
             </div>
             
-            <div className="mt-16 mb-12 text-center">
+            {/* Enhanced Contact Section */}
+            <div className="mt-12 space-y-4">
                 <motion.button 
-                   whileTap={{ scale: 0.95 }}
-                   onClick={() => navigate('/contact')} 
-                   className="w-full px-8 py-4 bg-gradient-to-r from-amber-600 to-amber-700 rounded-lg font-bold text-black shadow-lg shadow-amber-900/50 tracking-widest font-serif"
+                    whileTap={{ scale: 0.95 }}
+                    onClick={() => navigate('/contact')} 
+                    className="w-full px-6 py-4 bg-gradient-to-r from-amber-600 to-amber-700 rounded-xl font-bold text-black shadow-lg shadow-amber-900/50 tracking-wider font-serif text-lg relative overflow-hidden group"
                 >
-                   SEND OWL
+                    <span className="relative z-10 flex items-center justify-center gap-2">
+                        <span className="text-xl">🦉</span>
+                        SEND OWL POST
+                    </span>
+                    <div className="absolute inset-0 bg-gradient-to-r from-amber-500 to-amber-600 transform scale-x-0 group-active:scale-x-100 transition-transform origin-left duration-200"></div>
                 </motion.button>
+
+                {/* Quick Links */}
+                <div className="grid grid-cols-2 gap-3">
+                    <button 
+                        onClick={() => window.open('mailto:src.sit@sitnagpur.siu.edu.in?subject=SITNovate 2026 Inquiry', '_blank')}
+                        className="py-3 bg-slate-800/50 border border-slate-600/50 rounded-lg text-slate-300 font-medium text-sm hover:bg-slate-700/50 transition-colors"
+                    >
+                        📧 Email Us
+                    </button>
+                    <button 
+                        onClick={() => navigate('/about-sit-nagpur')}
+                        className="py-3 bg-slate-800/50 border border-slate-600/50 rounded-lg text-slate-300 font-medium text-sm hover:bg-slate-700/50 transition-colors"
+                    >
+                        🏫 About SIT
+                    </button>
+                </div>
             </div>
         </div>
     </section>
