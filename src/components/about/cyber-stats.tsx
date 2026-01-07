@@ -1,6 +1,4 @@
-import React, { useEffect, useState } from "react";
-import { cn } from "@/lib/utils";
-import { GlitchText } from "@/components/ui/glitch-text";
+import { useEffect, useState } from "react";
 
 function MetricCard({ label, value, unit, delay = 0 }: { label: string, value: number, unit?: string, delay?: number }) {
     const [count, setCount] = useState(0);

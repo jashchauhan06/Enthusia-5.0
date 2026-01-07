@@ -1,4 +1,3 @@
-import React from "react";
 import { cn } from "@/lib/utils";
 
 const versions = [
@@ -18,7 +17,7 @@ export function VersionHistory() {
                 </h2>
 
                 <div className="relative border-l-2 border-white/10 ml-4 md:ml-0 space-y-12">
-                    {versions.map((v, i) => (
+                    {versions.map((v) => (
                         <div key={v.ver} className="relative pl-8 md:pl-12 group">
                             {/* Timeline Dot */}
                             <div className={cn(

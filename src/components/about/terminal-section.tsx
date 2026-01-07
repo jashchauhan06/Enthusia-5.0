@@ -1,5 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
-import { cn } from "@/lib/utils";
+import { useState, useEffect, useRef } from "react";
 import { Terminal } from "lucide-react";
 
 export function TerminalSection() {
