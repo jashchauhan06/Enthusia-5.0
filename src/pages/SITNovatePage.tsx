@@ -42,10 +42,7 @@ const HIGHLIGHTS_DATA = [
   { index: 3, ext: 'jpg', name: 'Coding Marathon' },
   { index: 4, ext: 'jpg', name: 'Mentorship Sessions' }, 
   { index: 5, ext: 'png', name: 'Final Presentations' }, 
-  { index: 6, ext: 'png', name: 'Award Ceremony' },
-  { index: 'Jash', ext: 'jpg', name: 'Team Member - Jash' },
-  { index: 'Parth Choudhari', ext: 'jpg', name: 'Team Member - Parth' },
-  { index: 'Sunidhi', ext: 'jpg', name: 'Team Member - Sunidhi' }
+  { index: 6, ext: 'png', name: 'Award Ceremony' }
 ];
 const SPONSORS_DATA = [
   { name: "Pizza Hut", logo: "pizzahut.png", category: "Food Partner", color: "text-red-400" },
