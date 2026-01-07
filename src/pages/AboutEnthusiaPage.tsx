@@ -4,301 +4,161 @@ import { Footer } from "@/sections/footer";
 import { useBreakpoint } from "@/hooks/useBreakpoint";
 import { Sidebar } from "@/components/navigation/sidebar/sidebar";
 import { ProgressiveBlur } from "@/components/ui/progressive-blur";
+import { ImageSequenceScroll } from "@/components/ImageSequenceScroll";
+
+import { GlitchText } from "@/components/ui/glitch-text";
+import { HoloCard } from "@/components/about/holo-card";
+import { TerminalSection } from "@/components/about/terminal-section";
+import { ThemeExplainer } from "@/components/about/theme-explainer";
+import { VisionSection } from "@/components/about/vision-section";
+import { ExpandedArenas } from "@/components/about/expanded-arenas";
+import { useRef, useLayoutEffect } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 function AboutEnthusia() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const textRef1 = useRef<HTMLDivElement>(null);
+  const textRef2 = useRef<HTMLDivElement>(null);
+  const textRef3 = useRef<HTMLDivElement>(null);
+
+  useLayoutEffect(() => {
+    const ctx = gsap.context(() => {
+      // Sync text animations with the pinned scroll sequence of ImageSequenceScroll
+      // We know ImageSequenceScroll pins 'image-sequence' for 400%
+      // But since we are outside, we can just create a parallel ScrollTrigger on the SAME pinned container wrapper
+      // OR we can rely on absolute position text inside the Scroll and identifying they are pinned.
+
+      // Wait! The text elements are INSIDE ImageSequenceScroll in the JSX below. 
+      // So they are ALREADY pinned. We just need to toggle their Opacity based on scroll progress.
+      // We can use a ScrollTrigger that watches the main container but with 'start' and 'end' matched to the same scrub.
+      // Or simpler: Trigger based on the scroll position relative to the viewport.
+
+      // Since the component ImageSequenceScroll pins itself, the "scroll progress" is effectively how far we have scrolled *past* the start.
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: containerRef.current, // This wrapper contains the pinned element
+          start: "top top",
+          end: "+=400%", // Must match ImageSequenceScroll pin duration
+          scrub: true,
+        }
+      });
+
+      // 0-20%: Text 1 visible
+      tl.fromTo(textRef1.current, { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 0.1 }, 0)
+        .to(textRef1.current, { opacity: 0, y: -50, duration: 0.1 }, 0.2);
+
+      // 30-50%: Text 2 visible
+      tl.fromTo(textRef2.current, { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, duration: 0.1 }, 0.3)
+        .to(textRef2.current, { opacity: 0, scale: 1.2, duration: 0.1 }, 0.5);
+
+      // 60-80%: Text 3 visible
+      tl.fromTo(textRef3.current, { opacity: 0, letterSpacing: "0em" }, { opacity: 1, letterSpacing: "0.2em", duration: 0.1 }, 0.6)
+        .to(textRef3.current, { opacity: 0, duration: 0.1 }, 0.8);
+
+    }, containerRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section 
-      id="about-enthusia" 
-      className="relative w-full py-24 px-4 md:px-8 lg:px-16"
-    >
-      <div className="max-w-7xl mx-auto">
-        {/* Hero Header */}
-        <div className="text-center mb-20">
-          <h2 className="font-body text-lg font-light text-foreground mb-6">
-            ABOUT ENTHUSIA 5.0
-          </h2>
-          <h1 className="font-heading text-5xl md:text-7xl lg:text-8xl text-foreground mb-8 leading-tight">
-            Enter the Parallel<br />Fest Universe
-          </h1>
-          <p className="font-body text-xl md:text-2xl text-[#b3b3b3] leading-relaxed max-w-4xl mx-auto">
-            Enthusia 5.0 is the annual flagship techno-cultural fest of Symbiosis Institute of Technology, Nagpur — a three-day experience where technology, creativity, competition, and celebration collide.
-          </p>
-        </div>
+    <div ref={containerRef} className="w-full relative">
+      <ImageSequenceScroll className="h-screen">
+        {/* Scroll-tied Narrative Layer */}
+        <div className="absolute inset-0 z-20 pointer-events-none flex flex-col items-center justify-center">
 
-        {/* Main Description */}
-        <div className="mb-20">
-          <div className="bg-gradient-to-br from-purple-500/10 to-pink-500/10 border border-purple-500/20 rounded-3xl p-8 md:p-12">
-            <p className="font-body text-lg md:text-xl text-[#b3b3b3] leading-relaxed text-center">
-              Inspired by fictional worlds and game-like realities, Enthusia transforms the campus into a parallel universe of challenges and performances, where every participant chooses a path, levels up skills, and creates unforgettable memories.
+          {/* Text Phase 1 */}
+          <div ref={textRef1} className="absolute text-center opacity-0">
+            <h1 className="font-heading text-6xl md:text-8xl text-white mb-4 drop-shadow-[0_0_15px_rgba(255,255,255,0.5)]">
+              <GlitchText text="INITIATING" />
+            </h1>
+            <p className="font-mono text-xl text-cyan-400 tracking-widest">SEQUENCE_5.0_START</p>
+          </div>
+
+          {/* Text Phase 2 */}
+          <div ref={textRef2} className="absolute text-center opacity-0 max-w-4xl px-4">
+            <h2 className="font-heading text-4xl md:text-6xl text-white mb-6 uppercase">
+              Where Logic Meets <span className="text-pink-500">Chaos</span>
+            </h2>
+            <p className="font-body text-xl md:text-2xl text-gray-300">
+              A parallel universe where reality glitches and imagination takes control.
             </p>
           </div>
-        </div>
 
-        {/* What is Enthusia */}
-        <div className="mb-20">
-          <div className="bg-card border border-border rounded-3xl p-8 md:p-12">
-            <div className="flex items-center gap-3 mb-8">
-              <span className="text-3xl">🌌</span>
-              <h3 className="font-heading text-3xl md:text-4xl text-foreground">What is Enthusia?</h3>
-            </div>
-            <p className="font-body text-lg md:text-xl text-[#b3b3b3] leading-relaxed mb-8">
-              Enthusia is more than just a college fest. It is a platform where:
-            </p>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-              {[
-                "innovators build under pressure",
-                "creators perform on grand stages", 
-                "leaders pitch bold ideas",
-                "students celebrate expression and community"
-              ].map((item, index) => (
-                <div key={index} className="bg-muted/30 rounded-xl p-6 border border-border/50">
-                  <p className="font-body text-lg text-foreground font-medium">{item}</p>
-                </div>
-              ))}
-            </div>
-            <p className="font-body text-lg md:text-xl text-[#b3b3b3] leading-relaxed">
-              From 24-hour hackathons and coding battles to cultural showcases and celebrity nights, Enthusia brings together diverse talents on one immersive stage.
-            </p>
+          {/* Text Phase 3 */}
+          <div ref={textRef3} className="absolute text-center opacity-0">
+            <h2 className="font-heading text-5xl md:text-7xl text-white uppercase tracking-tighter">
+              <GlitchText text="TWO WORLDS" />
+              <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-pink-500">
+                COLLIDE
+              </span>
+            </h2>
           </div>
-        </div>
 
-        {/* Vision */}
-        <div className="mb-20">
-          <div className="bg-gradient-to-br from-blue-500/10 to-cyan-500/10 border border-blue-500/20 rounded-3xl p-8 md:p-12">
-            <div className="flex items-center gap-3 mb-8">
-              <span className="text-3xl">🎯</span>
-              <h3 className="font-heading text-3xl md:text-4xl text-foreground">Vision of Enthusia 5.0</h3>
-            </div>
-            <p className="font-body text-lg md:text-xl text-[#b3b3b3] leading-relaxed mb-8">
-              At the heart of Enthusia lies the belief that learning, innovation, and culture thrive best when experienced together.
-            </p>
-            <p className="font-body text-lg md:text-xl text-[#b3b3b3] leading-relaxed mb-8">
-              Enthusia 5.0 aims to:
-            </p>
-            <ul className="space-y-4 mb-8">
-              {[
-                "Encourage innovation and problem-solving",
-                "Promote entrepreneurship and leadership",
-                "Celebrate art, culture, and self-expression",
-                "Build collaboration across disciplines and institutes"
-              ].map((goal, index) => (
-                <li key={index} className="flex items-start gap-3">
-                  <span className="text-blue-400 mt-1 text-xl">•</span>
-                  <p className="font-body text-lg md:text-xl text-[#b3b3b3]">{goal}</p>
-                </li>
-              ))}
-            </ul>
-            <p className="font-body text-lg md:text-xl text-[#b3b3b3] leading-relaxed">
-              Rooted in the philosophy of <span className="text-blue-400 font-medium">Vasudhaiva Kutumbakam</span> — "The World is One Family", Enthusia unites students from different backgrounds into one shared experience.
-            </p>
-          </div>
         </div>
+      </ImageSequenceScroll>
 
-        {/* Choose Your Arena */}
-        <div className="mb-20">
-          <div className="text-center mb-12">
-            <div className="flex items-center justify-center gap-3 mb-6">
-              <span className="text-3xl">⚔️</span>
-              <h3 className="font-heading text-3xl md:text-4xl text-foreground">Choose Your Arena</h3>
-            </div>
-            <p className="font-body text-lg md:text-xl text-[#b3b3b3] leading-relaxed">
-              Participants can explore multiple arenas within the fest:
-            </p>
+      {/* Post-Scroll Grid Section */}
+      <div className="relative z-10 bg-black py-32 px-4 border-t border-white/10 min-h-screen flex items-center">
+        {/* Background Grid */}
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[length:50px_50px] pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black pointer-events-none" />
+
+        <div className="max-w-7xl mx-auto w-full relative z-10">
+          <div className="text-center mb-24">
+            <h2 className="font-heading text-4xl md:text-6xl text-white mb-6">
+              <GlitchText text="CHOOSE YOUR ARENA" />
+            </h2>
+            <p className="font-mono text-cyan-500/80 text-lg">SELECT_PATHWAY // ENTER_SIMULATION</p>
           </div>
-          
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {/* TechFest Arena */}
-            <div className="bg-gradient-to-br from-green-500/10 to-emerald-500/10 border border-green-500/20 rounded-3xl p-8">
-              <div className="flex items-center gap-3 mb-6">
-                <span className="text-3xl">⚙️</span>
-                <h4 className="font-heading text-2xl text-foreground">TechFest</h4>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+            <HoloCard title="TECHFEST // CORE_SYSTEM" className="bg-gradient-to-br from-cyan-900/20 to-black">
+              <div className="space-y-4">
+                <p className="text-lg">Compete in high-stakes hackathons, debug reality, and engineer the future.</p>
+                <ul className="font-mono text-sm text-cyan-300/80 space-y-2">
+                  <li>{">"} HACKATHONS_LOADED</li>
+                  <li>{">"} ROBOWARS_READY</li>
+                  <li>{">"} CODE_BATTLES_ACTIVE</li>
+                </ul>
               </div>
-              <p className="font-body text-lg text-[#b3b3b3] leading-relaxed">
-                Hackathons, coding competitions, pitch battles, strategy challenges, and innovation sprints designed to simulate real-world problem solving.
-              </p>
-            </div>
+            </HoloCard>
 
-            {/* Cultural Fest Arena */}
-            <div className="bg-gradient-to-br from-pink-500/10 to-rose-500/10 border border-pink-500/20 rounded-3xl p-8">
-              <div className="flex items-center gap-3 mb-6">
-                <span className="text-3xl">🎭</span>
-                <h4 className="font-heading text-2xl text-foreground">Cultural Fest</h4>
+            <HoloCard title="CULTURAL // GLITCH_ART" className="bg-gradient-to-br from-pink-900/20 to-black hover:border-pink-500/50 hover:shadow-[0_0_30px_-5px_rgba(236,72,153,0.3)]">
+              <div className="space-y-4">
+                <p className="text-lg">Experience the symphony of chaos. Dance, music, and art that defies logic.</p>
+                <ul className="font-mono text-sm text-pink-300/80 space-y-2">
+                  <li>{">"} CONCERT_SYNCED</li>
+                  <li>{">"} DANCE_BATTLE_INIT</li>
+                  <li>{">"} FASHION_RENDERED</li>
+                </ul>
               </div>
-              <p className="font-body text-lg text-[#b3b3b3] leading-relaxed">
-                Music, dance, drama, comedy, celebrity performances, and DJ nights that bring the campus alive after sunset.
-              </p>
-            </div>
-          </div>
-          
-          <div className="text-center mt-8">
-            <p className="font-body text-lg md:text-xl text-[#b3b3b3] leading-relaxed">
-              Each arena offers its own challenges, rewards, and unforgettable moments.
-            </p>
-          </div>
-        </div>
-
-        {/* When & Where */}
-        <div className="mb-20">
-          <div className="bg-gradient-to-br from-orange-500/10 to-yellow-500/10 border border-orange-500/20 rounded-3xl p-8 md:p-12 text-center">
-            <div className="flex items-center justify-center gap-3 mb-8">
-              <span className="text-3xl">📅</span>
-              <h3 className="font-heading text-3xl md:text-4xl text-foreground">When & Where</h3>
-            </div>
-            <div className="space-y-4">
-              <p className="font-body text-xl md:text-2xl text-foreground">
-                📍 Symbiosis Institute of Technology, Nagpur
-              </p>
-              <p className="font-body text-xl md:text-2xl text-foreground">
-                📅 12 – 14 February 2026
-              </p>
-            </div>
-          </div>
-        </div>
-
-        {/* Why Enthusia Stands Out */}
-        <div className="mb-20">
-          <div className="bg-card border border-border rounded-3xl p-8 md:p-12">
-            <div className="flex items-center gap-3 mb-8">
-              <span className="text-3xl">✨</span>
-              <h3 className="font-heading text-3xl md:text-4xl text-foreground">Why Enthusia Stands Out</h3>
-            </div>
-            <ul className="space-y-4 mb-8">
-              {[
-                "National-level technical & cultural events",
-                "High student participation & engagement",
-                "A unique fictional, immersive theme",
-                "A perfect balance of competition and celebration"
-              ].map((point, index) => (
-                <li key={index} className="flex items-start gap-3">
-                  <span className="text-primary mt-1 text-xl">•</span>
-                  <p className="font-body text-lg md:text-xl text-[#b3b3b3]">{point}</p>
-                </li>
-              ))}
-            </ul>
-            <p className="font-body text-xl md:text-2xl text-foreground text-center font-medium">
-              Enthusia 5.0 is not just an event you attend — it's an experience you enter.
-            </p>
+            </HoloCard>
           </div>
         </div>
       </div>
-    </section>
+
+      {/* Narrative & Theme */}
+      {/* Narrative & Theme */}
+      <ThemeExplainer />
+
+      {/* Vision */}
+      <VisionSection />
+
+      {/* Deep Dive into Arenas (Tech & Cultural) */}
+      <ExpandedArenas />
+
+      {/* Interactive Terminal */}
+      <TerminalSection />
+    </div>
   );
 }
 
-function AboutEnthusiaMobile() {
-  return (
-    <section 
-      id="about-enthusia-mobile" 
-      className="relative w-full py-16 px-4"
-    >
-      <div className="max-w-4xl mx-auto">
-        {/* Hero Header */}
-        <div className="text-center mb-16">
-          <h2 className="font-body text-lg font-light text-foreground mb-4">
-            ABOUT ENTHUSIA 5.0
-          </h2>
-          <h1 className="font-heading text-4xl text-foreground mb-6 leading-tight">
-            Enter the Parallel<br />Fest Universe
-          </h1>
-          <p className="font-body text-base text-[#b3b3b3] leading-relaxed">
-            Enthusia 5.0 is the annual flagship techno-cultural fest of Symbiosis Institute of Technology, Nagpur — a three-day experience where technology, creativity, competition, and celebration collide.
-          </p>
-        </div>
-
-        {/* Main Content */}
-        <div className="space-y-8">
-          {/* Description */}
-          <div className="bg-gradient-to-br from-purple-500/10 to-pink-500/10 border border-purple-500/20 rounded-2xl p-6">
-            <p className="font-body text-base text-[#b3b3b3] leading-relaxed text-center">
-              Inspired by fictional worlds and game-like realities, Enthusia transforms the campus into a parallel universe of challenges and performances.
-            </p>
-          </div>
-
-          {/* What is Enthusia */}
-          <div className="bg-card border border-border rounded-2xl p-6">
-            <div className="flex items-center gap-2 mb-4">
-              <span className="text-xl">🌌</span>
-              <h3 className="font-heading text-lg text-foreground">What is Enthusia?</h3>
-            </div>
-            <p className="font-body text-base text-[#b3b3b3] leading-relaxed mb-4">
-              Enthusia is more than just a college fest. It is a platform where innovators build, creators perform, leaders pitch, and students celebrate.
-            </p>
-            <p className="font-body text-base text-[#b3b3b3] leading-relaxed">
-              From hackathons to cultural showcases, Enthusia brings together diverse talents on one immersive stage.
-            </p>
-          </div>
-
-          {/* Vision */}
-          <div className="bg-gradient-to-br from-blue-500/10 to-cyan-500/10 border border-blue-500/20 rounded-2xl p-6">
-            <div className="flex items-center gap-2 mb-4">
-              <span className="text-xl">🎯</span>
-              <h3 className="font-heading text-lg text-foreground">Vision of Enthusia 5.0</h3>
-            </div>
-            <p className="font-body text-base text-[#b3b3b3] leading-relaxed mb-4">
-              Rooted in <span className="text-blue-400 font-medium">Vasudhaiva Kutumbakam</span>, Enthusia unites students from different backgrounds into one shared experience.
-            </p>
-          </div>
-
-          {/* Arenas */}
-          <div className="space-y-4">
-            <div className="text-center mb-6">
-              <div className="flex items-center justify-center gap-2 mb-3">
-                <span className="text-xl">⚔️</span>
-                <h3 className="font-heading text-lg text-foreground">Choose Your Arena</h3>
-              </div>
-            </div>
-            
-            <div className="bg-gradient-to-br from-green-500/10 to-emerald-500/10 border border-green-500/20 rounded-2xl p-6">
-              <div className="flex items-center gap-2 mb-3">
-                <span className="text-xl">⚙️</span>
-                <h4 className="font-heading text-base text-foreground">TechFest</h4>
-              </div>
-              <p className="font-body text-sm text-[#b3b3b3] leading-relaxed">
-                Hackathons, coding competitions, and innovation sprints.
-              </p>
-            </div>
-
-            <div className="bg-gradient-to-br from-pink-500/10 to-rose-500/10 border border-pink-500/20 rounded-2xl p-6">
-              <div className="flex items-center gap-2 mb-3">
-                <span className="text-xl">🎭</span>
-                <h4 className="font-heading text-base text-foreground">Cultural Fest</h4>
-              </div>
-              <p className="font-body text-sm text-[#b3b3b3] leading-relaxed">
-                Music, dance, drama, and celebrity performances.
-              </p>
-            </div>
-          </div>
-
-          {/* When & Where */}
-          <div className="bg-gradient-to-br from-orange-500/10 to-yellow-500/10 border border-orange-500/20 rounded-2xl p-6 text-center">
-            <div className="flex items-center justify-center gap-2 mb-4">
-              <span className="text-xl">📅</span>
-              <h3 className="font-heading text-lg text-foreground">When & Where</h3>
-            </div>
-            <div className="space-y-2">
-              <p className="font-body text-base text-foreground">📍 SIT Nagpur</p>
-              <p className="font-body text-base text-foreground">📅 12 – 14 Feb 2026</p>
-            </div>
-          </div>
-
-          {/* Why Stands Out */}
-          <div className="bg-card border border-border rounded-2xl p-6">
-            <div className="flex items-center gap-2 mb-4">
-              <span className="text-xl">✨</span>
-              <h3 className="font-heading text-lg text-foreground">Why Enthusia Stands Out</h3>
-            </div>
-            <p className="font-body text-base text-[#b3b3b3] leading-relaxed mb-4">
-              National-level events, high engagement, unique immersive theme, and perfect balance of competition and celebration.
-            </p>
-            <p className="font-body text-base text-foreground text-center font-medium">
-              It's an experience you enter.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
+import { AboutEnthusiaMobile } from "@/components/about/AboutEnthusiaMobile";
 
 export function AboutEnthusiaPage() {
   const { isMobile } = useBreakpoint();
@@ -306,7 +166,7 @@ export function AboutEnthusiaPage() {
   if (isMobile) {
     return (
       <>
-        <SEO 
+        <SEO
           title="About Enthusia 5.0 - Enter the Parallel Fest Universe"
           description="Discover Enthusia 5.0, the annual flagship techno-cultural fest of SIT Nagpur. A three-day immersive experience of technology, creativity, and celebration."
           url="https://sitnovate.vercel.app/about-enthusia"
@@ -317,9 +177,9 @@ export function AboutEnthusiaPage() {
             className="fixed top-0 left-0 w-full h-32 z-40 pointer-events-none"
             blurIntensity={1}
           />
-          
+
           <Sidebar />
-          
+
           <AboutEnthusiaMobile />
 
           <Footer />
@@ -330,7 +190,7 @@ export function AboutEnthusiaPage() {
 
   return (
     <>
-      <SEO 
+      <SEO
         title="About Enthusia 5.0 - Enter the Parallel Fest Universe"
         description="Discover Enthusia 5.0, the annual flagship techno-cultural fest of SIT Nagpur. A three-day immersive experience of technology, creativity, and celebration."
         url="https://sitnovate.vercel.app/about-enthusia"

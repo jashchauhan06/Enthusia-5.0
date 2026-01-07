@@ -1,60 +1,54 @@
 export const hackathonPrivacyPolicy = {
   title: "Privacy Policy",
-  lastUpdated: "Last updated: December 2025",
+  lastUpdated: "Last updated: January 2026",
   content: `
 ## Introduction
 
-Welcome to SITNovate 24-Hour Hackathon. This Privacy Policy explains how we collect, use, and protect your personal information when you register for and participate in our hackathon event.
+Welcome to **Enthusia 5.0**. This Privacy Policy explains how we collect, use, and protect your personal information when you register for and participate in our annual techno-cultural fest.
 
 ## Information We Collect
 
-When you register for SITNovate, we collect the following information:
+When you register for Enthusia 5.0 events (TechFest, Cultural Fest, Sports, or Workshops), we collect the following information:
 
-• **Team Information**: Team name and number of members
-• **Personal Details**: Full name, email address, and phone number for each team member
-• **Educational Information**: College/Institution name
-• **Project Information**: Optional project idea descriptions
+• **Participant Details**: Full name, email address, phone number, and college ID.
+• **Team Information**: Team name and member details (for group events).
+• **Educational Information**: College/Institution name and year of study.
+• **Event Participation**: Specific events, workshops, or competitions you are registering for.
+• **Payment Details**: Transaction IDs and payment status (we do not store sensitive card information).
 
 ## How We Use Your Information
 
 We use the collected information to:
 
-• Process your hackathon registration
-• Communicate event updates and important information
-• Coordinate team activities during the event
-• Evaluate projects and announce winners
-• Improve future hackathon events
+• Process your registration for various events.
+• Verify your identity and eligibility (e.g., student status).
+• Communicate event schedules, updates, and important announcements.
+• Coordinate competitions, hackathons, and cultural performances.
+• Ensure the safety and security of all participants on campus.
+• Improve future editions of Enthusia based on participation data.
 
 ## Data Sharing
 
 We do not sell or share your personal information with third parties except:
 
-• Event sponsors and partners (only with your consent)
-• As required by law or legal proceedings
-• To protect the rights and safety of participants
+• **Event Partners**: Collaborators for specific workshops or hackathons (only relevant data).
+• **Legal Requirements**: As required by law or university regulations.
+• **Safety**: To protect the rights and safety of participants and the venue.
 
 ## Data Security
 
-We implement appropriate security measures to protect your personal information from unauthorized access, alteration, or disclosure. However, no method of transmission over the internet is 100% secure.
+We implement strict security measures to protect your personal information from unauthorized access, alteration, or disclosure. Data is stored on secure servers with restricted access.
 
-## Your Rights
+## Media Rights
 
-You have the right to:
-
-• Access your personal information
-• Request correction of inaccurate data
-• Request deletion of your data (subject to legal requirements)
-• Withdraw consent for data processing
-
-## Cookies and Tracking
-
-Our website may use cookies to improve user experience. You can control cookie preferences through your browser settings.
+By participating in Enthusia 5.0, you grant us the right to photograph, record, and use your image and likeness in future promotional materials, social media, and press releases related to the fest.
 
 ## Contact Information
 
-For questions about this Privacy Policy or your personal data, please contact us at:
+For questions about this Privacy Policy or your personal data, please contact the Student Representative Council (SRC):
 
 **Email**: src.sit@sitnagpur.siu.edu.in
+**Address**: Symbiosis Institute of Technology, Nagpur
 
 ## Changes to This Policy
 
@@ -62,6 +56,6 @@ We may update this Privacy Policy from time to time. We will notify you of any c
 
 ## Consent
 
-By registering for SITNovate, you consent to the collection and use of your information as described in this Privacy Policy.
+By registering for or attending Enthusia 5.0, you consent to the collection and use of your information as described in this Privacy Policy.
   `
 };
