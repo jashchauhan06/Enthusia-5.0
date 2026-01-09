@@ -19,6 +19,7 @@ import { SchedulePage } from "@/pages/SchedulePage";
 import { SmoothScrollProvider } from "@/components/providers/smooth-scroll-provider";
 import { useBreakpoint } from "@/hooks/useBreakpoint";
 import { SpeedInsights } from '@vercel/speed-insights/react';
+import Sitank from "@/pages/Sitank";
 
 function DesktopApp() {
   return (
@@ -37,6 +38,7 @@ function DesktopApp() {
         <Route path="/schedule" element={<SchedulePage />} />
         <Route path="/case-studies/:slug" element={<CaseStudyDetailPage />} />
         <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
+        <Route path="/events/sitank" element={<Sitank />} />
       </Routes>
     </SmoothScrollProvider>
   );
@@ -59,6 +61,7 @@ function MobileApp() {
         <Route path="/schedule" element={<SchedulePage />} />
         <Route path="/case-studies/:slug" element={<CaseStudyDetailPage />} />
         <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
+        <Route path="/events/sitank" element={<Sitank />} />
       </Routes>
     </>
   );
