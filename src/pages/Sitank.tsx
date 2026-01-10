@@ -118,7 +118,7 @@ function SITankDesktop() {
 
                     {/* HIGHLIGHTS MARQUEE */}
                     <div className="mb-40 overflow-hidden">
-                        <h2 className="text-center text-5xl font-bold mb-4 text-[#d4b483] uppercase tracking-tighter">Market Trends '25</h2>
+                        <h2 className="text-center text-5xl font-bold mb-4 text-[#d4b483] uppercase tracking-tighter">Event Highlights</h2>
                         <div className="text-center font-mono text-[#5c4d3c] mb-12">HISTORICAL DATA REEL</div>
 
                         <div className="w-full relative border-y-4 border-[#2c241b] bg-black py-8 group">
