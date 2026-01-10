@@ -135,13 +135,13 @@ export const MarketWatchSection = () => {
                         className="relative"
                     >
                         <div className="relative w-[280px] h-[200px] md:w-[600px] md:h-[400px] bg-[#1a1612] p-2 shadow-[20px_20px_0px_rgba(0,0,0,0.5)] border border-[#5c4d3c] transform -rotate-2 hover:rotate-0 transition-transform duration-500">
-                            <SmartImage src="/images/ashneer-grover.png" alt="Market Watch" fit="cover" />
+                            <SmartImage src="/images/ashneer-grover.png" alt="Guest_Photo" fit="cover" />
                             <div className="absolute top-4 left-4 flex items-center gap-2 bg-red-600 px-3 py-1 text-white font-mono text-xs font-bold animate-pulse shadow-lg">
                                 <div className="w-2 h-2 bg-white rounded-full"></div>
                                 LIVE BROADCAST
                             </div>
                             <div className="absolute bottom-4 right-4 bg-black/80 px-4 py-2 border border-[#d4b483] text-[#d4b483] font-mono text-xs md:text-sm">
-                                Ashneer Grover
+                                Guest_Name
                             </div>
                         </div>
                     </motion.div>
@@ -151,11 +151,68 @@ export const MarketWatchSection = () => {
                     <div className="bg-[#1a1612] p-10 border border-[#5c4d3c] shadow-[10px_10px_0px_#2c241b] relative">
                         <h2 className="text-4xl font-bold mb-6 text-[#d4b483] uppercase tracking-widest border-b border-[#5c4d3c] pb-4">About</h2>
                         <p className="text-lg text-[#a89070] leading-relaxed font-mono mb-6">
-                            Indian businessman Ashneer Grover is the former co-founder and managing director (MD) of the Indian fintech company BharatPe which he co-founded along with Shashvat Nakrani and Bhavik Koladiya in 2018. Grover also appeared as an investor on the reality TV show called 'Shark Tank India'.
+                            Guest_About
                         </p>
                     </div>
                 </div>
 
+            </div>
+        </div>
+    );
+};
+
+// --- FAQ DATA ---
+export const FAQ_DATA = [
+    {
+        question: "What is the team size?",
+        answer: "You can participate individually or in a team of up to 4 members. Collaboration is key in the market!"
+    },
+    {
+        question: "Is there a registration fee?",
+        answer: "No, participation in SITANK 2.0 is completely free. We are looking for talent, not capital."
+    },
+    {
+        question: "Who can participate?",
+        answer: "Open to all students who have a knack for building products and pitching efficiently."
+    },
+    {
+        question: "Is it an offline event?",
+        answer: "Yes, SITANK 2.0 is an offline event held at SIT Nagpur. Prepare for a high-energy trading floor environment."
+    },
+    {
+        question: "What is the format?",
+        answer: "It's a 24-hour hackathon followed by a pitching round where you sell your product to our 'Sharks'."
+    }
+];
+
+// --- FAQ COMPONENT ---
+export const FAQSection = () => {
+    const [openIndex, setOpenIndex] = useState<number | null>(null);
+
+    return (
+        <div className="mb-40">
+            <h2 className="text-center text-5xl font-bold mb-16 text-[#d4b483] uppercase tracking-tighter">Market Queries</h2>
+            <div className="max-w-3xl mx-auto space-y-4">
+                {FAQ_DATA.map((faq, i) => (
+                    <div
+                        key={i}
+                        className="bg-[#1a1612] border border-[#5c4d3c] overflow-hidden transition-all duration-300 hover:border-[#d4b483]"
+                    >
+                        <button
+                            onClick={() => setOpenIndex(openIndex === i ? null : i)}
+                            className="w-full text-left p-6 flex justify-between items-center text-[#e8d5b5] font-mono font-bold hover:text-[#d4b483] transition-colors"
+                        >
+                            <span><span className="text-[#d4b483] mr-4">0{i + 1}.</span>{faq.question}</span>
+                            <span className={`transform transition-transform duration-300 ${openIndex === i ? 'rotate-180' : ''}`}>▼</span>
+                        </button>
+                        <div
+                            className={`px-6 text-[#a89070] font-sans leading-relaxed transition-all duration-300 ease-in-out ${openIndex === i ? 'max-h-40 py-4 border-t border-[#5c4d3c]' : 'max-h-0 py-0'}`}
+                            style={{ overflow: 'hidden' }}
+                        >
+                            {faq.answer}
+                        </div>
+                    </div>
+                ))}
             </div>
         </div>
     );

@@ -9,12 +9,12 @@ import { useNavigate } from "react-router";
 import {
     SmartImage,
     MARQUEE_DATA,
-    SPONSORS_DATA,
     STUDENT_DATA,
     StockTicker,
     HeroVideoBackground,
     FilmGrain,
-    MarketWatchSection
+    MarketWatchSection,
+    FAQSection
 } from "@/sections/sitank/shared";
 import { SITankMobile } from "@/sections/sitank-mobile";
 
@@ -145,24 +145,11 @@ function SITankDesktop() {
                         </div>
                     </div>
 
-                    {/* SPONSORS */}
-                    <div className="mb-40">
-                        <h2 className="text-center text-5xl font-bold mb-16 text-[#d4b483] uppercase tracking-tighter">Institutional Investors</h2>
-                        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-                            {SPONSORS_DATA.map((sp, i) => (
-                                <div key={i} className="bg-[#1a1612] border border-[#5c4d3c] p-6 flex flex-col items-center justify-center hover:border-[#d4b483] transition-colors group">
-                                    <div className="w-full h-20 mb-4 flex items-center justify-center grayscale group-hover:grayscale-0 transition-all duration-500">
-                                        <img src={`/images/sponsors/${sp.logo}`} alt={sp.name} className="w-full h-full object-contain" loading="lazy" />
-                                    </div>
-                                    <h4 className="text-[#d4b483] font-bold font-mono text-xs uppercase">{sp.name}</h4>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
+
 
                     {/* TEAM */}
                     <div className="mb-40">
-                        <h2 className="text-center text-5xl font-bold mb-16 text-[#d4b483] uppercase tracking-tighter">Board of Directors</h2>
+                        <h2 className="text-center text-5xl font-bold mb-16 text-[#d4b483] uppercase tracking-tighter">Our Team</h2>
                         <div className="flex flex-wrap justify-center gap-10 mb-20">
                             {STUDENT_DATA.map((f, i) => (
                                 <div key={i} className="w-80 bg-[#e8d5b5] text-[#120f0d] p-6 shadow-[8px_8px_0px_#5c4d3c] border-2 border-[#120f0d] text-center">
@@ -180,6 +167,9 @@ function SITankDesktop() {
                         </div>
                     </div>
 
+                    {/* FAQ */}
+                    <FAQSection />
+
                     {/* CTA */}
                     <div className="text-center py-20 border-t border-[#5c4d3c]">
                         <h2 className="text-4xl font-bold text-[#d4b483] mb-8">Ready to Close the Deal?</h2>
@@ -187,7 +177,7 @@ function SITankDesktop() {
                             onClick={() => navigate('/register')}
                             className="px-12 py-5 bg-[#22c55e] text-[#120f0d] font-mono font-bold tracking-widest uppercase hover:bg-[#16a34a] transition-colors shadow-[6px_6px_0px_#120f0d]"
                         >
-                            OPEN DEMAT ACCOUNT
+                            Register Now
                         </button>
                     </div>
 
