@@ -10,6 +10,7 @@ import { AboutEnthusiaPage } from "@/pages/AboutEnthusiaPage";
 import { TechFestPage } from "@/pages/TechFestPage";
 import { CulturalFestPage } from "@/pages/CulturalFestPage";
 import { SITNovatePage } from "@/pages/SITNovatePage";
+import Sitank from "@/pages/Sitank";
 import { SponsorsPage } from "@/pages/SponsorsPage";
 import { GalleryPage } from "@/pages/GalleryPage";
 import { ContactPage } from "@/pages/ContactPage";
@@ -30,6 +31,7 @@ function DesktopApp() {
         <Route path="/about-enthusia" element={<AboutEnthusiaPage />} />
         <Route path="/techfest" element={<TechFestPage />} />
         <Route path="/sitnovate" element={<SITNovatePage />} />
+        <Route path="/events/sitank" element={<Sitank />} />
         <Route path="/cultural-fest" element={<CulturalFestPage />} />
         <Route path="/sponsors" element={<SponsorsPage />} />
         <Route path="/gallery" element={<GalleryPage />} />
@@ -52,6 +54,7 @@ function MobileApp() {
         <Route path="/about-enthusia" element={<AboutEnthusiaPage />} />
         <Route path="/techfest" element={<TechFestPage />} />
         <Route path="/sitnovate" element={<SITNovatePage />} />
+        <Route path="/events/sitank" element={<Sitank />} />
         <Route path="/cultural-fest" element={<CulturalFestPage />} />
         <Route path="/sponsors" element={<SponsorsPage />} />
         <Route path="/gallery" element={<GalleryPage />} />
