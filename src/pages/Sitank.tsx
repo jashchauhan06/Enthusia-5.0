@@ -75,7 +75,9 @@ function SITankDesktop() {
                             <div className="absolute top-4 right-4 text-red-500 border-2 border-red-500 px-2 py-1 font-mono text-sm font-bold rotate-12 opacity-80">CONFIDENTIAL</div>
                             <h2 className="text-4xl font-bold mb-6 text-[#d4b483] uppercase tracking-widest border-b border-[#5c4d3c] pb-4">The Master Plan</h2>
                             <p className="text-lg text-[#a89070] leading-relaxed font-mono mb-6">
-                                SITANK 2.0 is the biggest IPO in the tech world. A 24-hour high-stakes trading floor where developers, like brokers, bid with their code.
+
+
+                                SITank 2.0 is a dynamic Pitch Deck competition organized by the E-Cell of Symbiosis Institute of Technology, Nagpur aimed at providing startups with a platform to present their innovative ideas to potential investors. This event offers entrepreneurs the unique opportunity to gain exposure, secure funding, and receive invaluable mentorship from industry leaders. By connecting startups with investors, mentors, and partners, SITank fosters a thriving entrepreneurial ecosystem at SIT and beyond, encouraging the growth of groundbreaking businesses and empowering the next generation of innovators. It’s not just a competition; it’s a gateway to transforming ideas into impactful ventures.
                             </p>
                             <p className="text-[#d4b483] italic text-xl">
                                 "Success kya hai? Failure ke baad ka chapter."
