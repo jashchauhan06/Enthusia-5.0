@@ -1,4 +1,3 @@
-import React from "react";
 import { NavBar } from "@/components/navigation/nav-bar";
 import { SEO } from "@/components/seo/SEO";
 import { Footer } from "@/sections/footer";
