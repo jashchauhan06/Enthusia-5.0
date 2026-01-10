@@ -48,11 +48,11 @@ export const SPONSORS_DATA = [
     { name: "UCN", logo: "R.png", category: "Media Partner", color: "text-orange-400" }
 ];
 export const STUDENT_DATA = [
-    { name: "Sunidhi Haware", role: "President" },
-    { name: "Prathmesh Raipurkar", role: "Vice President" },
-    { name: "Parth Choudhari", role: "Lead" },
-    { name: "Jash Chauhan", role: "Web Development Team Lead" },
-    { name: "Soumya Mishra", role: "Developer" },
+    { name: "Sunidhi Haware", role: "President", image: "/images/team/Sunidhi.jpg" },
+    { name: "Prathmesh Raipurkar", role: "Vice President", image: "/images/team/Prathmesh.png" },
+    { name: "Parth Choudhari", role: "Lead", image: "/images/team/Parth Choudhari.jpg" },
+    { name: "Jash Chauhan", role: "Web Development Team Lead", image: "/images/team/Jash.jpg" },
+    { name: "Soumya Mishra", role: "Developer", image: null },
 ];
 
 // --- THEMED COMPONENTS ---

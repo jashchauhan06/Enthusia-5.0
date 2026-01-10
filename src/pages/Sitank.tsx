@@ -166,8 +166,12 @@ function SITankDesktop() {
                         <div className="flex flex-wrap justify-center gap-10 mb-20">
                             {STUDENT_DATA.map((f, i) => (
                                 <div key={i} className="w-80 bg-[#e8d5b5] text-[#120f0d] p-6 shadow-[8px_8px_0px_#5c4d3c] border-2 border-[#120f0d] text-center">
-                                    <div className="w-24 h-24 mx-auto rounded-full bg-[#120f0d] border-4 border-[#120f0d] flex items-center justify-center text-4xl font-bold text-[#d4b483] mb-4">
-                                        {f.name.charAt(0)}
+                                    <div className="w-24 h-24 mx-auto rounded-full bg-[#120f0d] border-4 border-[#120f0d] overflow-hidden flex items-center justify-center text-4xl font-bold text-[#d4b483] mb-4">
+                                        {f.image ? (
+                                            <SmartImage src={f.image} alt={f.name} fit="cover" className="w-full h-full" />
+                                        ) : (
+                                            f.name.charAt(0)
+                                        )}
                                     </div>
                                     <h3 className="text-xl font-bold uppercase">{f.name}</h3>
                                     <p className="text-xs font-mono font-bold mt-1 uppercase border-t border-black pt-2">{f.role}</p>
