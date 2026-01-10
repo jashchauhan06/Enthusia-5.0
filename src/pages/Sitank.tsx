@@ -83,7 +83,7 @@ function SITankDesktop() {
                         </div>
 
                         <div className="relative h-[400px] border-4 border-[#2c241b] bg-[#1a1612] p-2 shadow-2xl rotate-2 hover:rotate-0 transition-transform duration-500">
-                            <SmartImage src="/images/sitnovate/about.jpg" alt="About" fit="cover" className="w-full h-full" />
+                            <SmartImage src="/images/sitank/1.JPG" alt="About" fit="cover" className="w-full h-full" />
                         </div>
                     </div>
 
@@ -132,10 +132,10 @@ function SITankDesktop() {
                                 {MARQUEE_DATA.map((img, idx) => (
                                     <div key={idx} className="relative w-80 aspect-[4/3] bg-white p-2 shadow-[5px_5px_15px_rgba(0,0,0,0.5)] flex-shrink-0">
                                         <div className="h-full w-full relative overflow-hidden bg-black">
-                                            <SmartImage src={`/images/sitnovate/${img.index}.${img.ext}`} alt="Trend" fit="cover" />
+                                            <SmartImage src={`/images/sitank/${img.index}.${img.ext}`} alt="Trend" fit="cover" />
                                         </div>
                                         <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-24 h-8 bg-[#d4b483]/80 opacity-80 rotate-1"></div>
-                                        <p className="text-black font-mono text-xs text-center mt-1">FIG_0{img.index}.DAT</p>
+
                                     </div>
                                 ))}
                             </motion.div>

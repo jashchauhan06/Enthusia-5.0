@@ -31,8 +31,8 @@ export const SmartImage = ({ src, alt, className, fit = "cover" }: { src: string
 
 // --- DATA ---
 const HIGHLIGHTS_DATA = [
-    { index: 1, ext: 'JPG' }, { index: 2, ext: 'JPG' }, { index: 3, ext: 'jpg' },
-    { index: 4, ext: 'jpg' }, { index: 5, ext: 'png' }, { index: 6, ext: 'png' }
+    { index: 1, ext: 'JPG' }, { index: 2, ext: 'JPG' }, { index: 3, ext: 'JPG' },
+    { index: 4, ext: 'JPG' }, { index: 5, ext: 'JPG' }
 ];
 export const MARQUEE_DATA = [...HIGHLIGHTS_DATA, ...HIGHLIGHTS_DATA];
 
