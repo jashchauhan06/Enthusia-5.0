@@ -20,6 +20,7 @@ import { SchedulePage } from "@/pages/SchedulePage";
 import { SmoothScrollProvider } from "@/components/providers/smooth-scroll-provider";
 import { useBreakpoint } from "@/hooks/useBreakpoint";
 import { SpeedInsights } from '@vercel/speed-insights/react';
+import CodeSprintPage from "./pages/CodeSprint";
 
 function DesktopApp() {
   return (
@@ -32,6 +33,7 @@ function DesktopApp() {
         <Route path="/techfest" element={<TechFestPage />} />
         <Route path="/sitnovate" element={<SITNovatePage />} />
         <Route path="/events/sitank" element={<Sitank />} />
+        <Route path="/events/codesprint" element={<CodeSprintPage />} />
         <Route path="/cultural-fest" element={<CulturalFestPage />} />
         <Route path="/sponsors" element={<SponsorsPage />} />
         <Route path="/gallery" element={<GalleryPage />} />
@@ -55,6 +57,7 @@ function MobileApp() {
         <Route path="/techfest" element={<TechFestPage />} />
         <Route path="/sitnovate" element={<SITNovatePage />} />
         <Route path="/events/sitank" element={<Sitank />} />
+        <Route path="/events/codesprint" element={<CodeSprintPage />} />
         <Route path="/cultural-fest" element={<CulturalFestPage />} />
         <Route path="/sponsors" element={<SponsorsPage />} />
         <Route path="/gallery" element={<GalleryPage />} />
