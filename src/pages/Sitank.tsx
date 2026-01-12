@@ -17,12 +17,42 @@ import {
     FAQSection
 } from "@/sections/sitank/shared";
 import { SITankMobile } from "@/sections/sitank-mobile";
+import { useEffect, useState } from "react";
 
 // --- 4. DESKTOP COMPONENT ---
 function SITankDesktop() {
     const navigate = useNavigate();
     const { scrollY } = useScroll();
     const textY = useTransform(scrollY, [0, 500], [0, 100]);
+    const [timeRemaining, SetTimeRemaining] = useState({
+        days: 0,
+        hours: 0,
+        minutes: 0,
+        sec: 0
+    })
+
+
+    const handleTimeout = () => {
+
+        const registrationOpensOn: Date = new Date(2026, 0, 14, 23, 59, 59)
+        const currentDate = new Date(Date.now())
+        SetTimeRemaining({
+            days: registrationOpensOn.getDate() - currentDate.getDate(),
+            hours: registrationOpensOn.getHours() - currentDate.getHours(),
+            minutes: registrationOpensOn.getMinutes() - currentDate.getMinutes(),
+            sec: registrationOpensOn.getSeconds() - currentDate.getSeconds()
+        })
+
+    }
+
+    useEffect(() => {
+        const id = setInterval(handleTimeout, 1000)
+
+        return () => {
+            clearInterval(id)
+        }
+    }, [])
+
 
     return (
         <section className="relative w-full min-h-screen bg-[#120f0d] text-[#e8d5b5] font-serif overflow-hidden selection:bg-[#d4b483] selection:text-black">
@@ -175,11 +205,22 @@ function SITankDesktop() {
                     {/* CTA */}
                     <div className="text-center py-20 border-t border-[#5c4d3c]">
                         <h2 className="text-4xl font-bold text-[#d4b483] mb-8">Ready to Close the Deal?</h2>
-                        <button
+                        {/* <button
                             onClick={() => navigate('/register')}
                             className="px-12 py-5 bg-[#22c55e] text-[#120f0d] font-mono font-bold tracking-widest uppercase hover:bg-[#16a34a] transition-colors shadow-[6px_6px_0px_#120f0d]"
                         >
                             Register Now
+                        </button> */}
+                        <button
+                            disabled
+                            onClick={() => navigate('/register')}
+                            className="px-12 py-5 bg-[#22c55e] w-80 text-[#120f0d] font-mono font-bold tracking-widest uppercase transition-colors shadow-[6px_6px_0px_#120f0d] rounded"
+                        >
+                            Registeration Opens in:
+                            <span className="text-red-800">
+                                {`${timeRemaining.days} Days ${timeRemaining.hours} hours ${timeRemaining.minutes} min ${timeRemaining.sec} sec`}
+                            </span>
+                            <span></span>
                         </button>
                     </div>
 

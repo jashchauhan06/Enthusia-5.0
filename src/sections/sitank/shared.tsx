@@ -213,6 +213,9 @@ export const FAQSection = () => {
                         </div>
                     </div>
                 ))}
+                <div className="relative h-auto scale-80 border-4 border-[#2c241b] bg-[#1a1612] p-2 shadow-2xl rotate-2 hover:rotate-0 transition-transform duration-500">
+                <SmartImage src="/images/sitank/poster.jpeg" alt="Poster" className="object-cover" />
+            </div>
             </div>
         </div>
     );
