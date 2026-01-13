@@ -2,7 +2,7 @@ import { ContactForm } from './contact-form';
 import { FooterHero } from './footer-hero';
 import { FooterBottom } from './footer-bottom';
 
-export function Footer() {
+export function Footer({event_name}: {event_name: string}) {
   return (
     <section 
       id="footer" 
@@ -12,10 +12,10 @@ export function Footer() {
         {/* Main Content Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
           {/* Left Column - Hero Content */}
-          <FooterHero />
+          <FooterHero event_name={event_name}/>
 
           {/* Right Column - Contact Form */}
-          <ContactForm />
+          <ContactForm event_name={event_name}/>
         </div>
 
         {/* Bottom Section */}

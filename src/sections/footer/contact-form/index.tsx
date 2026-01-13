@@ -3,7 +3,7 @@ import confetti from 'canvas-confetti';
 import RainbowButton from '@/components/magicui/rainbow-button';
 import { useContactForm } from '@/hooks/useContactForm';
 
-export function ContactForm() {
+export function ContactForm({event_name = "Enthusia 5.0"} : {event_name : string | null}) {
   const { isSubmitting, isSuccess, message, isSubmitSuccessful, onSubmit } = useContactForm();
 
   // Fireworks confetti effect
@@ -106,7 +106,7 @@ export function ContactForm() {
         </label>
         <textarea
           name="message"
-          placeholder="Your message or questions about ENTHUSIA 5.0..."
+          placeholder={`Your message or questions about ${event_name? event_name : "ENTHUSIA 5.0..."}`}
           rows={8}
           required
           className="w-full px-4 py-3 bg-background border border-border rounded-lg font-body text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-ring transition-colors resize-none"

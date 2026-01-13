@@ -317,14 +317,14 @@ export default function SITank() {
                         <ProgressiveBlur direction="top" className="fixed top-0 left-0 w-full h-32 z-40 pointer-events-none" blurIntensity={1} />
                         <Sidebar />
                         <SITankMobile />
-                        <Footer />
+                        <Footer event_name={"SITank"}/>
                     </>
                 ) : (
                     <>
                         <NavBar />
                         <main className="w-full">
                             <SITankDesktop />
-                            <Footer />
+                            <Footer event_name={"SITank 2.0"}/>
                         </main>
                     </>
                 )}
