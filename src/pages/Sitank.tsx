@@ -76,9 +76,9 @@ function SITankDesktop() {
                             SITANK 2.0
                         </h1>
 
-                        <p className="text-2xl text-[#a89070] font-serif italic mb-12 bg-[#120f0d]/60 px-6 py-2 inline-block rounded-lg backdrop-blur-sm">
-                            "Risk Hai Toh Ishq Hai"
-                        </p>
+                        {/* <p className="text-2xl text-[#a89070] font-serif italic mb-12 bg-[#120f0d]/60 px-6 py-2 inline-block rounded-lg backdrop-blur-sm">
+                            
+                        </p> */}
 
                         <div className="flex gap-6 justify-center">
                             <button
@@ -86,6 +86,12 @@ function SITankDesktop() {
                                 className="px-10 py-4 bg-[#d4b483] text-[#120f0d] font-mono font-bold tracking-widest hover:bg-[#c2a270] transition-colors border-2 border-[#d4b483] shadow-[4px_4px_0px_#5c4d3c] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none"
                             >
                                 INVEST NOW
+                            </button>
+                            <button
+                                onClick={() => navigate('https://enthusia-5-0.netlify.app/#techfest-events')}
+                                className="px-10 py-4 bg-[#d4b483] text-[#120f0d] font-mono font-bold tracking-widest hover:bg-[#c2a270] transition-colors border-2 border-[#d4b483] shadow-[4px_4px_0px_#5c4d3c] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none"
+                            >
+                                Go Back
                             </button>
                         </div>
                     </motion.div>
@@ -100,22 +106,91 @@ function SITankDesktop() {
                 <div className="max-w-[1400px] mx-auto px-8 py-32">
 
                     {/* ABOUT */}
-                    <div className="mb-40 grid lg:grid-cols-2 gap-16 items-center">
-                        <div className="bg-[#1a1612] p-10 border border-[#5c4d3c] shadow-[10px_10px_0px_#2c241b] relative">
-                            <div className="absolute top-4 right-4 text-red-500 border-2 border-red-500 px-2 py-1 font-mono text-sm font-bold rotate-12 opacity-80">CONFIDENTIAL</div>
-                            <h2 className="text-4xl font-bold mb-6 text-[#d4b483] uppercase tracking-widest border-b border-[#5c4d3c] pb-4">The Master Plan</h2>
-                            <p className="text-lg text-[#a89070] leading-relaxed font-mono mb-6">
+                    <div className="flex flex-col mb-40">
+                        <div className="mb-20 grid lg:grid-cols-2 gap-16 items-center">
+                            <div className="bg-[#1a1612] p-10 border border-[#5c4d3c] shadow-[10px_10px_0px_#2c241b] relative">
+                                <div className="absolute top-4 right-4 text-red-500 border-2 border-red-500 px-2 py-1 font-mono text-sm font-bold rotate-12 opacity-80">CONFIDENTIAL</div>
+                                <h2 className="text-4xl font-bold mb-6 text-[#d4b483] uppercase tracking-widest border-b border-[#5c4d3c] pb-4">The Master Plan</h2>
+                                <p className="text-lg text-[#a89070] leading-relaxed font-mono mb-6">
 
 
-                                SITank 2.0 is a dynamic Pitch Deck competition organized by the E-Cell of Symbiosis Institute of Technology, Nagpur aimed at providing startups with a platform to present their innovative ideas to potential investors. This event offers entrepreneurs the unique opportunity to gain exposure, secure funding, and receive invaluable mentorship from industry leaders. By connecting startups with investors, mentors, and partners, SITank fosters a thriving entrepreneurial ecosystem at SIT and beyond, encouraging the growth of groundbreaking businesses and empowering the next generation of innovators. It’s not just a competition; it’s a gateway to transforming ideas into impactful ventures.
-                            </p>
-                            <p className="text-[#d4b483] italic text-xl">
-                                "Success kya hai? Failure ke baad ka chapter."
-                            </p>
+                                    SITank 2.0 is a dynamic Pitch Deck competition organized by the E-Cell of Symbiosis Institute of Technology, Nagpur aimed at providing startups with a platform to present their innovative ideas to potential investors. This event offers entrepreneurs the unique opportunity to gain exposure, secure funding, and receive invaluable mentorship from industry leaders. By connecting startups with investors, mentors, and partners, SITank fosters a thriving entrepreneurial ecosystem at SIT and beyond, encouraging the growth of groundbreaking businesses and empowering the next generation of innovators. It’s not just a competition; it’s a gateway to transforming ideas into impactful ventures.
+                                </p>
+                            </div>
+
+                            <div className="relative h-[400px] border-4 border-[#2c241b] bg-[#1a1612] p-2 shadow-2xl rotate-2 hover:rotate-0 transition-transform duration-500">
+                                <SmartImage src="/images/sitank/1.JPG" alt="About" fit="cover" className="w-full h-full" />
+                            </div>
                         </div>
 
-                        <div className="relative h-[400px] border-4 border-[#2c241b] bg-[#1a1612] p-2 shadow-2xl rotate-2 hover:rotate-0 transition-transform duration-500">
-                            <SmartImage src="/images/sitank/1.JPG" alt="About" fit="cover" className="w-full h-full" />
+
+                        <div >
+                            <p className="text-center text-5xl font-bold text-[#d4b483] tracking-tighter mb-10 " style={{fontFamily: "''"}}>Events under SITank 2.0</p>
+                            <div className="bg-[#1a1612] mx-20 p-10 border border-[#5c4d3c] shadow-[10px_10px_0px_#2c241b] relative">
+                                <div className="flex gap-3">
+                                    <div className="w-full">
+                                        <h2 className="text-4xl font-bold mb-6 text-[#d4b483] uppercase tracking-widest border-b border-[#5c4d3c] pb-4">Pitch to win</h2>
+                                        <p className="text-lg text-[#a89070] leading-relaxed font-mono mb-6">
+                                            <span id="flex event-1 w-full">
+                                                <ul className="flex gap-2 flex-col list-disc ">
+
+                                                    <li>
+
+                                                        Present your startup to a
+                                                        panel of judges
+                                                    </li>
+                                                    <li>
+
+                                                        Focus on market fit,
+                                                        scalability & revenue
+                                                    </li>
+                                                    <li>
+
+                                                        Real VC-style pitching
+                                                        experience
+                                                    </li>
+                                                    <li>
+
+                                                        Opportunity for
+                                                        mentorship & investment
+                                                        exposure
+                                                    </li>
+                                                </ul>
+                                            </span>
+                                        </p>
+                                    </div>
+                                    <div className="h-full w-1 bg-[#a89070]"></div>
+                                    <div className="w-full">
+                                        <h2 className="text-4xl font-bold mb-6 text-[#d4b483] uppercase tracking-widest border-b border-[#5c4d3c] pb-4">Ideathon</h2>
+                                        <p className="text-lg text-[#a89070] leading-relaxed font-mono mb-6">
+                                            <span id="flex event-1">
+                                                <ul className="flex gap-2 flex-col list-disc">
+
+                                                    <li>
+
+                                                        Build solutions for realworld problem statements
+                                                    </li>
+                                                    <li>
+
+                                                        Convert ideas into
+                                                        Minimum Viable Products
+                                                    </li>
+                                                    <li>
+
+                                                        Compete on innovation +
+                                                        execution
+                                                    </li>
+                                                    <li>
+
+                                                        Learn how startups are
+                                                        actually built
+                                                    </li>
+                                                </ul>
+                                            </span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
@@ -214,13 +289,12 @@ function SITankDesktop() {
                         <button
                             disabled
                             onClick={() => navigate('/register')}
-                            className="px-12 py-5 bg-[#22c55e] w-80 text-[#120f0d] font-mono font-bold tracking-widest uppercase transition-colors shadow-[6px_6px_0px_#120f0d] rounded"
+                            className="px-12 py-5 bg-[#57ff95] cursor-no-drop w-80 text-[#120f0d] font-mono font-bold tracking-widest uppercase transition-colors shadow-[6px_6px_0px_#120f0d] rounded"
                         >
                             Registeration Opens in:
                             <span className="text-red-800">
                                 {`${timeRemaining.days} Days ${timeRemaining.hours} hours ${timeRemaining.minutes} min ${timeRemaining.sec} sec`}
                             </span>
-                            <span></span>
                         </button>
                     </div>
 

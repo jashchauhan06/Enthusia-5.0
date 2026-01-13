@@ -135,7 +135,6 @@ export const MarketWatchSection = () => {
                         className="relative"
                     >
                         <div className="relative w-[280px] h-[200px] md:w-[600px] md:h-[400px] bg-[#1a1612] p-2 shadow-[20px_20px_0px_rgba(0,0,0,0.5)] border border-[#5c4d3c] transform -rotate-2 hover:rotate-0 transition-transform duration-500">
-                            <SmartImage src="/images/ashneer-grover.png" alt="Guest_Photo" fit="cover" />
                             <div className="absolute top-4 left-4 flex items-center gap-2 bg-red-600 px-3 py-1 text-white font-mono text-xs font-bold animate-pulse shadow-lg">
                                 <div className="w-2 h-2 bg-white rounded-full"></div>
                                 LIVE BROADCAST
