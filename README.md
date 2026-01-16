@@ -1,152 +1,16 @@
-# SITNovate - Enthusia 5.0 Official Website
+# React + Vite
 
-A modern, interactive website for SITNovate's Enthusia 5.0 - the premier techno-cultural fest of Symbiosis Institute of Technology, Nagpur.
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-## 🚀 Features
+Currently, two official plugins are available:
 
-### 🎯 Main Website
-- **Interactive 3D Hero Section** with Spline animations
-- **Responsive Design** optimized for all devices
-- **Modern UI/UX** with smooth animations using Framer Motion
-- **Event Information** for both TechFest and Cultural Fest
-- **Sponsors Showcase** with 3D carousel displays
-- **Gallery** with past event highlights
-- **Contact Information** and venue details
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-### 🛠 Technical Stack
-- **Frontend**: React 19 + TypeScript + Vite
-- **Styling**: Tailwind CSS 4.x with custom animations
-- **3D Graphics**: Three.js + React Three Fiber + Spline
-- **Animations**: Framer Motion + GSAP
-- **Deployment**: Vercel
+## React Compiler
 
-## 📦 Installation
+The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
-### Prerequisites
-- Node.js 18+ 
-- npm or yarn
+## Expanding the ESLint configuration
 
-### Setup
-
-1. **Clone the repository**
-```bash
-git clone https://github.com/your-username/sitnovate.git
-cd sitnovate
-```
-
-2. **Install dependencies**
-```bash
-npm install
-```
-
-3. **Start Development Server**
-```bash
-npm run dev
-```
-
-Visit `http://localhost:5173` to see the application.
-
-## 🏗 Project Structure
-
-```
-src/
-├── components/          # Reusable UI components
-│   ├── navigation/     # Navigation components
-│   ├── sponsors/       # Sponsor showcase components
-│   └── ui/            # Base UI components
-├── pages/              # Page components
-│   └── ...           # Main website pages
-├── sections/           # Page sections
-│   ├── hero/          # Hero sections
-│   ├── how-i-work/    # Event information sections
-│   └── footer/        # Footer components
-├── hooks/              # Custom React hooks
-├── lib/               # Utility libraries
-├── stores/            # Zustand state management
-└── utils/             # Helper functions
-```
-
-## 🎨 Key Features
-
-### 3D Interactive Elements
-- Spline-powered hero animations
-- Three.js sponsor carousels
-- Smooth scroll animations with Lenis
-- GSAP-powered micro-interactions
-
-### Responsive Design
-- Mobile-first approach
-- Breakpoint-specific layouts
-- Touch-friendly interactions
-- Optimized performance across devices
-
-## 🚀 Deployment
-
-### Vercel Deployment
-
-1. **Connect to Vercel**
-```bash
-npm i -g vercel
-vercel
-```
-
-2. **Build Settings**
-- Build Command: `npm run build`
-- Output Directory: `dist`
-- Install Command: `npm install`
-
-## 📚 Documentation
-
-- [`README.md`](./README.md) - Main project documentation
-
-## 🛠 Available Scripts
-
-```bash
-npm run dev          # Start development server
-npm run build        # Build for production
-npm run preview      # Preview production build
-npm run lint         # Run ESLint
-npm run analyze      # Analyze bundle size
-```
-
-## 🎯 Event Information
-
-**Enthusia 5.0** - The ultimate techno-cultural extravaganza featuring:
-
-### TechFest
-- Hackathons and coding competitions
-- Technical workshops and seminars
-- Innovation showcases
-- Industry expert sessions
-
-### Cultural Fest
-- Music and dance performances
-- Art and literary competitions
-- Cultural showcases
-- Entertainment events
-
-**Venue**: Symbiosis Institute of Technology, Nagpur, Maharashtra, India
-**Contact**: src.sit@sitnagpur.siu.edu.in
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🙏 Acknowledgments
-
-- Symbiosis Institute of Technology, Nagpur
-- All sponsors and partners
-- The amazing development team
-- Event organizers and volunteers
-
----
-
-**Built with ❤️ for Enthusia 5.0**
+If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
