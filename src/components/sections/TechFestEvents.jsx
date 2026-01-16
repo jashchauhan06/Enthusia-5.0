@@ -358,11 +358,18 @@ const TechFestEvents = forwardRef((props, ref) => {
                     .scifi-card { width: 45%; max-width: none; height: 280px; }
                 }
                 @media (max-width: 600px) {
+                    .tech-events-section {
+                        padding: 80px 20px 120px 20px !important;
+                        min-height: 100vh !important;
+                    }
+                    .tech-events-scroll-wrapper {
+                        padding-bottom: 3rem !important;
+                    }
                     .tech-events-container {
                         display: grid !important;
                         grid-template-columns: repeat(2, 1fr) !important;
                         gap: 0.6rem !important;
-                        padding: 0 0.4rem !important;
+                        padding: 0 0.4rem 3rem 0.4rem !important;
                     }
                     .scifi-card { 
                         width: 100% !important; 
