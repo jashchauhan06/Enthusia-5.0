@@ -1,6 +1,5 @@
 
-import React, { forwardRef, useState, useRef, useImperativeHandle, useEffect } from 'react';
-import { gsap } from 'gsap';
+import React, { forwardRef, useRef, useImperativeHandle, useEffect } from 'react';
 
 const teamMembers = [
     { name: "Jash Chauhan", role: "Web Dev Lead", img: "/team/Jash.jpg" },
@@ -20,74 +19,43 @@ const Team = forwardRef((props, ref) => {
     const innerRef = useRef(null);
     const textRef = useRef(null);
 
-    // Logic State
-    const [progress, setProgress] = useState(0);
-    const isAnimating = useRef(false);
+    const maxRadius = 260;
 
-    const maxRadius = 260; // Reduced to 260 to fix header overlap
-    const currentRadius = useRef(0);
+    useEffect(() => {
+        // Animate on mount/visibility
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        // Trigger animation when section becomes visible
+                        setTimeout(() => {
+                            outerRef.current?.classList.add('active');
+                            innerRef.current?.classList.add('active');
+                            textRef.current?.classList.add('visible');
 
-    const updateVisuals = (newProgress, immediate = false) => {
-        const targetRadius = newProgress * maxRadius;
-
-        // Classes
-        if (newProgress > 0.1) {
-            outerRef.current?.classList.add('active');
-            innerRef.current?.classList.add('active');
-        } else {
-            outerRef.current?.classList.remove('active');
-            innerRef.current?.classList.remove('active');
-        }
-
-        if (newProgress > 0.7) {
-            textRef.current?.classList.add('visible');
-        } else {
-            textRef.current?.classList.remove('visible');
-        }
-
-        const duration = immediate ? 0 : 0.6;
-
-        gsap.to(currentRadius, {
-            current: targetRadius,
-            duration: duration,
-            ease: 'power2.out',
-            onUpdate: () => {
-                const r = currentRadius.current;
-                memberRefs.current.forEach((member, i) => {
-                    if (!member) return;
-                    const angle = i * (Math.PI / 4); // 8 members -> 45 deg
-                    const x = r * Math.cos(angle);
-                    const y = r * Math.sin(angle);
-                    member.style.transform = `translate(${x}px, ${y}px)`;
+                            // Animate members to their positions
+                            memberRefs.current.forEach((member, i) => {
+                                if (!member) return;
+                                const angle = i * (Math.PI / 4);
+                                const x = maxRadius * Math.cos(angle);
+                                const y = maxRadius * Math.sin(angle);
+                                member.style.transform = `translate(${x}px, ${y}px)`;
+                            });
+                        }, 100);
+                    }
                 });
-            }
-        });
-    };
+            },
+            { threshold: 0.3 }
+        );
+
+        if (sectionRef.current) {
+            observer.observe(sectionRef.current);
+        }
+
+        return () => observer.disconnect();
+    }, []);
 
     useImperativeHandle(ref, () => ({
-        next: () => {
-            if (progress >= 1) return false;
-            // Complete animation in one step
-            const newP = 1;
-            setProgress(newP);
-            updateVisuals(newP);
-            return true;
-        },
-        prev: () => {
-            if (progress <= 0) return false;
-            // Reverse animation in one step
-            const newP = 0;
-            setProgress(newP);
-            updateVisuals(newP);
-            return true;
-        },
-        isFinished: () => progress >= 1,
-        isAtStart: () => progress <= 0,
-        reset: (toStart) => {
-            const newP = toStart ? 0 : 1;
-            setProgress(newP);
-            updateVisuals(newP, true);
-        },
         type: 'TEAM',
         el: sectionRef.current
     }));
