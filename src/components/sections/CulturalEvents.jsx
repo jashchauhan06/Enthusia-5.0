@@ -447,7 +447,7 @@ const CulturalEvents = forwardRef((props, ref) => {
                         height: calc(100vh - 120px) !important;
                         overflow-y: auto !important;
                         overflow-x: hidden !important;
-                        padding-bottom: 2rem !important;
+                        padding-bottom: 4rem !important;
                         -webkit-overflow-scrolling: touch;
                     }
                     .cultural-events-scroll-wrapper::-webkit-scrollbar {
@@ -465,7 +465,7 @@ const CulturalEvents = forwardRef((props, ref) => {
                         flex-direction: column !important;
                         align-items: center !important;
                         gap: 1rem !important;
-                        padding: 0 1rem 2rem 1rem !important;
+                        padding: 0 1rem 4rem 1rem !important;
                     }
                     .scifi-card { 
                         width: 100% !important;
