@@ -5,17 +5,52 @@ import ElectricBorder from '../ElectricBorder';
 const TechFestEvents = forwardRef((props, ref) => {
     const sectionRef = useRef(null);
     const containerRef = useRef(null);
+    const scrollWrapperRef = useRef(null);
     const [cardsVisible, setCardsVisible] = useState(false);
     const [viewState, setViewState] = useState(1);
     const [scrollTop, setScrollTop] = useState(0);
-    const SCROLL_STEP = 150;
+    const [isMobile, setIsMobile] = useState(false);
+    
+    const SCROLL_STEP_DESKTOP = 150;
+    const SCROLL_STEP_MOBILE = 100;
+    const SCROLL_STEP = isMobile ? SCROLL_STEP_MOBILE : SCROLL_STEP_DESKTOP;
+
+    // Detect mobile on mount and resize
+    useEffect(() => {
+        const checkMobile = () => setIsMobile(window.innerWidth <= 900);
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+        return () => window.removeEventListener('resize', checkMobile);
+    }, []);
+
+    // Sync native scroll on mobile
+    useEffect(() => {
+        if (isMobile && scrollWrapperRef.current) {
+            const wrapper = scrollWrapperRef.current;
+            const handleNativeScroll = () => {
+                setScrollTop(wrapper.scrollTop);
+            };
+            wrapper.addEventListener('scroll', handleNativeScroll, { passive: true });
+            return () => wrapper.removeEventListener('scroll', handleNativeScroll);
+        }
+    }, [isMobile]);
 
     useImperativeHandle(ref, () => ({
         next: () => {
+            if (isMobile && scrollWrapperRef.current) {
+                const wrapper = scrollWrapperRef.current;
+                const maxScroll = wrapper.scrollHeight - wrapper.clientHeight;
+                if (wrapper.scrollTop < maxScroll - 10) {
+                    wrapper.scrollBy({ top: SCROLL_STEP, behavior: 'smooth' });
+                    return true;
+                }
+                return false;
+            }
+
             if (containerRef.current && sectionRef.current) {
                 const viewportHeight = sectionRef.current.clientHeight;
                 const contentHeight = containerRef.current.scrollHeight;
-                const maxScroll = Math.max(0, contentHeight - viewportHeight + 180); // 180px buffer for mobile padding/header
+                const maxScroll = Math.max(0, contentHeight - viewportHeight + 180);
                 if (scrollTop < maxScroll) {
                     setScrollTop(prev => Math.min(prev + SCROLL_STEP, maxScroll));
                     return true;
@@ -24,6 +59,15 @@ const TechFestEvents = forwardRef((props, ref) => {
             return false;
         },
         prev: () => {
+            if (isMobile && scrollWrapperRef.current) {
+                const wrapper = scrollWrapperRef.current;
+                if (wrapper.scrollTop > 10) {
+                    wrapper.scrollBy({ top: -SCROLL_STEP, behavior: 'smooth' });
+                    return true;
+                }
+                return false;
+            }
+
             if (scrollTop > 0) {
                 setScrollTop(prev => Math.max(prev - SCROLL_STEP, 0));
                 return true;
@@ -31,6 +75,12 @@ const TechFestEvents = forwardRef((props, ref) => {
             return false;
         },
         isFinished: () => {
+            if (isMobile && scrollWrapperRef.current) {
+                const wrapper = scrollWrapperRef.current;
+                const maxScroll = wrapper.scrollHeight - wrapper.clientHeight;
+                return wrapper.scrollTop >= maxScroll - 10;
+            }
+
             if (!containerRef.current || !sectionRef.current) return true;
             const viewportHeight = sectionRef.current.clientHeight;
             const contentHeight = containerRef.current.scrollHeight;
@@ -38,11 +88,20 @@ const TechFestEvents = forwardRef((props, ref) => {
             return scrollTop >= maxScroll;
         },
         isAtStart: () => {
+            if (isMobile && scrollWrapperRef.current) {
+                return scrollWrapperRef.current.scrollTop <= 10;
+            }
             return scrollTop <= 0;
         },
         reset: (toStart) => {
             setViewState(1);
             setCardsVisible(true);
+            
+            if (isMobile && scrollWrapperRef.current) {
+                scrollWrapperRef.current.scrollTo({ top: toStart ? 0 : scrollWrapperRef.current.scrollHeight, behavior: 'instant' });
+                return;
+            }
+
             if (toStart) {
                 setScrollTop(0);
             } else {
@@ -135,8 +194,34 @@ const TechFestEvents = forwardRef((props, ref) => {
 
                 .tech-events-scroll-wrapper {
                     width: 100%;
-                    height: auto;
+                    height: 100%;
+                    overflow: visible;
                     transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+                }
+
+                /* Mobile-optimized: use native scroll with momentum */
+                @media (max-width: 900px) {
+                    .tech-events-scroll-wrapper {
+                        overflow-y: auto !important;
+                        overflow-x: hidden !important;
+                        -webkit-overflow-scrolling: touch;
+                        scroll-behavior: smooth;
+                        transition: none;
+                        padding-bottom: 60px;
+                    }
+                    
+                    .tech-events-scroll-wrapper::-webkit-scrollbar {
+                        width: 4px;
+                    }
+                    
+                    .tech-events-scroll-wrapper::-webkit-scrollbar-track {
+                        background: rgba(255, 255, 255, 0.05);
+                    }
+                    
+                    .tech-events-scroll-wrapper::-webkit-scrollbar-thumb {
+                        background: rgba(139, 92, 246, 0.5);
+                        border-radius: 2px;
+                    }
                 }
 
                 .tech-events-header {
@@ -407,7 +492,11 @@ const TechFestEvents = forwardRef((props, ref) => {
             `}</style>
 
             <div className="tech-events-section">
-                <div className="tech-events-scroll-wrapper" style={{ transform: `translateY(${-scrollTop}px)` }}>
+                <div 
+                    className="tech-events-scroll-wrapper" 
+                    ref={scrollWrapperRef}
+                    style={!isMobile ? { transform: `translateY(${-scrollTop}px)` } : undefined}
+                >
                     <div className="tech-events-container-wrapper" ref={containerRef}>
                         <div className={`tech-events-header ${cardsVisible ? 'visible' : ''}`}>
                             <h2 className="tech-events-title">Tech Events</h2>
