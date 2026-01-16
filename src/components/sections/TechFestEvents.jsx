@@ -359,17 +359,32 @@ const TechFestEvents = forwardRef((props, ref) => {
                 }
                 @media (max-width: 600px) {
                     .tech-events-section {
-                        padding: 80px 20px 120px 20px !important;
-                        min-height: 100vh !important;
+                        padding: 80px 20px 40px 20px !important;
+                        height: 100vh !important;
+                        overflow: hidden !important;
                     }
                     .tech-events-scroll-wrapper {
-                        padding-bottom: 3rem !important;
+                        height: calc(100vh - 120px) !important;
+                        overflow-y: auto !important;
+                        overflow-x: hidden !important;
+                        padding-bottom: 2rem !important;
+                        -webkit-overflow-scrolling: touch;
+                    }
+                    .tech-events-scroll-wrapper::-webkit-scrollbar {
+                        width: 4px;
+                    }
+                    .tech-events-scroll-wrapper::-webkit-scrollbar-track {
+                        background: rgba(255, 255, 255, 0.05);
+                    }
+                    .tech-events-scroll-wrapper::-webkit-scrollbar-thumb {
+                        background: rgba(139, 92, 246, 0.5);
+                        border-radius: 2px;
                     }
                     .tech-events-container {
                         display: grid !important;
                         grid-template-columns: repeat(2, 1fr) !important;
                         gap: 0.6rem !important;
-                        padding: 0 0.4rem 3rem 0.4rem !important;
+                        padding: 0 0.4rem 1rem 0.4rem !important;
                     }
                     .scifi-card { 
                         width: 100% !important; 

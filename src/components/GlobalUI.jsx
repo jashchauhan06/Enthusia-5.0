@@ -23,36 +23,65 @@ const GlobalUI = ({ audioInstance }) => {
             // Only init context if not already done
             if (audioContextRef.current) {
                 if (audioContextRef.current.state === 'suspended') {
-                    audioContextRef.current.resume();
+                    audioContextRef.current.resume().catch(() => {});
                 }
-                return;
+                return true;
             }
 
             try {
                 const AudioContext = window.AudioContext || window.webkitAudioContext;
+                // Create AudioContext - this MUST be called from a user gesture
                 audioContextRef.current = new AudioContext();
+                
+                // Resume immediately if suspended (some browsers suspend on creation)
+                if (audioContextRef.current.state === 'suspended') {
+                    audioContextRef.current.resume().catch(() => {});
+                }
+                
                 analyserRef.current = audioContextRef.current.createAnalyser();
                 analyserRef.current.fftSize = 2048;
 
                 // Create source from the EXISTING audio element
-                // Wrap in try-catch because re-connecting the same audio element 
-                // to a new context (on remount) might throw an error.
                 try {
                     const source = audioContextRef.current.createMediaElementSource(audio);
                     source.connect(analyserRef.current);
                     analyserRef.current.connect(audioContextRef.current.destination);
                 } catch (err) {
-                    console.warn("Visualizer connection failed (audio already connected?):", err);
-                    // We continue without connecting the visualizer, but audio still plays.
+                    // Audio element already connected to another context - ignore
                 }
+                return true;
             } catch (e) {
-                console.error("Audio Init Error", e);
+                // Silently fail - AudioContext creation blocked
+                return false;
             }
         };
 
         const renderVisualizer = () => {
             animationFrameRef.current = requestAnimationFrame(renderVisualizer);
-            if (!analyserRef.current) return;
+            
+            // Only render if analyser is ready
+            if (!analyserRef.current) {
+                // Draw flat line when no audio context
+                [leftCanvasRef.current, rightCanvasRef.current].forEach(cvs => {
+                    if (!cvs) return;
+                    const ctx = cvs.getContext('2d');
+                    if (cvs.width !== cvs.offsetWidth || cvs.height !== cvs.offsetHeight) {
+                        cvs.width = cvs.offsetWidth;
+                        cvs.height = cvs.offsetHeight;
+                    }
+                    ctx.clearRect(0, 0, cvs.width, cvs.height);
+                    ctx.lineWidth = 3;
+                    ctx.strokeStyle = '#ffffff';
+                    ctx.shadowBlur = 15;
+                    ctx.shadowColor = '#ffffff';
+                    ctx.globalAlpha = 0.8;
+                    ctx.beginPath();
+                    ctx.moveTo(0, cvs.height / 2);
+                    ctx.lineTo(cvs.width, cvs.height / 2);
+                    ctx.stroke();
+                });
+                return;
+            }
 
             const bufferLength = analyserRef.current.fftSize;
             const dataArray = new Uint8Array(bufferLength);
@@ -89,19 +118,16 @@ const GlobalUI = ({ audioInstance }) => {
             });
         };
 
+        // Start visualizer loop
         renderVisualizer();
 
         const unlock = () => {
             // Prevent multiple unlock attempts
             if (isInitializedRef.current) return;
             
-            initAudio();
-
-            if (audioContextRef.current && audioContextRef.current.state === 'suspended') {
-                audioContextRef.current.resume().catch(() => {
-                    // Silently ignore - will retry on next interaction
-                });
-            }
+            // Initialize audio context ONLY on user gesture - returns true if successful
+            const initialized = initAudio();
+            if (!initialized) return; // Failed to init, try again on next gesture
 
             // Try to play
             const playPromise = audio.play();
@@ -111,7 +137,7 @@ const GlobalUI = ({ audioInstance }) => {
                     // Remove all listeners once successfully playing
                     events.forEach(e => window.removeEventListener(e, genericUnlock));
                 }).catch(() => {
-                    // Silently wait for next user interaction - no console spam
+                    // Silently wait for next user interaction
                 });
             }
         };
