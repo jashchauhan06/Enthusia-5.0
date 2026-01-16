@@ -461,27 +461,32 @@ const CulturalEvents = forwardRef((props, ref) => {
                         border-radius: 2px;
                     }
                     .cultural-events-container {
-                        display: grid !important;
-                        grid-template-columns: repeat(2, 1fr) !important;
-                        gap: 0.6rem !important;
-                        padding: 0 0.4rem 1rem 0.4rem !important;
+                        display: flex !important;
+                        flex-direction: column !important;
+                        align-items: center !important;
+                        gap: 1rem !important;
+                        padding: 0 1rem 2rem 1rem !important;
                     }
                     .scifi-card { 
-                        width: 100% !important; 
-                        max-width: none !important; 
-                        height: 155px !important; 
-                        padding: 0.5rem 0.4rem !important;
+                        width: 100% !important;
+                        max-width: 320px !important;
+                        height: 280px !important;
+                        padding: 1.2rem 1rem !important;
                     }
-                    /* Ensure 5th card doesn't stretch or look weird */
-                    .scifi-card:nth-child(5) {
-                        grid-column: span 2;
-                        max-width: 155px !important;
-                        margin: 0 auto;
+                    .scifi-icon svg { 
+                        width: 36px !important; 
+                        height: 36px !important; 
                     }
-                    .scifi-title { font-size: 0.75rem !important; }
-                    .scifi-subtitle { font-size: 0.65rem !important; }
-                    .scifi-icon svg { width: 24px !important; height: 24px !important; }
-                    .scifi-desc { font-size: 0.5rem !important; }
+                    .scifi-title { 
+                        font-size: 1rem !important; 
+                    }
+                    .scifi-subtitle { 
+                        font-size: 0.85rem !important; 
+                    }
+                    .scifi-desc { 
+                        font-size: 0.7rem !important;
+                        margin-top: 1rem !important;
+                    }
                 }
             `}</style>
 
