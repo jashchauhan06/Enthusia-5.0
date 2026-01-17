@@ -79,8 +79,8 @@ const Contact = forwardRef((props, ref) => {
                             </div>
                             <div className="info-text">
                                 <h3>CONNECT</h3>
-                                <p>+91 0000000000</p>
-                                <p>+91 0000000000</p>
+                                <p>Sunidhi Haware - +91 84591 27073</p>
+                                <p>Prathmesh Raipurkar - +91 70200 35636</p>
                             </div>
                         </div>
 
