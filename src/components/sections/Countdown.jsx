@@ -5,7 +5,8 @@ const Countdown = forwardRef((props, ref) => {
     const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
 
     useEffect(() => {
-        const targetDate = new Date("Feb 12, 2026 00:00:00").getTime();
+        // Set target date to February 26, 2026 00:00:00 IST
+        const targetDate = new Date("2026-02-26T00:00:00+05:30").getTime();
 
         const update = () => {
             const now = new Date().getTime();
