@@ -5,8 +5,8 @@ const Countdown = forwardRef((props, ref) => {
     const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
 
     useEffect(() => {
-        // Set target date to February 26, 2026 00:00:00 IST
-        const targetDate = new Date("2026-02-26T00:00:00+05:30").getTime();
+        // Set target date to February 26, 2026 09:00:00 IST (when techfest starts)
+        const targetDate = new Date("2026-02-26T09:00:00+05:30").getTime();
 
         const update = () => {
             const now = new Date().getTime();
@@ -35,7 +35,7 @@ const Countdown = forwardRef((props, ref) => {
     return (
         <section className="countdown-section section" id="countdown" ref={ref}>
             <div className="countdown-container">
-                <h2 className="countdown-title fade-in">Countdown to the Final Night</h2>
+                <h2 className="countdown-title fade-in">Countdown to Enthusia 5.0</h2>
 
                 <div className="countdown-timer fade-in">
                     <div className="countdown-item">
