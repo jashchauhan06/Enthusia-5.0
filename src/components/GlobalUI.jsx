@@ -21,7 +21,7 @@ const GlobalUI = ({ audioInstance }) => {
 
     useEffect(() => {
         // Use provided audio or create new
-        const audio = audioInstance || new Audio('/bg.mp3');
+        const audio = audioInstance || new Audio('/bg.opus');
         if (!audioInstance) {
             audio.loop = true;
             audio.volume = 0.5;

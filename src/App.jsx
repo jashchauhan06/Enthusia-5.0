@@ -15,7 +15,7 @@ function App() {
 
   useEffect(() => {
     // 1. Audio Preloading
-    const audio = new Audio('/bg.mp3');
+    const audio = new Audio('/bg.opus');
     audio.loop = true;
     audio.volume = 0.5;
     audio.crossOrigin = 'anonymous';
