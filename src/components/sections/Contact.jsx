@@ -43,6 +43,21 @@ const Contact = forwardRef((props, ref) => {
                 .info-item-link:hover .info-text h3 {
                     color: #8b5cf6;
                 }
+                
+                /* Make only descriptive text pure white, keep headings original color */
+                .info-text p {
+                    color: #ffffff !important;
+                }
+                
+                .contact-form input,
+                .contact-form textarea {
+                    color: #ffffff !important;
+                }
+                
+                .contact-form input::placeholder,
+                .contact-form textarea::placeholder {
+                    color: rgba(255, 255, 255, 0.6) !important;
+                }
             `}</style>
             <div className="contact-container">
                 <h2 className="section-title contact-title">GET IN TOUCH</h2>
