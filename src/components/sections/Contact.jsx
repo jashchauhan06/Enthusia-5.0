@@ -16,6 +16,34 @@ const Contact = forwardRef((props, ref) => {
 
     return (
         <section className="contact-section section" id="contact" ref={sectionRef}>
+            <style>{`
+                .info-item-link {
+                    display: flex;
+                    align-items: flex-start;
+                    gap: 1rem;
+                    text-decoration: none;
+                    color: inherit;
+                    cursor: pointer;
+                    transition: all 0.3s ease;
+                    padding: 0.5rem;
+                    border-radius: 8px;
+                    margin: -0.5rem;
+                }
+                
+                .info-item-link:hover {
+                    background: rgba(139, 92, 246, 0.1);
+                    transform: translateX(5px);
+                }
+                
+                .info-item-link:hover .info-icon {
+                    color: #8b5cf6;
+                    transform: scale(1.1);
+                }
+                
+                .info-item-link:hover .info-text h3 {
+                    color: #8b5cf6;
+                }
+            `}</style>
             <div className="contact-container">
                 <h2 className="section-title contact-title">GET IN TOUCH</h2>
 
@@ -23,14 +51,16 @@ const Contact = forwardRef((props, ref) => {
                     {/* Left Side: Info */}
                     <div className="contact-info">
                         <div className="info-item">
-                            <a href="https://maps.app.goo.gl/RzmZxh7TqUT14pte9" target="_blank" rel="noopener noreferrer" className="info-icon">
-                                <MapPin size={24} />
+                            <a href="https://maps.app.goo.gl/RzmZxh7TqUT14pte9" target="_blank" rel="noopener noreferrer" className="info-item-link">
+                                <div className="info-icon">
+                                    <MapPin size={24} />
+                                </div>
+                                <div className="info-text">
+                                    <h3>LOCATION</h3>
+                                    <p>Symbiosis Institute of Technology</p>
+                                    <p>Nagpur, Maharashtra, India</p>
+                                </div>
                             </a>
-                            <div className="info-text">
-                                <h3>LOCATION</h3>
-                                <p>Symbiosis Institute of Technology</p>
-                                <p>Nagpur, Maharashtra, India</p>
-                            </div>
                         </div>
 
                         <div className="info-item">
