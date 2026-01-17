@@ -14,11 +14,19 @@ This project is configured for deployment on Vercel.
 ## Configuration
 
 The project is already configured with:
-- `vercel.json` - Vercel configuration file
-- Build command: `npm run build`
+- `vercel.json` - Vercel configuration file with SPA routing
+- `fix-permissions.js` - Cross-platform script to fix Vite binary permissions
+- Build command: `npm run build` (includes prebuild step)
 - Output directory: `dist`
-- Framework: Vite
+- Framework: Vite (auto-detected)
 - Node version: 20.x (automatically detected)
+
+## Permission Fix
+
+The project includes a `prebuild` script that automatically fixes permission issues with the Vite binary on Linux/Unix systems (like Vercel's build environment). This script:
+- Runs automatically before each build
+- Works cross-platform (Windows, Linux, macOS)
+- Fixes the "Permission denied" error (exit code 126)
 
 ## Environment Variables
 
@@ -37,3 +45,12 @@ To add a custom domain:
 ## Build Logs
 
 If deployment fails, check the build logs in the Vercel dashboard for detailed error messages.
+
+## Troubleshooting
+
+If you encounter build errors:
+1. Check that all dependencies are in `package.json`
+2. Verify the build works locally with `npm run build`
+3. Check Vercel build logs for specific error messages
+4. Ensure Node version compatibility (20.x recommended)
+

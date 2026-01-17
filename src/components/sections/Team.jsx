@@ -231,14 +231,20 @@ const Team = forwardRef((props, ref) => {
     };
 
     // Pagination handlers
-    const handleNextPage = () => {
+    const lastPaginationTime = useRef(0);
+    
+    const handleNextPage = (e) => {
+        e?.stopPropagation(); // Prevent event bubbling
         if (canGoNext) {
+            lastPaginationTime.current = Date.now();
             setCurrentPage(prev => prev + 1);
         }
     };
 
-    const handlePrevPage = () => {
+    const handlePrevPage = (e) => {
+        e?.stopPropagation(); // Prevent event bubbling
         if (canGoPrev) {
+            lastPaginationTime.current = Date.now();
             setCurrentPage(prev => prev - 1);
         }
     };
@@ -277,6 +283,11 @@ const Team = forwardRef((props, ref) => {
     // Imperative handle for scroll controller
     useImperativeHandle(ref, () => ({
         next: () => {
+            // Ignore scroll events shortly after pagination button click
+            if (Date.now() - lastPaginationTime.current < 500) {
+                return false; // Let the section transition happen
+            }
+
             // Re-check scroll state
             updateScrollState();
 
@@ -296,6 +307,11 @@ const Team = forwardRef((props, ref) => {
             return true;
         },
         prev: () => {
+            // Ignore scroll events shortly after pagination button click
+            if (Date.now() - lastPaginationTime.current < 500) {
+                return false; // Let the section transition happen
+            }
+
             // Re-check scroll state
             updateScrollState();
 
@@ -395,7 +411,7 @@ const Team = forwardRef((props, ref) => {
                         <div className="team-pagination-wrapper">
                             <button
                                 className="team-pagination-btn team-pagination-btn--prev"
-                                onClick={handlePrevPage}
+                                onClick={(e) => handlePrevPage(e)}
                                 disabled={!canGoPrev}
                                 aria-label="Previous page"
                             >
@@ -422,7 +438,7 @@ const Team = forwardRef((props, ref) => {
 
                             <button
                                 className="team-pagination-btn team-pagination-btn--next"
-                                onClick={handleNextPage}
+                                onClick={(e) => handleNextPage(e)}
                                 disabled={!canGoNext}
                                 aria-label="Next page"
                             >

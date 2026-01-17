@@ -41,6 +41,7 @@ const ScrollController = () => {
 
     // Scroll Accumulator refs to persist across renders
     const scrollAccumulatorRef = useRef(0);
+    const lastScrollDirectionRef = useRef(0); // Track last scroll direction
     const scrollThreshold = 100; // Increased to prevent accidental triggers
     const scrollDebounceTimerRef = useRef(null);
 
@@ -138,32 +139,34 @@ const ScrollController = () => {
         // Check if current section has internal scroll logic it wants to handle
         if (!forceDirect && currentRef && (currentRef.next || currentRef.prev)) {
             // Logic check
-            if (targetIndex > currentIndex) { // Next
+            if (targetIndex > currentIndex) { // Scrolling Next/Down
                 if (currentRef.isFinished && !currentRef.isFinished()) {
-                    // Mark that internal scroll is active to prevent accumulator issues
+                    // Section is not finished, let it handle the scroll
                     internalScrollActiveRef.current = true;
                     const consumed = currentRef.next();
                     if (consumed) {
                         lastTransitionTime.current = Date.now();
                         // Reset internal scroll flag after a delay
                         setTimeout(() => { internalScrollActiveRef.current = false; }, 200);
-                        return; // Consumed
+                        return; // Consumed - don't proceed to section transition
                     }
                     internalScrollActiveRef.current = false;
                 }
-            } else if (targetIndex < currentIndex) { // Prev
+                // If not consumed or section is finished, proceed to next section below
+            } else if (targetIndex < currentIndex) { // Scrolling Prev/Up
                 if (currentRef.isAtStart && !currentRef.isAtStart()) {
-                    // Mark that internal scroll is active to prevent accumulator issues
+                    // Section is not at start, let it handle the scroll
                     internalScrollActiveRef.current = true;
                     const consumed = currentRef.prev();
                     if (consumed) {
                         lastTransitionTime.current = Date.now();
                         // Reset internal scroll flag after a delay
                         setTimeout(() => { internalScrollActiveRef.current = false; }, 200);
-                        return; // Consumed
+                        return; // Consumed - don't proceed to section transition
                     }
                     internalScrollActiveRef.current = false;
                 }
+                // If not consumed or section is at start, proceed to prev section below
             }
         }
 
@@ -365,28 +368,74 @@ const ScrollController = () => {
             
             // Block scroll during transitions or cooldown
             if (isTransitioning.current || (now - lastTransitionTime.current < TRANSITION_COOLDOWN)) {
-                scrollAccumulatorRef.current = 0; // Reset accumulator during blocked state
+                scrollAccumulatorRef.current = 0;
+                lastScrollDirectionRef.current = 0;
+                if (scrollDebounceTimerRef.current) {
+                    clearTimeout(scrollDebounceTimerRef.current);
+                    scrollDebounceTimerRef.current = null;
+                }
                 return;
             }
             
             // Block scroll accumulation during internal section scrolling
             if (internalScrollActiveRef.current) {
                 scrollAccumulatorRef.current = 0;
+                lastScrollDirectionRef.current = 0;
+                if (scrollDebounceTimerRef.current) {
+                    clearTimeout(scrollDebounceTimerRef.current);
+                    scrollDebounceTimerRef.current = null;
+                }
                 return;
             }
 
-            if (scrollDebounceTimerRef.current) clearTimeout(scrollDebounceTimerRef.current);
+            // Determine scroll direction: 1 for down, -1 for up
+            const currentDirection = e.deltaY > 0 ? 1 : -1;
+            
+            // If direction changed from last scroll, completely reset accumulator
+            if (lastScrollDirectionRef.current !== 0 && currentDirection !== lastScrollDirectionRef.current) {
+                scrollAccumulatorRef.current = 0;
+                if (scrollDebounceTimerRef.current) {
+                    clearTimeout(scrollDebounceTimerRef.current);
+                }
+            }
+            
+            // Update last direction
+            lastScrollDirectionRef.current = currentDirection;
 
+            // Accumulate scroll in current direction
             scrollAccumulatorRef.current += e.deltaY;
 
+            // Check if threshold reached
             if (Math.abs(scrollAccumulatorRef.current) >= scrollThreshold) {
                 const currentIdx = activeIndexRef.current;
-                const direction = scrollAccumulatorRef.current > 0 ? 1 : -1;
-                scrollAccumulatorRef.current = 0; // Reset BEFORE calling to prevent double-triggers
-                dollyZoomToSection(currentIdx + direction);
+                // Use the SIGN of the accumulator, not the direction variable
+                // This ensures we use the actual accumulated direction
+                const navigationDirection = scrollAccumulatorRef.current > 0 ? 1 : -1;
+                
+                // Reset accumulator and direction BEFORE calling to prevent double-triggers
+                scrollAccumulatorRef.current = 0;
+                lastScrollDirectionRef.current = 0;
+                
+                // Clear any pending debounce timer
+                if (scrollDebounceTimerRef.current) {
+                    clearTimeout(scrollDebounceTimerRef.current);
+                    scrollDebounceTimerRef.current = null;
+                }
+                
+                // Navigate
+                dollyZoomToSection(currentIdx + navigationDirection);
+                return; // Exit early after navigation
             }
 
-            scrollDebounceTimerRef.current = setTimeout(() => { scrollAccumulatorRef.current = 0; }, 150);
+            // Reset accumulator after 250ms of no scrolling (increased for stability)
+            if (scrollDebounceTimerRef.current) {
+                clearTimeout(scrollDebounceTimerRef.current);
+            }
+            scrollDebounceTimerRef.current = setTimeout(() => { 
+                scrollAccumulatorRef.current = 0;
+                lastScrollDirectionRef.current = 0;
+                scrollDebounceTimerRef.current = null;
+            }, 250);
         };
 
         const handleKey = (e) => {
