@@ -56,7 +56,7 @@ const Countdown = forwardRef((props, ref) => {
                 </div>
 
                 <p className="countdown-date fade-in">
-                    <span style={{ color: 'white' }}>February 12th – 14th, 2026</span> • SIT Nagpur Campus
+                    <span style={{ color: 'white' }}>February 26th – 28th, 2026</span> • SIT Nagpur Campus
                 </p>
 
 

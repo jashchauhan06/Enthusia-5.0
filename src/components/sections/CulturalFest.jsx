@@ -13,7 +13,7 @@ const CulturalFest = forwardRef((props, ref) => {
             <div className="event-info fade-in">
                 <div className="event-info-item">
                     <div className="event-info-label">Date</div>
-                    <div className="event-info-value">February 12th - 14th, 2026</div>
+                    <div className="event-info-value">February 26th - 28th, 2026</div>
                 </div>
                 <div className="event-info-item">
                     <div className="event-info-label">Venue</div>

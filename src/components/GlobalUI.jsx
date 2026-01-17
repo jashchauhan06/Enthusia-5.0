@@ -216,7 +216,7 @@ const GlobalUI = ({ audioInstance }) => {
             </div>
 
             <div className="hero-footer-text fade-in">
-                ENTER THE PARALLEL FEST UNIVERSE 12 - 14 FEBRUARY 2026 • SIT NAGPUR
+                ENTER THE PARALLEL FEST UNIVERSE 26 - 28 FEBRUARY 2026 • SIT NAGPUR
             </div>
         </>
     );
