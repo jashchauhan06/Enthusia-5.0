@@ -82,7 +82,7 @@ export const teamData = [
     {
         id: 7,
         name: "Jash Chauhan",
-        role: "Web Dev Lead",
+        role: "Web Development Team Lead",
         category: "webdev",
         image: "/team/Jash.jpg",
         description: "Leading the web development team with expertise in modern technologies.",
@@ -96,7 +96,7 @@ export const teamData = [
     {
         id: 8,
         name: "Saksham Wadhankar",
-        role: "Full Stack Developer",
+        role: "Web Developer",
         category: "webdev",
         image: "/team/saksham.png",
         description: "Building seamless full-stack solutions for the fest.",
@@ -109,7 +109,7 @@ export const teamData = [
     {
         id: 9,
         name: "Om Rai",
-        role: "Frontend Developer",
+        role: "Web Developer",
         category: "webdev",
         image: "/team/om.png",
         description: "Crafting beautiful and responsive user interfaces.",

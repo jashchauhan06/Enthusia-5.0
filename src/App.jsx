@@ -9,69 +9,35 @@ import GlobalUI from './components/GlobalUI';
 
 function App() {
   const [images, setImages] = useState([]);
-  const [progress, setProgress] = useState(0);
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [progress, setProgress] = useState(100); // Start at 100%
+  const [isLoaded, setIsLoaded] = useState(true); // Start as loaded
   const [audioInstance, setAudioInstance] = useState(null);
 
   useEffect(() => {
-    // 1. Audio Preloading
+    // Load assets in background without blocking UI
     const audio = new Audio('/bg.opus');
     audio.loop = true;
     audio.volume = 0.5;
-    audio.crossOrigin = 'anonymous';
+    setAudioInstance(audio);
 
-    // We'll track audio readiness 
-    // audio.readyState >= 3 (HAVE_FUTURE_DATA) means we can play
-    const checkAudioReady = () => new Promise(resolve => {
-      if (audio.readyState >= 3) {
-        resolve(true);
-      } else {
-        audio.addEventListener('canplaythrough', () => resolve(true), { once: true });
-        audio.addEventListener('error', () => {
-          console.error("Audio Load Error");
-          resolve(true); // Fail gracefully
-        }, { once: true });
-      }
-    });
-
-    // 2. Image Preloading
-    const frameCount = 481;
+    // Load images progressively - using every 5th frame for smoother animation
+    const frameStep = 5; // Every 5th frame instead of 15th = ~96 images (still much less than 481)
+    const frameCount = Math.ceil(481 / frameStep);
     const loadList = new Array(frameCount);
 
-    const preloadImages = () => new Promise(resolve => {
-      let count = 0;
-      const currentFrame = index => `/backimages/img_${index.toString().padStart(3, '0')}.webp`;
-
-      for (let i = 1; i <= frameCount; i++) {
-        const img = new Image();
-        img.src = currentFrame(i);
-        img.onload = () => {
-          count++;
-          // Weight images as 80% of progress, audio is 20% (implicitly handled by the wait)
-          setProgress(Math.round((count / frameCount) * 100));
-          if (count === frameCount) {
-            setImages(loadList);
-            resolve(true);
-          }
-        };
-        img.onerror = () => {
-          console.error(`Failed to load frame ${i}`);
-          count++;
-          if (count === frameCount) {
-            setImages(loadList);
-            resolve(true);
-          }
-        };
-        loadList[i - 1] = img;
-      }
-    });
-
-    // Run both in parallel but ensure audio waits
-    Promise.all([preloadImages(), checkAudioReady()]).then(() => {
-      setAudioInstance(audio);
-      setTimeout(() => setIsLoaded(true), 500);
-    });
-
+    let count = 0;
+    for (let i = 0; i < frameCount; i++) {
+      const img = new Image();
+      const frameNumber = (i * frameStep) + 1;
+      img.src = `/backimages/img_${frameNumber.toString().padStart(3, '0')}.webp`;
+      img.onload = () => {
+        count++;
+        if (count === frameCount) {
+          setImages(loadList);
+        }
+      };
+      loadList[i] = img;
+    }
   }, []);
 
   return (

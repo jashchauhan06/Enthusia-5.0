@@ -7,9 +7,9 @@ const Background = ({ images, isLoaded }) => {
     const frameIndexRef = useRef(0);
     const animationFrameRef = useRef(null);
 
-    // Configuration from original script
-    const frameCount = 481;
-    const normalSpeed = 0.5;
+    // Configuration - updated for smoother animation
+    const frameCount = Math.ceil(481 / 5); // ~96 frames for smoother motion
+    const normalSpeed = 0.2; // Adjusted speed for more frames
 
     // We might need to expose a way to affect speed via scroll, 
     // but for now let's implement the base loop.
@@ -17,17 +17,17 @@ const Background = ({ images, isLoaded }) => {
     // We'll stick to normalSpeed for now, can add scroll connection later via context or ref.
 
     const activeScrollSpeedRef = useRef(0);
-    const scrollSensitivity = 6; // Increased for faster response
-    const friction = 0.97; // Slightly more friction to prevent runaway
+    const scrollSensitivity = 3; // Balanced sensitivity
+    const friction = 0.96; // Balanced friction
 
     useEffect(() => {
         const handleWheel = (e) => {
             // Allow background to react immediately to inputs for "fast" feel
-            activeScrollSpeedRef.current += e.deltaY * 0.008 * scrollSensitivity;
+            activeScrollSpeedRef.current += e.deltaY * 0.005 * scrollSensitivity; // Balanced multiplier
 
-            // Higher clamp for faster visual rush
-            if (activeScrollSpeedRef.current > 15) activeScrollSpeedRef.current = 15;
-            if (activeScrollSpeedRef.current < -15) activeScrollSpeedRef.current = -15;
+            // Balanced clamp for smooth visual movement
+            if (activeScrollSpeedRef.current > 8) activeScrollSpeedRef.current = 8;
+            if (activeScrollSpeedRef.current < -8) activeScrollSpeedRef.current = -8;
         };
 
         window.addEventListener('wheel', handleWheel);
