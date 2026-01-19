@@ -1,24 +1,7 @@
         /* ==========================================
-           ELIANTO FONT
+           CUSTOM FONTS REMOVED - USING STANDARD FONTS
         ========================================== */
-        @font-face {
-            font-family: 'Elianto';
-            src: url('/fonts/Elianto-Regular.ttf') format('truetype');
-            font-weight: normal;
-            font-style: normal;
-            font-display: swap;
-        }
-
-        /* ==========================================
-           ANURATI FONT
-        ========================================== */
-        @font-face {
-            font-family: 'Anurati';
-            src: url('/anurati_font-personal-use-only/anurati_font/Anurati-Regular.otf') format('opentype');
-            font-weight: normal;
-            font-style: normal;
-            font-display: swap;
-        }
+        /* Custom font declarations removed for faster loading */
 
         /* ==========================================
            CSS VARIABLES & RESET

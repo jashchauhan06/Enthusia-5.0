@@ -2,257 +2,230 @@
 // Categories: core, webdev, promotions
 
 export const teamData = [
-    // ==================== CORE COMMITTEE (6 members) ====================
+    // ==================== CORE COMMITTEE (4 members) ====================
     {
         id: 1,
         name: "Sunidhi Haware",
         role: "President (SRC)",
         category: "core",
-        image: "/team/1.jpg",
+        image: "/images/team/Sunidhi.webp",
         description: "Leading the Student Representative Council with vision and dedication.",
         isHighlighted: true,
         socials: {
-            linkedin: "https://linkedin.com/in/",
-            instagram: "https://instagram.com/",
+            linkedin: "https://www.linkedin.com/in/sunidhi-haware-797a97323/",
         }
     },
     {
         id: 2,
-        name: "Prathamesh",
+        name: "Prathmesh Raipurkar",
         role: "Vice President (SRC)",
         category: "core",
-        image: "/team/prathamesh.png",
+        image: "/images/team/Prathmesh.webp",
         description: "Supporting leadership and driving student initiatives forward.",
         isHighlighted: true,
-        socials: {
-            linkedin: "https://linkedin.com/in/",
-            instagram: "https://instagram.com/",
-        }
     },
     {
         id: 3,
-        name: "Core Member 3",
-        role: "Event Head",
+        name: "Atharv Lulekar",
+        role: "Organizing Secretary",
         category: "core",
-        image: "/team/member_placeholder.png",
+        image: "/images/team/Atharva_Lulekar.webp",
         description: "Orchestrating memorable events and experiences.",
         isHighlighted: true,
         socials: {
-            linkedin: "https://linkedin.com/in/",
+            linkedin: "https://www.linkedin.com/in/atharvlulekar125/",
         }
     },
     {
         id: 4,
-        name: "Core Member 4",
-        role: "Technical Head",
+        name: "Soumya Mehar",
+        role: "Organizing Secretary",
         category: "core",
-        image: "/team/member_placeholder.png",
+        image: "/images/team/Soumya.webp",
         description: "Overseeing technical operations and innovations.",
         isHighlighted: true,
         socials: {
-            linkedin: "https://linkedin.com/in/",
-            github: "https://github.com/",
+            linkedin: "https://www.linkedin.com/in/soumya-mehar-458115320/",
         }
     },
+    // ==================== WEB DEVELOPMENT TEAM (6 members) ====================
     {
         id: 5,
-        name: "Core Member 5",
-        role: "Cultural Head",
-        category: "core",
-        image: "/team/member_placeholder.png",
-        description: "Bringing creativity and culture to every event.",
-        isHighlighted: true,
+        name: "Jash Chauhan",
+        role: "Web Development Team Lead",
+        category: "webdev",
+        image: "/images/team/Jash.webp",
+        description: "Leading the web development team with expertise in modern technologies.",
+        isHighlighted: false,
         socials: {
-            instagram: "https://instagram.com/",
+            linkedin: "https://linkedin.com/in/jashchauhan06",
         }
     },
     {
         id: 6,
-        name: "Core Member 6",
-        role: "Sponsorship Head",
-        category: "core",
-        image: "/team/member_placeholder.png",
-        description: "Building partnerships that power our vision.",
-        isHighlighted: true,
-        socials: {
-            linkedin: "https://linkedin.com/in/",
-        }
-    },
-    // ==================== WEB DEVELOPMENT TEAM (8 members) ====================
-    {
-        id: 7,
-        name: "Jash Chauhan",
-        role: "Web Development Team Lead",
+        name: "Saksham Wadhankar",
+        role: "Web Developer",
         category: "webdev",
-        image: "/team/Jash.jpg",
-        description: "Leading the web development team with expertise in modern technologies.",
+        image: "/images/team/saksham.webp",
+        description: "Building seamless full-stack solutions for the fest.",
         isHighlighted: false,
         socials: {
-            linkedin: "https://linkedin.com/in/",
-            github: "https://github.com/",
-            instagram: "https://instagram.com/",
+            linkedin: "https://www.linkedin.com/in/saksham-wadhankar-b0775329a/",
+        }
+    },
+    {
+        id: 7,
+        name: "Om Rai",
+        role: "Web Developer",
+        category: "webdev",
+        image: "/images/team/om.webp",
+        description: "Crafting beautiful and responsive user interfaces.",
+        isHighlighted: false,
+        socials: {
+            linkedin: "https://www.linkedin.com/in/om-rai-07a368377/",
         }
     },
     {
         id: 8,
-        name: "Saksham Wadhankar",
+        name: "Aswin Binu",
         role: "Web Developer",
         category: "webdev",
-        image: "/team/saksham.png",
-        description: "Building seamless full-stack solutions for the fest.",
+        image: "/images/team/aswin.webp",
+        description: "Building robust server-side architectures.",
         isHighlighted: false,
         socials: {
-            linkedin: "https://linkedin.com/in/",
-            github: "https://github.com/",
+            linkedin: "https://www.linkedin.com/in/aswin-binu-587978320/",
         }
     },
     {
         id: 9,
-        name: "Om Rai",
+        name: "Soumya Mishra",
         role: "Web Developer",
         category: "webdev",
-        image: "/team/om.png",
-        description: "Crafting beautiful and responsive user interfaces.",
+        image: "/images/team/Soumya Mishra.webp",
+        description: "Creating pixel-perfect designs with code.",
         isHighlighted: false,
         socials: {
-            linkedin: "https://linkedin.com/in/",
-            github: "https://github.com/",
+            linkedin: "https://www.linkedin.com/in/iamsoumyamishra/",
         }
     },
     {
         id: 10,
-        name: "WebDev Member 4",
-        role: "Backend Developer",
+        name: "Parth Tiwaskar",
+        role: "Web Developer",
         category: "webdev",
-        image: "/team/member_placeholder.png",
-        description: "Building robust server-side architectures.",
+        image: "/images/team/Parth Tiwaskar.webp",
+        description: "Contributing to the digital experience.",
         isHighlighted: false,
         socials: {
-            github: "https://github.com/",
+            linkedin: "https://www.linkedin.com/in/parth-tiwaskar-6a5867352/",
         }
     },
+    // ==================== PROMOTIONS TEAM (7 members) ====================
     {
         id: 11,
-        name: "WebDev Member 5",
-        role: "Frontend Developer",
-        category: "webdev",
-        image: "/team/member_placeholder.png",
-        description: "Creating pixel-perfect designs with code.",
+        name: "Atharv Lulekar",
+        role: "Promotions Lead",
+        category: "promotions",
+        image: "/images/team/Atharva_Lulekar.webp",
+        description: "Driving promotional strategies and outreach.",
         isHighlighted: false,
         socials: {
-            github: "https://github.com/",
+            linkedin: "https://www.linkedin.com/in/atharvlulekar125/",
         }
     },
     {
         id: 12,
-        name: "WebDev Member 6",
-        role: "Developer",
-        category: "webdev",
-        image: "/team/member_placeholder.png",
-        description: "Contributing to the digital experience.",
+        name: "Radhika Sapate",
+        role: "Promotions Team",
+        category: "promotions",
+        image: "/images/team/Radhika Sapate.webp",
+        description: "Creating engaging content for all platforms.",
         isHighlighted: false,
         socials: {
-            linkedin: "https://linkedin.com/in/",
+            linkedin: "https://www.linkedin.com/in/radhika-sapate-526a8b370/",
         }
     },
     {
         id: 13,
-        name: "WebDev Member 7",
-        role: "Developer",
-        category: "webdev",
-        image: "/team/member_placeholder.png",
-        description: "Building features that enhance user experience.",
+        name: "Utkarsh Tarte",
+        role: "Promotions Team",
+        category: "promotions",
+        image: "/images/team/Utkarsh Tarte.webp",
+        description: "Strategizing marketing campaigns.",
         isHighlighted: false,
         socials: {
-            github: "https://github.com/",
+            linkedin: "https://www.linkedin.com/in/utkarsh-tarte-8b02bb310/",
         }
     },
     {
         id: 14,
-        name: "WebDev Member 8",
-        role: "Junior Developer",
-        category: "webdev",
-        image: "/team/member_placeholder.png",
-        description: "Learning and growing with the team.",
-        isHighlighted: false,
-        socials: {
-            linkedin: "https://linkedin.com/in/",
-        }
-    },
-    // ==================== PROMOTIONS TEAM (6 members) ====================
-    {
-        id: 19,
-        name: "Harsh",
-        role: "Promotions Lead",
+        name: "Purva Ghordadekar",
+        role: "Promotions Team",
         category: "promotions",
-        image: "/team/harsh.png?v=1",
-        description: "Driving promotional strategies and outreach.",
-        isHighlighted: false,
-        socials: {
-            linkedin: "https://linkedin.com/in/",
-            instagram: "https://instagram.com/",
-        }
-    },
-    {
-        id: 20,
-        name: "Parth Choudhari",
-        role: "Social Media Manager",
-        category: "promotions",
-        image: "/team/parth.jpg",
-        description: "Managing our social media presence and engagement.",
-        isHighlighted: false,
-        socials: {
-            instagram: "https://instagram.com/",
-            linkedin: "https://linkedin.com/in/",
-        }
-    },
-    {
-        id: 21,
-        name: "Promo Member 3",
-        role: "Content Creator",
-        category: "promotions",
-        image: "/team/member_placeholder.png",
-        description: "Creating engaging content for all platforms.",
-        isHighlighted: false,
-        socials: {
-            instagram: "https://instagram.com/",
-        }
-    },
-    {
-        id: 22,
-        name: "Promo Member 4",
-        role: "Marketing Specialist",
-        category: "promotions",
-        image: "/team/member_placeholder.png",
-        description: "Strategizing marketing campaigns.",
-        isHighlighted: false,
-        socials: {
-            linkedin: "https://linkedin.com/in/",
-        }
-    },
-    {
-        id: 23,
-        name: "Promo Member 5",
-        role: "PR Manager",
-        category: "promotions",
-        image: "/team/member_placeholder.png",
+        image: "/images/team/Purva ghordadekar.webp",
         description: "Managing public relations and media.",
         isHighlighted: false,
         socials: {
-            linkedin: "https://linkedin.com/in/",
+            linkedin: "https://www.linkedin.com/in/purva-ghordadekar-5016ba376/",
         }
     },
     {
-        id: 24,
-        name: "Promo Member 6",
-        role: "Outreach Coordinator",
+        id: 15,
+        name: "Vanshika Sharma",
+        role: "Promotions Team",
         category: "promotions",
-        image: "/team/member_placeholder.png",
+        image: "/images/team/Vanshika sharma.webp",
         description: "Coordinating outreach and partnerships.",
         isHighlighted: false,
         socials: {
-            linkedin: "https://linkedin.com/in/",
-            instagram: "https://instagram.com/",
+            linkedin: "https://www.linkedin.com/in/vanshika-sharma-0966b137/",
+        }
+    },
+    {
+        id: 16,
+        name: "Arya Wath",
+        role: "Promotions Team",
+        category: "promotions",
+        image: "/images/team/Arya Wath.webp",
+        description: "Driving promotional strategies and outreach.",
+        isHighlighted: false
+    },
+    {
+        id: 17,
+        name: "Nehal Saad",
+        role: "Promotions Team",
+        category: "promotions",
+        image: "/images/team/Nehal saad.webp",
+        description: "Managing promotional campaigns and events.",
+        isHighlighted: false,
+        socials: {
+            linkedin: "https://www.linkedin.com/in/nehal-saad-31150a395/",
+        }
+    },
+    {
+        id: 17,
+        name: "Sparsh Goswami",
+        role: "Promotions Team",
+        category: "promotions",
+        image: "/images/team/Sparsh.webp",
+        description: "Managing promotional campaigns and events.",
+        isHighlighted: false,
+        socials: {
+            linkedin: "https://www.linkedin.com/in/sparsh-goswami-b9298631b/",
+        }
+    },
+    // ==================== SPONSORSHIP TEAM (1 member) ====================
+    {
+        id: 18,
+        name: "Harsh Kumar",
+        role: "Sponsorship Lead",
+        category: "sponsorship",
+        image: "/images/team/harsh.webp",
+        description: "Leading sponsorship initiatives and partnerships.",
+        isHighlighted: false,
+        socials: {
+            linkedin: "https://www.linkedin.com/in/harsh-2227-kumar/",
         }
     },
 ];
@@ -263,6 +236,7 @@ export const teamCategories = [
     { key: "core", label: "Core" },
     { key: "webdev", label: "WebDev" },
     { key: "promotions", label: "Promotions" },
+    { key: "sponsorship", label: "Sponsorship" },
 ];
 
 export default teamData;

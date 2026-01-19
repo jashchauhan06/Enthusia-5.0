@@ -63,6 +63,11 @@ const Team = forwardRef((props, ref) => {
         return teamData.filter(member => member.category === activeFilter);
     }, [activeFilter]);
 
+    // Reset to first page when filtered members change
+    useEffect(() => {
+        setCurrentPage(0);
+    }, [filteredMembers.length, activeFilter]);
+
     // Get members to display (limited or all)
     const displayedMembers = useMemo(() => {
         if (showAll) {
@@ -71,7 +76,10 @@ const Team = forwardRef((props, ref) => {
         
         // Desktop pagination
         if (isDesktop) {
-            const startIndex = currentPage * DESKTOP_PAGE_SIZE;
+            // Ensure currentPage is within valid range
+            const maxPage = Math.max(0, Math.ceil(filteredMembers.length / DESKTOP_PAGE_SIZE) - 1);
+            const validPage = Math.min(currentPage, maxPage);
+            const startIndex = validPage * DESKTOP_PAGE_SIZE;
             return filteredMembers.slice(startIndex, startIndex + DESKTOP_PAGE_SIZE);
         }
         
@@ -408,7 +416,7 @@ const Team = forwardRef((props, ref) => {
 
                     {/* Desktop Pagination Navigation */}
                     {isDesktop && !showAll && (
-                        <div className="team-pagination-wrapper">
+                        <div className="team-pagination-wrapper" key={`pagination-${activeFilter}`}>
                             <button
                                 className="team-pagination-btn team-pagination-btn--prev"
                                 onClick={(e) => handlePrevPage(e)}
