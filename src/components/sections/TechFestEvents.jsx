@@ -1,5 +1,6 @@
 import React, { forwardRef, useState, useImperativeHandle, useRef, useEffect } from 'react';
 import { Rocket, Terminal, Search, Briefcase, Lightbulb } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import ElectricBorder from '../ElectricBorder';
 
 const TechFestEvents = forwardRef((props, ref) => {
@@ -10,6 +11,7 @@ const TechFestEvents = forwardRef((props, ref) => {
     const [viewState, setViewState] = useState(1);
     const [scrollTop, setScrollTop] = useState(0);
     const [isMobile, setIsMobile] = useState(false);
+    const navigate = useNavigate();
     
     const SCROLL_STEP_DESKTOP = 150;
     const SCROLL_STEP_MOBILE = 100;
@@ -158,7 +160,8 @@ const TechFestEvents = forwardRef((props, ref) => {
             desc: "PITCH DECK COMPETITION",
             borderColor: "#4ade80",
             iconColor: "#4ade80",
-            link: "https://sitank-2-0.vercel.app/"
+            link: "/events/sitank",
+            internal: true
         },
         {
             id: 5,
@@ -534,8 +537,14 @@ const TechFestEvents = forwardRef((props, ref) => {
                                     <p className="scifi-desc">{event.desc}</p>
 
                                     <a
-                                        href={event.link}
-                                        target={event.link === '#' ? '_self' : '_blank'}
+                                        href={event.internal ? undefined : event.link}
+                                        onClick={(e) => {
+                                            if (event.internal) {
+                                                e.preventDefault();
+                                                navigate(event.link);
+                                            }
+                                        }}
+                                        target={event.internal || event.link === '#' ? '_self' : '_blank'}
                                         rel="noopener noreferrer"
                                         className="scifi-btn"
                                     >
