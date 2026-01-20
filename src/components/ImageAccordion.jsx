@@ -21,15 +21,17 @@ const galleryItems = [
     {
         id: 2,
         title: 'CELEBRITY & DJ NIGHT',
-        imageUrl: 'https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=800&fit=crop',
+        imageUrl: '/images/dj_images/_MG_0364.webp',
         desc: 'Star-studded performances',
         photos: [
-            'https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=1200&fit=crop',
-            'https://images.unsplash.com/photo-1429962714451-bb934ecdc4ec?w=1200&fit=crop',
-            'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=1200&fit=crop',
-            'https://images.unsplash.com/photo-1506157786151-b8491531f063?w=1200&fit=crop',
-            'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=1200&fit=crop',
-            'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=1200&fit=crop',
+            '/images/dj_images/_MG_0364.webp',
+            '/images/dj_images/_MG_0398.webp',
+            '/images/dj_images/_MG_0400.webp',
+            '/images/dj_images/_MG_0406.webp',
+            '/images/dj_images/_MG_0411.webp',
+            '/images/dj_images/_MG_0439.webp',
+            '/images/dj_images/_MG_0451.webp',
+            '/images/dj_images/_MG_0502.webp',
         ]
     },
     {
@@ -49,15 +51,26 @@ const galleryItems = [
     {
         id: 4,
         title: 'TECHFEST',
-        imageUrl: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&fit=crop',
+        imageUrl: '/images/tech_events/1.JPG',
         desc: 'Innovation unleashed',
         photos: [
-            'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1200&fit=crop',
-            'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=1200&fit=crop',
-            'https://images.unsplash.com/photo-1518770660439-4636190af475?w=1200&fit=crop',
-            'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=1200&fit=crop',
-            'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=1200&fit=crop',
-            'https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=1200&fit=crop',
+            '/images/tech_events/1.JPG',
+            '/images/tech_events/2.JPG',
+            '/images/tech_events/3.JPG',
+            '/images/tech_events/4.JPG',
+            '/images/tech_events/5.JPG',
+            '/images/tech_events/11.JPG',
+            '/images/tech_events/22.JPG',
+            '/images/tech_events/33.jpg',
+            '/images/tech_events/55.jpg',
+            '/images/tech_events/66.png',
+            '/images/tech_events/77.png',
+            '/images/tech_events/88.jpg',
+            '/images/tech_events/999.webp',
+            '/images/tech_events/9991.webp',
+            '/images/tech_events/9992.webp',
+            '/images/tech_events/9993.webp',
+            '/images/tech_events/99994.webp',
         ]
     }
 ];
@@ -150,20 +163,29 @@ const GalleryModal = ({ item, isOpen, onClose }) => {
 
 // Accordion Item Component
 const AccordionItem = ({ item, isActive, onMouseEnter, onClick }) => {
+    const [imageLoaded, setImageLoaded] = useState(false);
+
     return (
         <div
             className={`accordion-item ${isActive ? 'active' : ''}`}
             onMouseEnter={onMouseEnter}
             onClick={onClick}
         >
+            {/* Skeleton Loader */}
+            {!imageLoaded && (
+                <div className="accordion-skeleton"></div>
+            )}
+
             {/* Background Image */}
             <img
                 src={item.imageUrl}
                 alt={item.title}
-                className="accordion-image"
+                className={`accordion-image ${imageLoaded ? 'loaded' : ''}`}
+                onLoad={() => setImageLoaded(true)}
                 onError={(e) => {
                     e.target.onerror = null;
                     e.target.src = 'https://placehold.co/400x450/1a1a2e/8b5cf6?text=' + item.title.replace(/ /g, '+');
+                    setImageLoaded(true);
                 }}
             />
             {/* Dark overlay */}
