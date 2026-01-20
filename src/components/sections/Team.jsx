@@ -68,6 +68,13 @@ const Team = forwardRef((props, ref) => {
         setCurrentPage(0);
     }, [filteredMembers.length, activeFilter]);
 
+    // Reset to first page when section becomes active (progress changes to 0 or 1)
+    useEffect(() => {
+        if (progress === 0 || progress === 1) {
+            setCurrentPage(0);
+        }
+    }, [progress]);
+
     // Get members to display (limited or all)
     const displayedMembers = useMemo(() => {
         if (showAll) {
@@ -78,9 +85,10 @@ const Team = forwardRef((props, ref) => {
         if (isDesktop) {
             // Ensure currentPage is within valid range
             const maxPage = Math.max(0, Math.ceil(filteredMembers.length / DESKTOP_PAGE_SIZE) - 1);
-            const validPage = Math.min(currentPage, maxPage);
+            const validPage = Math.min(Math.max(0, currentPage), maxPage);
             const startIndex = validPage * DESKTOP_PAGE_SIZE;
-            return filteredMembers.slice(startIndex, startIndex + DESKTOP_PAGE_SIZE);
+            const endIndex = startIndex + DESKTOP_PAGE_SIZE;
+            return filteredMembers.slice(startIndex, endIndex);
         }
         
         // Mobile - show all members for scrolling
@@ -416,7 +424,7 @@ const Team = forwardRef((props, ref) => {
 
                     {/* Desktop Pagination Navigation */}
                     {isDesktop && !showAll && (
-                        <div className="team-pagination-wrapper" key={`pagination-${activeFilter}`}>
+                        <div className="team-pagination-wrapper" key={`pagination-${activeFilter}-${currentPage}`}>
                             <button
                                 className="team-pagination-btn team-pagination-btn--prev"
                                 onClick={(e) => handlePrevPage(e)}
@@ -427,10 +435,10 @@ const Team = forwardRef((props, ref) => {
                             </button>
 
                             {/* Team Grid */}
-                            <div className="team-grid">
+                            <div className="team-grid" key={`grid-${activeFilter}-${currentPage}`}>
                                 {displayedMembers.map((member, index) => (
                                     <div
-                                        key={member.id}
+                                        key={`${member.id}-${currentPage}`}
                                         className="team-grid__item"
                                         style={{
                                             animationDelay: `${index * 0.05}s`,

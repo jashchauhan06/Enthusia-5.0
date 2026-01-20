@@ -172,18 +172,6 @@ export const teamData = [
     },
     {
         id: 15,
-        name: "Vanshika Sharma",
-        role: "Promotions Team",
-        category: "promotions",
-        image: "/images/team/Vanshika sharma.webp",
-        description: "Coordinating outreach and partnerships.",
-        isHighlighted: false,
-        socials: {
-            linkedin: "https://www.linkedin.com/in/vanshika-sharma-0966b137/",
-        }
-    },
-    {
-        id: 16,
         name: "Arya Wath",
         role: "Promotions Team",
         category: "promotions",
@@ -192,7 +180,7 @@ export const teamData = [
         isHighlighted: false
     },
     {
-        id: 17,
+        id: 16,
         name: "Nehal Saad",
         role: "Promotions Team",
         category: "promotions",
@@ -215,9 +203,51 @@ export const teamData = [
             linkedin: "https://www.linkedin.com/in/sparsh-goswami-b9298631b/",
         }
     },
-    // ==================== SPONSORSHIP TEAM (1 member) ====================
     {
         id: 18,
+        name: "Samaira Kale",
+        role: "Promotions Team",
+        category: "promotions",
+        image: "/images/team/Samaira Kale.webp",
+        description: "Creating engaging promotional content.",
+        isHighlighted: false,
+        socials: {
+            linkedin: "https://www.linkedin.com/in/samaira-kale-50b977378/",
+        }
+    },
+    {
+        id: 19,
+        name: "Jay Yende",
+        role: "Promotions Team",
+        category: "promotions",
+        image: "/images/team/Jay .webp",
+        description: "Managing social media and outreach.",
+        isHighlighted: false,
+        socials: {
+            linkedin: "https://www.linkedin.com/in/jay-yende-a200132a9/",
+        }
+    },
+    {
+        id: 20,
+        name: "Dev Dhapodkar",
+        role: "Promotions Team",
+        category: "promotions",
+        image: "/images/team/Dev Dhapodkar.webp",
+        description: "Coordinating promotional activities.",
+        isHighlighted: false
+    },
+    {
+        id: 21,
+        name: "Rudrani Ullewar",
+        role: "Promotions Team",
+        category: "promotions",
+        image: "/images/team/Rudrani Ullewar.webp",
+        description: "Managing event promotions and marketing.",
+        isHighlighted: false
+    },
+    // ==================== SPONSORSHIP TEAM (1 member) ====================
+    {
+        id: 22,
         name: "Harsh Kumar",
         role: "Sponsorship Lead",
         category: "sponsorship",

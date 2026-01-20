@@ -25,13 +25,16 @@ const Gallery = forwardRef((props, ref) => {
                     flex-direction: column;
                     align-items: center;
                     justify-content: center;
-                    padding: 80px 40px 60px 220px;
+                    padding: 120px 40px 60px 40px;
+                    padding-left: 220px;
                     box-sizing: border-box;
                 }
 
                 .gallery-header {
                     text-align: center;
                     margin-bottom: 2rem;
+                    width: 100%;
+                    margin-left: -90px;
                 }
 
                 .gallery-title {
