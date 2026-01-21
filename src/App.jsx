@@ -14,6 +14,9 @@ function App() {
   const [audioInstance, setAudioInstance] = useState(null);
 
   useEffect(() => {
+    // Set document title for Enthusia page
+    document.title = 'ENTHUSIA 5.0 | The Ultimate Tech & Cultural Fest - SIT NAGPUR';
+
     // Load assets in background without blocking UI
     const audio = new Audio('/bg.opus');
     audio.loop = true;
@@ -38,6 +41,14 @@ function App() {
       };
       loadList[i] = img;
     }
+
+    // Cleanup: stop audio when component unmounts (navigating away)
+    return () => {
+      if (audio) {
+        audio.pause();
+        audio.currentTime = 0;
+      }
+    };
   }, []);
 
   return (

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState, useCallback, useEffect, memo } from 'react';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 import './ImageAccordion.css';
 
@@ -6,20 +6,6 @@ import './ImageAccordion.css';
 const galleryItems = [
     {
         id: 1,
-        title: 'MOVIE & JAMMING NIGHT',
-        imageUrl: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=800&fit=crop',
-        desc: 'Music, movies & memories',
-        photos: [
-            'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=1200&fit=crop',
-            'https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?w=1200&fit=crop',
-            'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=1200&fit=crop',
-            'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=1200&fit=crop',
-            'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=1200&fit=crop',
-            'https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?w=1200&fit=crop',
-        ]
-    },
-    {
-        id: 2,
         title: 'CELEBRITY & DJ NIGHT',
         imageUrl: '/images/dj_images/_MG_0364.webp',
         desc: 'Star-studded performances',
@@ -35,23 +21,24 @@ const galleryItems = [
         ]
     },
     {
-        id: 3,
+        id: 2,
         title: 'CULTURAL FEST',
-        imageUrl: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=800&fit=crop',
+        imageUrl: '/images/cultural_fest/IMG_2878.webp',
         desc: 'Celebrating diversity',
         photos: [
-            'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=1200&fit=crop',
-            'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=1200&fit=crop',
-            'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=1200&fit=crop',
-            'https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?w=1200&fit=crop',
-            'https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?w=1200&fit=crop',
-            'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=1200&fit=crop',
+            '/images/cultural_fest/IMG_2775.webp',
+            '/images/cultural_fest/IMG_2826.webp',
+            '/images/cultural_fest/IMG_2839.webp',
+            '/images/cultural_fest/IMG_2849.webp',
+            '/images/cultural_fest/IMG_2856.webp',
+            '/images/cultural_fest/IMG_2878.webp',
+            '/images/cultural_fest/IMG_2911.webp',
         ]
     },
     {
-        id: 4,
+        id: 3,
         title: 'TECHFEST',
-        imageUrl: '/images/tech_events/1.JPG',
+        imageUrl: '/images/tech_events/77.png',
         desc: 'Innovation unleashed',
         photos: [
             '/images/tech_events/1.JPG',
@@ -75,23 +62,63 @@ const galleryItems = [
     }
 ];
 
-// Gallery Modal Component
-const GalleryModal = ({ item, isOpen, onClose }) => {
+// Optimized Gallery Modal Component with lazy loading
+const GalleryModal = memo(({ item, isOpen, onClose }) => {
     const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
+    const [loadedImages, setLoadedImages] = useState(new Set([0])); // Preload first image
+
+    // Reset when modal opens with new item
+    useEffect(() => {
+        if (isOpen && item) {
+            setCurrentPhotoIndex(0);
+            setLoadedImages(new Set([0]));
+        }
+    }, [isOpen, item]);
+
+    const handleNext = useCallback(() => {
+        setCurrentPhotoIndex((prev) => {
+            const next = (prev + 1) % item.photos.length;
+            // Preload next image
+            setLoadedImages(loaded => new Set([...loaded, next, (next + 1) % item.photos.length]));
+            return next;
+        });
+    }, [item]);
+
+    const handlePrev = useCallback(() => {
+        setCurrentPhotoIndex((prev) => {
+            const next = (prev - 1 + item.photos.length) % item.photos.length;
+            // Preload previous image
+            setLoadedImages(loaded => new Set([...loaded, next, (next - 1 + item.photos.length) % item.photos.length]));
+            return next;
+        });
+    }, [item]);
+
+    const handleThumbnailClick = useCallback((index) => {
+        setCurrentPhotoIndex(index);
+        // Preload adjacent images
+        setLoadedImages(loaded => new Set([
+            ...loaded, 
+            index, 
+            (index + 1) % item.photos.length,
+            (index - 1 + item.photos.length) % item.photos.length
+        ]));
+    }, [item]);
+
+    // Keyboard navigation
+    useEffect(() => {
+        if (!isOpen) return;
+        
+        const handleKeyDown = (e) => {
+            if (e.key === 'ArrowLeft') handlePrev();
+            else if (e.key === 'ArrowRight') handleNext();
+            else if (e.key === 'Escape') onClose();
+        };
+        
+        window.addEventListener('keydown', handleKeyDown);
+        return () => window.removeEventListener('keydown', handleKeyDown);
+    }, [isOpen, handleNext, handlePrev, onClose]);
 
     if (!isOpen || !item) return null;
-
-    const handleNext = () => {
-        setCurrentPhotoIndex((prev) => (prev + 1) % item.photos.length);
-    };
-
-    const handlePrev = () => {
-        setCurrentPhotoIndex((prev) => (prev - 1 + item.photos.length) % item.photos.length);
-    };
-
-    const handleThumbnailClick = (index) => {
-        setCurrentPhotoIndex(index);
-    };
 
     return (
         <div className="gallery-modal-backdrop" onClick={onClose}>
@@ -118,9 +145,11 @@ const GalleryModal = ({ item, isOpen, onClose }) => {
 
                     <div className="gallery-modal__image-container">
                         <img
+                            key={currentPhotoIndex}
                             src={item.photos[currentPhotoIndex]}
                             alt={`${item.title} - Photo ${currentPhotoIndex + 1}`}
                             className="gallery-modal__image"
+                            loading="eager"
                             onError={(e) => {
                                 e.target.onerror = null;
                                 e.target.src = `https://placehold.co/1200x800/1a1a2e/8b5cf6?text=Photo+${currentPhotoIndex + 1}`;
@@ -137,7 +166,7 @@ const GalleryModal = ({ item, isOpen, onClose }) => {
                     </button>
                 </div>
 
-                {/* Thumbnail Strip */}
+                {/* Thumbnail Strip - Only render visible thumbnails */}
                 <div className="gallery-modal__thumbnails">
                     {item.photos.map((photo, index) => (
                         <div
@@ -145,24 +174,29 @@ const GalleryModal = ({ item, isOpen, onClose }) => {
                             className={`gallery-modal__thumbnail ${index === currentPhotoIndex ? 'active' : ''}`}
                             onClick={() => handleThumbnailClick(index)}
                         >
-                            <img
-                                src={photo}
-                                alt={`Thumbnail ${index + 1}`}
-                                onError={(e) => {
-                                    e.target.onerror = null;
-                                    e.target.src = `https://placehold.co/150x100/1a1a2e/8b5cf6?text=${index + 1}`;
-                                }}
-                            />
+                            {loadedImages.has(index) || Math.abs(index - currentPhotoIndex) <= 2 ? (
+                                <img
+                                    src={photo}
+                                    alt={`Thumbnail ${index + 1}`}
+                                    loading="lazy"
+                                    onError={(e) => {
+                                        e.target.onerror = null;
+                                        e.target.src = `https://placehold.co/150x100/1a1a2e/8b5cf6?text=${index + 1}`;
+                                    }}
+                                />
+                            ) : (
+                                <div className="gallery-modal__thumbnail-placeholder" />
+                            )}
                         </div>
                     ))}
                 </div>
             </div>
         </div>
     );
-};
+});
 
-// Accordion Item Component
-const AccordionItem = ({ item, isActive, onMouseEnter, onClick }) => {
+// Optimized Accordion Item Component
+const AccordionItem = memo(({ item, isActive, onMouseEnter, onClick }) => {
     const [imageLoaded, setImageLoaded] = useState(false);
 
     return (
@@ -181,6 +215,7 @@ const AccordionItem = ({ item, isActive, onMouseEnter, onClick }) => {
                 src={item.imageUrl}
                 alt={item.title}
                 className={`accordion-image ${imageLoaded ? 'loaded' : ''}`}
+                loading="lazy"
                 onLoad={() => setImageLoaded(true)}
                 onError={(e) => {
                     e.target.onerror = null;
@@ -203,27 +238,27 @@ const AccordionItem = ({ item, isActive, onMouseEnter, onClick }) => {
             </div>
         </div>
     );
-};
+});
 
 // Main Image Accordion Component
 const ImageAccordion = () => {
-    const [activeIndex, setActiveIndex] = useState(3);
+    const [activeIndex, setActiveIndex] = useState(2); // Default to TECHFEST (index 2)
     const [selectedItem, setSelectedItem] = useState(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
 
-    const handleItemHover = (index) => {
+    const handleItemHover = useCallback((index) => {
         setActiveIndex(index);
-    };
+    }, []);
 
-    const handleItemClick = (item) => {
+    const handleItemClick = useCallback((item) => {
         setSelectedItem(item);
         setIsModalOpen(true);
-    };
+    }, []);
 
-    const handleCloseModal = () => {
+    const handleCloseModal = useCallback(() => {
         setIsModalOpen(false);
         setTimeout(() => setSelectedItem(null), 300);
-    };
+    }, []);
 
     return (
         <>
@@ -241,11 +276,13 @@ const ImageAccordion = () => {
                 </div>
             </div>
 
-            <GalleryModal
-                item={selectedItem}
-                isOpen={isModalOpen}
-                onClose={handleCloseModal}
-            />
+            {isModalOpen && (
+                <GalleryModal
+                    item={selectedItem}
+                    isOpen={isModalOpen}
+                    onClose={handleCloseModal}
+                />
+            )}
         </>
     );
 };

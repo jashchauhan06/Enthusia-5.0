@@ -2,9 +2,28 @@
 // Categories: core, webdev, promotions
 
 export const teamData = [
-    // ==================== CORE COMMITTEE (4 members) ====================
+    // ==================== FACULTY (2 members) ====================
     {
         id: 1,
+        name: "Dr. Snehlata Wankhade",
+        role: "Incharge (SRC)",
+        category: "core",
+        image: "/images/team/Dr. Snehlata Wankhade.webp",
+        description: "Faculty Incharge overseeing Student Representative Council activities.",
+        isHighlighted: true,
+    },
+    {
+        id: 2,
+        name: "Dr. Princy Diwan",
+        role: "Co-Incharge (SRC)",
+        category: "core",
+        image: "/images/team/Dr. Princy Diwan.webp",
+        description: "Faculty Co-Incharge supporting Student Representative Council initiatives.",
+        isHighlighted: true,
+    },
+    // ==================== CORE COMMITTEE (4 members) ====================
+    {
+        id: 3,
         name: "Sunidhi Haware",
         role: "President (SRC)",
         category: "core",
@@ -16,7 +35,7 @@ export const teamData = [
         }
     },
     {
-        id: 2,
+        id: 4,
         name: "Prathmesh Raipurkar",
         role: "Vice President (SRC)",
         category: "core",
@@ -25,7 +44,7 @@ export const teamData = [
         isHighlighted: true,
     },
     {
-        id: 3,
+        id: 5,
         name: "Atharv Lulekar",
         role: "Organizing Secretary",
         category: "core",
@@ -37,11 +56,11 @@ export const teamData = [
         }
     },
     {
-        id: 4,
+        id: 6,
         name: "Soumya Mehar",
         role: "Organizing Secretary",
         category: "core",
-        image: "/images/team/Soumya.webp",
+        image: "/images/team/Soumya Mehar.webp",
         description: "Overseeing technical operations and innovations.",
         isHighlighted: true,
         socials: {
@@ -50,7 +69,7 @@ export const teamData = [
     },
     // ==================== WEB DEVELOPMENT TEAM (6 members) ====================
     {
-        id: 5,
+        id: 7,
         name: "Jash Chauhan",
         role: "Web Development Team Lead",
         category: "webdev",
@@ -62,7 +81,7 @@ export const teamData = [
         }
     },
     {
-        id: 6,
+        id: 8,
         name: "Saksham Wadhankar",
         role: "Web Developer",
         category: "webdev",
@@ -74,7 +93,7 @@ export const teamData = [
         }
     },
     {
-        id: 7,
+        id: 9,
         name: "Om Rai",
         role: "Web Developer",
         category: "webdev",
@@ -86,7 +105,7 @@ export const teamData = [
         }
     },
     {
-        id: 8,
+        id: 10,
         name: "Aswin Binu",
         role: "Web Developer",
         category: "webdev",
@@ -98,7 +117,7 @@ export const teamData = [
         }
     },
     {
-        id: 9,
+        id: 11,
         name: "Soumya Mishra",
         role: "Web Developer",
         category: "webdev",
@@ -110,7 +129,7 @@ export const teamData = [
         }
     },
     {
-        id: 10,
+        id: 12,
         name: "Parth Tiwaskar",
         role: "Web Developer",
         category: "webdev",
@@ -123,7 +142,7 @@ export const teamData = [
     },
     // ==================== PROMOTIONS TEAM (7 members) ====================
     {
-        id: 11,
+        id: 13,
         name: "Atharv Lulekar",
         role: "Promotions Lead",
         category: "promotions",
@@ -135,7 +154,7 @@ export const teamData = [
         }
     },
     {
-        id: 12,
+        id: 14,
         name: "Radhika Sapate",
         role: "Promotions Team",
         category: "promotions",
@@ -147,7 +166,7 @@ export const teamData = [
         }
     },
     {
-        id: 13,
+        id: 15,
         name: "Utkarsh Tarte",
         role: "Promotions Team",
         category: "promotions",
@@ -159,7 +178,7 @@ export const teamData = [
         }
     },
     {
-        id: 14,
+        id: 16,
         name: "Purva Ghordadekar",
         role: "Promotions Team",
         category: "promotions",
@@ -171,7 +190,7 @@ export const teamData = [
         }
     },
     {
-        id: 15,
+        id: 17,
         name: "Arya Wath",
         role: "Promotions Team",
         category: "promotions",
@@ -180,7 +199,7 @@ export const teamData = [
         isHighlighted: false
     },
     {
-        id: 16,
+        id: 18,
         name: "Nehal Saad",
         role: "Promotions Team",
         category: "promotions",
@@ -192,7 +211,7 @@ export const teamData = [
         }
     },
     {
-        id: 17,
+        id: 19,
         name: "Sparsh Goswami",
         role: "Promotions Team",
         category: "promotions",
@@ -204,7 +223,7 @@ export const teamData = [
         }
     },
     {
-        id: 18,
+        id: 20,
         name: "Samaira Kale",
         role: "Promotions Team",
         category: "promotions",
@@ -216,7 +235,7 @@ export const teamData = [
         }
     },
     {
-        id: 19,
+        id: 21,
         name: "Jay Yende",
         role: "Promotions Team",
         category: "promotions",
@@ -228,7 +247,7 @@ export const teamData = [
         }
     },
     {
-        id: 20,
+        id: 22,
         name: "Dev Dhapodkar",
         role: "Promotions Team",
         category: "promotions",
@@ -237,7 +256,7 @@ export const teamData = [
         isHighlighted: false
     },
     {
-        id: 21,
+        id: 23,
         name: "Rudrani Ullewar",
         role: "Promotions Team",
         category: "promotions",
@@ -247,7 +266,7 @@ export const teamData = [
     },
     // ==================== SPONSORSHIP TEAM (1 member) ====================
     {
-        id: 22,
+        id: 24,
         name: "Harsh Kumar",
         role: "Sponsorship Lead",
         category: "sponsorship",

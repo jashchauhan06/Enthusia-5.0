@@ -12,7 +12,7 @@ const TechFestEvents = forwardRef((props, ref) => {
     const [scrollTop, setScrollTop] = useState(0);
     const [isMobile, setIsMobile] = useState(false);
     const navigate = useNavigate();
-
+    
     const SCROLL_STEP_DESKTOP = 150;
     const SCROLL_STEP_MOBILE = 100;
     const SCROLL_STEP = isMobile ? SCROLL_STEP_MOBILE : SCROLL_STEP_DESKTOP;
@@ -98,7 +98,7 @@ const TechFestEvents = forwardRef((props, ref) => {
         reset: (toStart) => {
             setViewState(1);
             setCardsVisible(true);
-
+            
             if (isMobile && scrollWrapperRef.current) {
                 scrollWrapperRef.current.scrollTo({ top: toStart ? 0 : scrollWrapperRef.current.scrollHeight, behavior: 'instant' });
                 return;
@@ -130,8 +130,7 @@ const TechFestEvents = forwardRef((props, ref) => {
             desc: "24HR HACKATHON",
             borderColor: "#ec4899",
             iconColor: "#ec4899",
-            link: "/sitnovate/",
-            internal: false
+            link: "https://sitnovate.vercel.app/"
         },
         {
             id: 2,
@@ -141,8 +140,7 @@ const TechFestEvents = forwardRef((props, ref) => {
             desc: "COMPETITIVE CODING",
             borderColor: "#22d3ee",
             iconColor: "#22d3ee",
-            link: "/codesprint/",
-            internal: false
+            link: "https://code-sprint-2-0.vercel.app/"
         },
         {
             id: 3,
@@ -152,8 +150,7 @@ const TechFestEvents = forwardRef((props, ref) => {
             desc: "TECH TREASURE HUNT",
             borderColor: "#facc15",
             iconColor: "#facc15",
-            link: "https://www.strangertech.live/",
-            internal: false
+            link: "https://www.strangertech.live/"
         },
         {
             id: 4,
@@ -163,8 +160,8 @@ const TechFestEvents = forwardRef((props, ref) => {
             desc: "PITCH DECK COMPETITION",
             borderColor: "#4ade80",
             iconColor: "#4ade80",
-            link: "/sitank/",
-            internal: false
+            link: "/events/sitank",
+            internal: true
         },
         {
             id: 5,
@@ -174,8 +171,18 @@ const TechFestEvents = forwardRef((props, ref) => {
             desc: "AD CHALLENGE",
             borderColor: "#a855f7",
             iconColor: "#a855f7",
-            link: "/buildbrand/",
-            internal: false
+            link: "https://build-brand.vercel.app/"
+        },
+        {
+            id: 6,
+            title: "ESPORTS",
+            subtitle: "",
+            icon: <Terminal />,
+            desc: "GAMING TOURNAMENT",
+            borderColor: "#f97316",
+            iconColor: "#f97316",
+            link: null,
+            locked: true
         }
     ];
 
@@ -193,7 +200,7 @@ const TechFestEvents = forwardRef((props, ref) => {
                     flex-direction: column;
                     align-items: center;
                     justify-content: flex-start;
-                    padding: 80px 40px 60px 220px;
+                    padding: 80px 40px 60px 280px;
                     box-sizing: border-box;
                     perspective: 1000px;
                     overflow: hidden;
@@ -433,10 +440,22 @@ const TechFestEvents = forwardRef((props, ref) => {
                     color: #000;
                     box-shadow: 0 0 20px var(--card-border-color);
                 }
+
+                .scifi-btn-locked {
+                    opacity: 0.5;
+                    cursor: not-allowed;
+                    pointer-events: none;
+                }
+
+                .scifi-btn-locked:hover {
+                    background: transparent;
+                    color: #fff;
+                    box-shadow: none;
+                }
                 
                 /* Responsive */
                 @media (max-width: 1200px) {
-                    .tech-events-section { padding-left: 180px; }
+                    .tech-events-section { padding-left: 220px; }
                 }
                 @media (max-width: 900px) {
                     .tech-events-section { padding: 80px 20px 60px 20px; }
@@ -508,8 +527,8 @@ const TechFestEvents = forwardRef((props, ref) => {
             `}</style>
 
             <div className="tech-events-section">
-                <div
-                    className="tech-events-scroll-wrapper"
+                <div 
+                    className="tech-events-scroll-wrapper" 
                     ref={scrollWrapperRef}
                     style={!isMobile ? { transform: `translateY(${-scrollTop}px)` } : undefined}
                 >
@@ -540,20 +559,26 @@ const TechFestEvents = forwardRef((props, ref) => {
 
                                     <p className="scifi-desc">{event.desc}</p>
 
-                                    <a
-                                        href={event.internal ? undefined : event.link}
-                                        onClick={(e) => {
-                                            if (event.internal) {
-                                                e.preventDefault();
-                                                navigate(event.link);
-                                            }
-                                        }}
-                                        target={event.internal || event.link === '#' ? '_self' : '_blank'}
-                                        rel="noopener noreferrer"
-                                        className="scifi-btn"
-                                    >
-                                        ACCESS
-                                    </a>
+                                    {event.locked ? (
+                                        <div className="scifi-btn scifi-btn-locked">
+                                            NOT LIVE
+                                        </div>
+                                    ) : (
+                                        <a
+                                            href={event.internal ? undefined : event.link}
+                                            onClick={(e) => {
+                                                if (event.internal) {
+                                                    e.preventDefault();
+                                                    navigate(event.link);
+                                                }
+                                            }}
+                                            target={event.internal || event.link === '#' ? '_self' : '_blank'}
+                                            rel="noopener noreferrer"
+                                            className="scifi-btn"
+                                        >
+                                            ACCESS
+                                        </a>
+                                    )}
                                 </div>
                             ))}
                         </div>
