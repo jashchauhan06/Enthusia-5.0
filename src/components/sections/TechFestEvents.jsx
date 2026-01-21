@@ -12,7 +12,7 @@ const TechFestEvents = forwardRef((props, ref) => {
     const [scrollTop, setScrollTop] = useState(0);
     const [isMobile, setIsMobile] = useState(false);
     const navigate = useNavigate();
-    
+
     const SCROLL_STEP_DESKTOP = 150;
     const SCROLL_STEP_MOBILE = 100;
     const SCROLL_STEP = isMobile ? SCROLL_STEP_MOBILE : SCROLL_STEP_DESKTOP;
@@ -98,7 +98,7 @@ const TechFestEvents = forwardRef((props, ref) => {
         reset: (toStart) => {
             setViewState(1);
             setCardsVisible(true);
-            
+
             if (isMobile && scrollWrapperRef.current) {
                 scrollWrapperRef.current.scrollTo({ top: toStart ? 0 : scrollWrapperRef.current.scrollHeight, behavior: 'instant' });
                 return;
@@ -130,7 +130,8 @@ const TechFestEvents = forwardRef((props, ref) => {
             desc: "24HR HACKATHON",
             borderColor: "#ec4899",
             iconColor: "#ec4899",
-            link: "https://sitnovate.vercel.app/"
+            link: "/sitnovate",
+            internal: true
         },
         {
             id: 2,
@@ -140,7 +141,8 @@ const TechFestEvents = forwardRef((props, ref) => {
             desc: "COMPETITIVE CODING",
             borderColor: "#22d3ee",
             iconColor: "#22d3ee",
-            link: "https://code-sprint-2-0.vercel.app/"
+            link: "/codesprint",
+            internal: true
         },
         {
             id: 3,
@@ -160,7 +162,7 @@ const TechFestEvents = forwardRef((props, ref) => {
             desc: "PITCH DECK COMPETITION",
             borderColor: "#4ade80",
             iconColor: "#4ade80",
-            link: "/events/sitank",
+            link: "/sitank",
             internal: true
         },
         {
@@ -527,8 +529,8 @@ const TechFestEvents = forwardRef((props, ref) => {
             `}</style>
 
             <div className="tech-events-section">
-                <div 
-                    className="tech-events-scroll-wrapper" 
+                <div
+                    className="tech-events-scroll-wrapper"
                     ref={scrollWrapperRef}
                     style={!isMobile ? { transform: `translateY(${-scrollTop}px)` } : undefined}
                 >

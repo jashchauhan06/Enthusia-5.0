@@ -8,7 +8,7 @@ SITank 2.0 has been successfully integrated into the Enthusia project as a lazy-
 ### 1. **Routing Structure**
 ```
 /                    → Main Enthusia homepage (App.jsx)
-/events/sitank       → SITank 2.0 event page (lazy-loaded)
+/sitank              → SITank 2.0 event page (lazy-loaded)
 ```
 
 ### 2. **File Structure**
