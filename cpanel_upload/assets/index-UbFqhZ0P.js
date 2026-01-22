@@ -1,0 +1,1 @@
+import{j as e}from"./index-eYorhaqE.js";import{E as r}from"./EventWrapper-CMOQBu-z.js";function n(){return e.jsx(r,{src:"/strangertech-app/index.html",title:"Stranger Tech | The Upside Down Challenge - ENTHUSIA 5.0",bgColor:"#0a0a0a"})}export{n as default};

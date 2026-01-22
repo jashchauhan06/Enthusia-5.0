@@ -174,7 +174,7 @@ const TechFestEvents = forwardRef((props, ref) => {
             desc: "AD CHALLENGE",
             borderColor: "#a855f7",
             iconColor: "#a855f7",
-            link: "https://build-brand.vercel.app/",
+            link: "/buildbrand/",
             internal: false
         },
         {
