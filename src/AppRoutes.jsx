@@ -2,11 +2,12 @@ import React, { Suspense, lazy } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import App from './App';
 
-// Lazy load the SITank event page
+// Lazy load the event pages
 const SITankPage = lazy(() => import('./events/sitank/index'));
 const SITNovatePage = lazy(() => import('./events/sitnovate/index'));
 const CodeSprintPage = lazy(() => import('./events/codesprint/index'));
 const StrangerTechPage = lazy(() => import('./events/strangertech/index'));
+
 
 
 // Loading fallback component matching Enthusia theme
@@ -17,7 +18,7 @@ const LoadingFallback = () => (
                 <div className="inline-block w-16 h-16 border-4 border-purple-500 border-t-transparent rounded-full animate-spin"></div>
             </div>
             <div className="text-purple-400 text-2xl font-bold tracking-widest mb-2" style={{ fontFamily: 'var(--font-heading)' }}>
-                LOADING SITANK 2.0
+                LOADING EVENT
             </div>
             <div className="text-purple-300/60 text-sm tracking-wider" style={{ fontFamily: 'monospace' }}>
                 Initializing event platform...
@@ -72,9 +73,12 @@ function AppRoutes() {
                         </Suspense>
                     }
                 />
+
+
             </Routes>
         </BrowserRouter>
     );
 }
 
 export default AppRoutes;
+

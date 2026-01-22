@@ -125,19 +125,19 @@ const Contact = forwardRef((props, ref) => {
 
                     {/* Right Side: Form */}
                     <div className="contact-form-wrapper">
-                        <form className="contact-form" onSubmit={(e) => e.preventDefault()}>
+                        <form className="contact-form" action="https://formsubmit.co/enthusia@sitnagpur.siu.edu.in" method="POST">
                             <div className="form-row">
                                 <div className="form-group">
                                     <label>YOUR NAME</label>
                                     <div className="input-wrapper">
-                                        <input type="text" placeholder="Enter your name" />
+                                        <input type="text" name="name" placeholder="Enter your name" required />
                                         <div className="input-line"></div>
                                     </div>
                                 </div>
                                 <div className="form-group">
                                     <label>YOUR EMAIL</label>
                                     <div className="input-wrapper">
-                                        <input type="email" placeholder="Enter your email" />
+                                        <input type="email" name="email" placeholder="Enter your email" required />
                                         <div className="input-line"></div>
                                     </div>
                                 </div>
@@ -146,7 +146,7 @@ const Contact = forwardRef((props, ref) => {
                             <div className="form-group">
                                 <label>SUBJECT</label>
                                 <div className="input-wrapper">
-                                    <input type="text" placeholder="Evaluation Request..." />
+                                    <input type="text" name="subject" placeholder="Evaluation Request..." required />
                                     <div className="input-line"></div>
                                 </div>
                             </div>
@@ -154,7 +154,7 @@ const Contact = forwardRef((props, ref) => {
                             <div className="form-group">
                                 <label>YOUR MESSAGE</label>
                                 <div className="input-wrapper">
-                                    <textarea placeholder="Write your message here..."></textarea>
+                                    <textarea name="message" placeholder="Write your message here..." required></textarea>
                                     <div className="input-line"></div>
                                 </div>
                             </div>

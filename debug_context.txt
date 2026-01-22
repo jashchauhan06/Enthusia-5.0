@@ -1,0 +1,8 @@
+,{text:`Prathmesh Raipurkar
+Vice President (SRC)`,image:"/sitnovate-app/assets/images/Team/Prathmesh.webp",linkedin:"https://www.linkedin.com/in/prathmesh-raipurkar-2073a0294/"},{text:`Harsh Kumar
+Sponsorship`,image:"/sitnovate-app/assets/images/Team/harsh.webp",linkedin:"https://www.linkedin.com/in/harsh-2227-kumar/"},{text:`Parth Choudhari
+Event Lead`,image:"/sitnovate-app/assets/images/Team/ParthChoudhari.webp",linkedin:"https://www.linkedin.com/in/parth-choudhari-2073a0294/"},{text:`Parthiv Abhani
+Event Lead`,image:"/sitnovate-app/assets/images/Team/Parthiv Abhani.webp",linkedin:"https://www.linkedin.com/in/parthiv-abhani-b47055231/"},{text:`Aarya Bhende
+Event Lead`,image:"/sitnovate-app/assets/images/Team/Aarya Bhende.webp",linkedin:"https://www.linkedin.com/in/aarya-bhende-2a29a4284/"},{text:`Sukhada Bhoyar
+Event Lead`,image:"/sitnovate-app/assets/images/Team/Sukhada Bhoyar.webp",linkedin:"https://www.linkedin.com/in/sukhada-bhoyar-9b3a00284/"},{text:`Jash Chauhan
+Web Development
