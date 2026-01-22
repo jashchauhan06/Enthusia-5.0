@@ -6,6 +6,7 @@ import App from './App';
 const SITankPage = lazy(() => import('./events/sitank/index'));
 const SITNovatePage = lazy(() => import('./events/sitnovate/index'));
 const CodeSprintPage = lazy(() => import('./events/codesprint/index'));
+const StrangerTechPage = lazy(() => import('./events/strangertech/index'));
 
 
 // Loading fallback component matching Enthusia theme
@@ -58,6 +59,16 @@ function AppRoutes() {
                     element={
                         <Suspense fallback={<LoadingFallback />}>
                             <CodeSprintPage />
+                        </Suspense>
+                    }
+                />
+
+                {/* Stranger Tech event page - lazy loaded */}
+                <Route
+                    path="/strangertech"
+                    element={
+                        <Suspense fallback={<LoadingFallback />}>
+                            <StrangerTechPage />
                         </Suspense>
                     }
                 />

@@ -152,7 +152,8 @@ const TechFestEvents = forwardRef((props, ref) => {
             desc: "TECH TREASURE HUNT",
             borderColor: "#facc15",
             iconColor: "#facc15",
-            link: "https://www.strangertech.live/"
+            link: "/strangertech",
+            internal: true
         },
         {
             id: 4,
