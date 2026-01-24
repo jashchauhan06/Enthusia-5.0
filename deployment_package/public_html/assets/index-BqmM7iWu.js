@@ -1,1 +1,0 @@
-import{j as r}from"./index-BWwmXLHn.js";import{E as t}from"./EventWrapper-CoSXHW4z.js";function p(){return r.jsx(t,{src:"/buildbrand-app/index.html",title:"BUILDBRAND | Ad Challenge - ENTHUSIA 5.0",bgColor:"#050505"})}export{p as default};
