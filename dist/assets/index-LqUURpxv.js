@@ -1,1 +1,0 @@
-import{j as r}from"./index-Dm76pdH3.js";import{E as t}from"./EventWrapper-4jXMRENb.js";function p(){return r.jsx(t,{src:"/codesprint-app/index.html",title:"CODE SPRINT 2.0 | Programming Contest - ENTHUSIA 5.0",bgColor:"#0a0a0a"})}export{p as default};

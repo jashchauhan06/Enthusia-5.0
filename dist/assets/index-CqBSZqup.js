@@ -1,1 +1,0 @@
-import{j as r}from"./index-Dm76pdH3.js";import{E as t}from"./EventWrapper-4jXMRENb.js";function a(){return r.jsx(t,{src:"/strangertech-app/index.html",title:"STRANGER TECH | Tech Hunt - ENTHUSIA 5.0",bgColor:"#0d0d0d"})}export{a as default};
