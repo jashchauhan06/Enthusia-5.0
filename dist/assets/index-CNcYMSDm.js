@@ -1,0 +1,1 @@
+import{j as t}from"./index-Dm76pdH3.js";import{E as r}from"./EventWrapper-4jXMRENb.js";function o(){return t.jsx(r,{src:"/sitnovate-app/index.html",title:"SITNOVATE 2.0 | 24HR Hackathon - ENTHUSIA 5.0",bgColor:"#1a0d2e"})}export{o as default};

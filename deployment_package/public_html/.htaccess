@@ -1,0 +1,14 @@
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # BuildBrand: serve directly, bypass React
+  RewriteCond %{REQUEST_URI} ^/buildbrand
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteRule ^buildbrand/(.*)$ /buildbrand/index.html [L]
+
+  # React: everything else
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule . /index.html [L]
+</IfModule>

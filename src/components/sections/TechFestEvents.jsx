@@ -130,8 +130,8 @@ const TechFestEvents = forwardRef((props, ref) => {
             desc: "24HR HACKATHON",
             borderColor: "#ec4899",
             iconColor: "#ec4899",
-            link: "https://google.com",
-            internal: false
+            link: "/sitnovate",
+            internal: true
         },
         {
             id: 2,
@@ -141,8 +141,8 @@ const TechFestEvents = forwardRef((props, ref) => {
             desc: "COMPETITIVE CODING",
             borderColor: "#22d3ee",
             iconColor: "#22d3ee",
-            link: "https://google.com",
-            internal: false
+            link: "/codesprint",
+            internal: true
         },
         {
             id: 3,
@@ -152,8 +152,8 @@ const TechFestEvents = forwardRef((props, ref) => {
             desc: "TECH TREASURE HUNT",
             borderColor: "#facc15",
             iconColor: "#facc15",
-            link: "https://google.com",
-            internal: false
+            link: "/strangertech",
+            internal: true
         },
         {
             id: 4,
@@ -163,8 +163,8 @@ const TechFestEvents = forwardRef((props, ref) => {
             desc: "PITCH DECK COMPETITION",
             borderColor: "#4ade80",
             iconColor: "#4ade80",
-            link: "https://google.com",
-            internal: false
+            link: "/sitank",
+            internal: true
         },
         {
             id: 5,
@@ -174,8 +174,8 @@ const TechFestEvents = forwardRef((props, ref) => {
             desc: "AD CHALLENGE",
             borderColor: "#a855f7",
             iconColor: "#a855f7",
-            link: "https://google.com",
-            internal: false
+            link: "/buildbrand",
+            internal: true
         },
         {
             id: 6,

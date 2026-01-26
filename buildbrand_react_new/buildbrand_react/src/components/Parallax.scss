@@ -1,0 +1,11 @@
+@use '../styles/functions' as *;
+
+.parallax {
+    .parallax-inner {
+        will-change: transform;
+
+        @include mobile {
+            transform: none !important;
+        }
+    }
+}

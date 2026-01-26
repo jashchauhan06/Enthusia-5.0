@@ -1,0 +1,42 @@
+@use '../styles/functions' as *;
+
+.layout {
+    background-image: url('/buildbrand-app/background_image.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    color: var(--theme-secondary);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+
+    .main {
+        flex-grow: 1;
+    }
+}
+
+/* Override background for contact page */
+:global(.contact-layout) {
+    background-image: none !important;
+    background-color: var(--theme-primary) !important;
+    background: var(--theme-primary) !important;
+}
+
+:global(.contact-layout .main) {
+    background-image: none !important;
+    background-color: var(--theme-primary) !important;
+    background: var(--theme-primary) !important;
+}
+
+:global(.contact-layout .footer) {
+    background-image: none !important;
+    background-color: var(--theme-primary) !important;
+    background: var(--theme-primary) !important;
+}
+
+:global(body:has(.contact-layout)) {
+    background-image: none !important;
+    background-color: var(--theme-primary) !important;
+    background: var(--theme-primary) !important;
+}

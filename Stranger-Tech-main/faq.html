@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - Stranger Tech</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Custom Cursor */
+        body {
+            cursor: none;
+        }
+        
+        #cursor {
+            position: fixed;
+            width: 40px;
+            height: 40px;
+            border: 2px solid #e50914;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transition: transform 0.15s ease;
+            mix-blend-mode: difference;
+        }
+        
+        #cursorDot {
+            position: fixed;
+            width: 8px;
+            height: 8px;
+            background: #e50914;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 10000;
+        }
+        
+        
+        .faq-page {
+            min-height: 100vh;
+            background: #0a0a0a;
+            padding: 120px 5% 80px;
+        }
+        
+        .faq-page-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .faq-page-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .faq-page-title {
+            font-family: var(--stranger-font);
+            font-size: 4rem;
+            color: #ff1a1a;
+            letter-spacing: 10px;
+            margin-bottom: 20px;
+            text-shadow: 0 0 20px #e50914;
+        }
+        
+        .faq-page-subtitle {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin-bottom: 30px;
+            color: #ff1a1a;
+            text-decoration: none;
+            font-family: var(--stranger-font);
+            letter-spacing: 2px;
+            transition: all 0.3s;
+        }
+        
+        .back-link:hover {
+            text-shadow: 0 0 10px #e50914;
+            transform: translateX(-5px);
+        }
+        
+        .faq-item {
+            background: rgba(20, 20, 20, 0.8);
+            border: 1px solid rgba(229, 9, 20, 0.2);
+            border-radius: 8px;
+            margin-bottom: 20px;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+        
+        .faq-item:hover {
+            border-color: rgba(229, 9, 20, 0.5);
+            box-shadow: 0 5px 30px rgba(229, 9, 20, 0.1);
+        }
+        
+        .faq-item.active {
+            border-color: #e50914;
+            box-shadow: 0 10px 40px rgba(229, 9, 20, 0.2);
+        }
+        
+        .faq-question {
+            display: flex;
+            align-items: center;
+            padding: 25px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .faq-question:hover {
+            background: rgba(229, 9, 20, 0.05);
+        }
+        
+        .faq-icon {
+            width: 32px;
+            height: 32px;
+            margin-right: 20px;
+            color: #e50914;
+            flex-shrink: 0;
+        }
+        
+        .faq-icon svg {
+            width: 100%;
+            height: 100%;
+        }
+        
+        .faq-question h3 {
+            flex: 1;
+            font-family: var(--stranger-font);
+            font-size: 1.2rem;
+            color: #ffffff;
+            letter-spacing: 2px;
+        }
+        
+        .faq-toggle {
+            font-size: 1.5rem;
+            color: #e50914;
+            transition: transform 0.3s;
+        }
+        
+        .faq-item.active .faq-toggle {
+            transform: rotate(45deg);
+        }
+        
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+            padding: 0 25px 20px 77px;
+        }
+        
+        .faq-answer p {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.7;
+        }
+    </style>
+</head>
+<body>
+    <!-- Custom Cursor -->
+    <div id="cursor"></div>
+    <div id="cursorDot"></div>
+
+    <div class="faq-page">
+        <div class="faq-page-container">
+            <a href="index.html" class="back-link">← BACK TO HOME</a>
+            
+            <div class="faq-page-header">
+                <h1 class="faq-page-title">FREQUENTLY ASKED QUESTIONS</h1>
+                <p class="faq-page-subtitle">Everything you need to know before entering the Upside Down</p>
+            </div>
+            
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span class="faq-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+                                <line x1="12" y1="17" x2="12.01" y2="17"/>
+                            </svg>
+                        </span>
+                        <h3>What is Stranger Tech?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Stranger Tech is a Stranger Things–themed technical event where the Upside Down collides with code.
+The event consists of 5 thrilling rounds, each inspired by a season of the series, testing participants on coding, DSA, logic building, and core technical skills through fun yet challenging tasks.
+
+Enter the Upside Down. Crack the code. Survive all five seasons.
+
+👥 Team Formation
+
+🧑‍🤝‍🧑 Team Size: Exactly 3 members
+Because every Hawkins-level mission needs a perfect trio.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span class="faq-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                                <circle cx="9" cy="7" r="4"/>
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                            </svg>
+                        </span>
+                        <h3>How many members per team?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Each team must have exactly 3 members. All team members should bring their own laptops as workstations are not provided.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span class="faq-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                                <line x1="8" y1="21" x2="16" y2="21"/>
+                                <line x1="12" y1="17" x2="12" y2="21"/>
+                            </svg>
+                        </span>
+                        <h3>What should we bring?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Each team must bring their own laptops (mandatory), extension cords for power, valid college ID, and most importantly - your problem-solving skills and enthusiasm!</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span class="faq-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 2a4 4 0 0 1 4 4c0 1.95-1.4 3.58-3.25 3.93L12 22l-.75-12.07A4.001 4.001 0 0 1 12 2z"/>
+                                <path d="M8.5 8.5L5 12l3.5 3.5"/>
+                                <path d="M15.5 8.5L19 12l-3.5 3.5"/>
+                            </svg>
+                        </span>
+                        <h3>What skills do I need?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Basic programming knowledge is helpful but not mandatory. The challenges test logical thinking, pattern recognition, cryptography basics, and teamwork. All skill levels are welcome!</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span class="faq-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                                <line x1="16" y1="2" x2="16" y2="6"/>
+                                <line x1="8" y1="2" x2="8" y2="6"/>
+                                <line x1="3" y1="10" x2="21" y2="10"/>
+                            </svg>
+                        </span>
+                        <h3>When and where is the event?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>The event will be held on campus at SIT Nagpur. Exact dates will be announced soon. Follow our social media for updates!</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span class="faq-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                                <circle cx="12" cy="7" r="4"/>
+                            </svg>
+                        </span>
+                        <h3>How do I register?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Click the "REGISTER NOW" button at the top of the page to register your team. You'll need team name, member details, and contact information. Registration is free!</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span class="faq-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <polyline points="12 6 12 12 16 14"/>
+                            </svg>
+                        </span>
+                        <h3>How long is the event?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>The event is a full-day competition with five rounds. Each round has specific time limits. Plan to be available for the entire day.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span class="faq-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                                <polyline points="2 17 12 22 22 17"/>
+                                <polyline points="2 12 12 17 22 12"/>
+                            </svg>
+                        </span>
+                        <h3>Are there any prerequisites?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>You must be a college student with a valid student ID. Basic computer literacy and problem-solving skills are recommended. No specific programming language expertise is required.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span class="faq-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                            </svg>
+                        </span>
+                        <h3>Can I change my team after registration?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Team changes are allowed up to 48 hours before the event. Contact us immediately if you need to make changes. Last-minute changes may not be accommodated.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span class="faq-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+                            </svg>
+                        </span>
+                        <h3>Will food be provided?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes! Refreshments and meals will be provided during the event. Please inform us of any dietary restrictions during registration.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span class="faq-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                            </svg>
+                        </span>
+                        <h3>Need more help?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Contact us at enthusia@sitnagpur.siu.edu.in or call Mahek Patel at +91 95297 83646 for any additional questions.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 60px; padding: 30px; background: rgba(20, 20, 20, 0.6); border-radius: 10px; border: 1px solid rgba(229, 9, 20, 0.2);">
+                <p style="color: rgba(255, 255, 255, 0.6); font-size: 0.9rem; line-height: 1.8;">
+                    <strong style="color: #e50914;">Disclaimer:</strong> Stranger Tech is an independent event organized by CSI SIT Nagpur. This event is not affiliated with, endorsed by, or sponsored by Netflix or the creators of Stranger Things. All Stranger Things related trademarks, names, and imagery are the property of Netflix and their respective owners. We use the theme for educational and entertainment purposes only.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Custom Cursor
+        const cursor = document.getElementById('cursor');
+        const cursorDot = document.getElementById('cursorDot');
+        
+        let mouseX = 0, mouseY = 0;
+        let cursorX = 0, cursorY = 0;
+        let dotX = 0, dotY = 0;
+        
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            dotX = e.clientX - 4;
+            dotY = e.clientY - 4;
+        });
+        
+        function animateCursor() {
+            cursorX += (mouseX - cursorX - 20) * 0.1;
+            cursorY += (mouseY - cursorY - 20) * 0.1;
+            
+            cursor.style.left = cursorX + 'px';
+            cursor.style.top = cursorY + 'px';
+            cursorDot.style.left = dotX + 'px';
+            cursorDot.style.top = dotY + 'px';
+            
+            requestAnimationFrame(animateCursor);
+        }
+        
+        animateCursor();
+        
+        // Cursor hover effects
+        document.querySelectorAll('a, .back-link, .faq-question').forEach(elem => {
+            elem.addEventListener('mouseenter', () => {
+                cursor.style.transform = 'scale(1.5)';
+                cursor.style.borderColor = '#ff1a1a';
+            });
+            
+            elem.addEventListener('mouseleave', () => {
+                cursor.style.transform = 'scale(1)';
+                cursor.style.borderColor = '#e50914';
+            });
+        });
+        
+        // FAQ Toggle functionality
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const faqItem = question.parentElement;
+                const isActive = faqItem.classList.contains('active');
+                
+                // Close all other FAQ items
+                document.querySelectorAll('.faq-item').forEach(item => {
+                    item.classList.remove('active');
+                });
+                
+                // Toggle current item
+                if (!isActive) {
+                    faqItem.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+@use '../styles/functions' as *;
+
+.card {
+    // Glassmorphism base
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: mobile-vw(12px);
+
+    // Layout
+    padding: mobile-vw(32px);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; // Align text to bottom like in screenshot context if relevant, or space-between
+    gap: mobile-vw(16px);
+
+    // Dimensions - Make it square-ish like the design
+    width: mobile-vw(280px);
+    height: mobile-vw(350px); // Give it some height
+    flex-shrink: 0;
+
+    @include desktop {
+        border-radius: desktop-vw(24px);
+        padding: desktop-vw(40px);
+        width: desktop-vw(400px);
+        height: desktop-vw(500px); // Taller aspect ratio for internal content
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        gap: desktop-vw(24px);
+    }
+
+    .number {
+        font-family: 'Oswald', sans-serif;
+        font-size: mobile-vw(80px);
+        font-weight: 700;
+        color: #5B8DFF;
+        line-height: 0.8;
+        margin-bottom: auto; // Push text to bottom
+
+        @include desktop {
+            font-size: desktop-vw(120px);
+        }
+    }
+
+    .title {
+        font-family: 'Satoshi', sans-serif;
+        font-size: mobile-vw(24px);
+        font-weight: 700;
+        color: #FFFFFF;
+        line-height: 1.2;
+
+        @include desktop {
+            font-size: desktop-vw(32px);
+        }
+    }
+
+    .description {
+        font-family: 'Satoshi', sans-serif;
+        font-size: mobile-vw(16px);
+        font-weight: 400;
+        color: rgba(255, 255, 255, 0.8);
+        line-height: 1.5;
+
+        @include desktop {
+            font-size: desktop-vw(18px);
+        }
+    }
+}
