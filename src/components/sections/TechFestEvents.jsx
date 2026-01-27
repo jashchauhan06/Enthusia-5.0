@@ -185,8 +185,8 @@ const TechFestEvents = forwardRef((props, ref) => {
             desc: "GAMING TOURNAMENT",
             borderColor: "#f97316",
             iconColor: "#f97316",
-            link: null,
-            locked: true
+            link: "/esports",
+            internal: true
         }
     ];
 
